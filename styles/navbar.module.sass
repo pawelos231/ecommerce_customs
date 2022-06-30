@@ -1,0 +1,156 @@
+@import './variables/_colors'
+@import './variables/_variables'
+.mainConForList
+    width: 100vw
+    height: 10vh
+    position: fixed
+    z-index: 11
+    top: 0px
+    background-color: $main_White
+    ul
+        display: flex
+        justify-content: flex-end
+        list-style-type: none
+        height: 100%
+        align-items: center
+        margin: 0
+        li
+            flex-basis: 9%
+            text-align: center
+            font-size: 20px
+            height: 100%
+            line-height: 7vh
+            transition: .3s
+            cursor: pointer
+            &:hover
+                background-color: grey
+
+.mainRight
+    position: absolute
+    right: 18rem
+    display: flex
+    margin-top: 0px
+    .ImageCon
+        width: 50px
+        height: 50px
+        div
+            width: 50px
+            height: 50px
+            object-fit: cover
+            overflow: hidden
+            cursor: pointer
+            border-radius: 50%
+    b
+        margin-right: 50px
+    button
+        position: absolute
+        top: 23px
+        left: 0px
+        border: 0
+        width: 100px
+        padding: 4.5px
+        border-radius: 3px
+        transition: .3s
+        color: $main_Red
+        font-weight: 600
+        background: #FFFFFF
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.09)
+        font-family: 'Poppins'
+        cursor: pointer
+        &:hover
+            background-color: $main_Black
+            color: $main_White
+
+.clas
+    margin-right: 280px
+    button
+        width: 100px
+        background: #FFFFFF
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.09)
+        border-radius: 5px
+        border: 0
+        color: $main_Red
+        font-weight: 600
+        font-family: 'Poppins'
+        padding: 8px
+        border-radius: 5px
+        cursor: pointer
+        transition: .2s
+        &:hover
+            color: $main_White
+            background-color: $main_Black
+.lefty
+    position: absolute
+    top: 15px
+    padding: 20px 10px 20px 10px
+    left: 10px
+    font-size: 20px
+    display: flex
+    flex-direction: column
+    align-items: center
+    user-select: none
+    div
+        width: 50px
+        border: 1px solid black
+        background-color: $main_Black
+        margin: 2px
+        @for $i from 1 through 3
+            &:nth-child(1n + #{$i})
+                @include customWidthIncrease(20, $i)
+
+.leftCart
+    position: absolute
+    right: 20px
+
+.Aquatta
+    position: absolute
+    left: 50%
+    cursor: pointer
+    transform: translate(-50%, -20%)
+    top: 0px
+
+.switch
+    width: 4vw
+    height: 4vh
+    background-color: $main_Black
+    display: flex
+    justify-content: flex-start
+    border-radius: 60px
+    padding: 4.5px
+    cursor: pointer
+    transition: .2s linear
+    position: absolute
+    top: 11.5vh
+    right: 1.5vw
+    z-index: 11 !important
+    position: fixed
+
+.switch[data-isOn="false"]
+    justify-content: flex-end
+    background-color: $main_White
+
+.handle
+    width: 3vh
+    height: 3vh
+    background-color: $main_White
+    border-radius: 50%
+
+.handle[data-isOn="false"]
+    background-color: $main_Black
+
+.containerforLan
+    position: absolute
+    left: 8vw
+    top: 1.7vh
+    display: flex
+    z-index: 9999999
+    p
+        padding: 0px 20px 0px 20px
+        cursor: pointer
+        &:hover
+            color: red
+
+.serchBar
+    margin-right: 5vw
+    input
+        width: 70%

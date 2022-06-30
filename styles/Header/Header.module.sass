@@ -1,0 +1,85 @@
+@import  '../variables/_variables'
+@import '../variables/_colors'
+
+.mainContainer
+    @include positionCon()
+    transition: .3s
+    padding-top: 7vh
+    .ImageCon
+        width: 100%
+        text-align: justify
+        position: relative
+        height: 40vh
+        h1
+            position: absolute
+            top: 50%
+            left: 50%
+            transform: translate(-50%, -50%)
+            margin: 0 !important
+            font-weight: 800
+            color: white !important
+            font-size: 126px
+            font-family: 'Poppins'
+.mainContainer[data-ison="false"]
+    color: white
+
+.pasek
+    height: 10vh
+    display: flex
+    margin-top: 25px
+    align-items: center
+    background-color: $secondary_Red
+    width: 100%
+    justify-content: center
+    p
+        font-family: 'Poppins'
+        font-style: normal
+        font-weight: 300
+        font-size: 20px
+
+.navBarForCategories
+    font-family: 'Poppins'
+    width: 100%
+    background-color: #F3F3F3
+    height: 100px
+    transition: .3s
+    font-size: 20px
+    ul
+        list-style-type: none
+        display: flex
+        height: 70%
+        align-items: center
+        justify-content: center
+        li
+            flex-basis: 7%
+            text-align: center
+.navBarForCategories[data-ison="false"]
+    background-color: #111
+    color: white
+
+.heartIntoStyle
+    width: 80vw
+    margin-left: 10vw
+    margin-top: 5rem
+    display: flex
+    margin-bottom: 10vh
+    div
+        flex-basis: 50%
+    .heart
+        flex-basis: 50%
+        display: flex
+        flex-direction: column
+        justify-content: center
+        margin: 0
+        h3
+            color: blue
+            font-size: 45px
+            width: 70%
+            margin-top: -10%
+            color: $main_Red
+            span
+                color: $main_Green
+
+        p
+            width: 65%
+            font-size: 22px

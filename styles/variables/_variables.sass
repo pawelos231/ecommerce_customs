@@ -1,0 +1,14 @@
+@mixin positionCon()
+    display: flex
+    justify-content: center
+    align-items: center
+    transition: .2s
+    flex-direction: column
+@mixin customWidthIncrease($width, $i)
+    width: #{$width * $i *0.8}px
+
+@mixin PositionCenterSingleItem()
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)

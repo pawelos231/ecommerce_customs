@@ -1,0 +1,63 @@
+.CircContainer
+    width: 100vw
+    height: 100vh
+    display: flex
+    justify-content: center
+    align-items: center
+
+.content
+    flex-grow: 1
+    padding: 6rem
+    margin-top: 5vh !important
+.conForText
+    font-size: 16px
+    color: grey
+
+.conForText[data-ison="false"]
+    color: #bbb
+
+.containerForTabs
+    background-color: white
+    min-height: 60vh
+    color: black
+    transition: .2s
+
+.containerForTabs[data-ison="false"]
+    background-color: #252525 !important
+    color: #eee
+
+.CardContent
+    color: #111
+    transition: .2s
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif
+
+.CardContent[data-ison="false"]
+    color: white
+.emptyProdcs
+    color: white
+    position: absolute
+    top: 49%
+    left: 50%
+    transform: translate(-50%, -50%)
+.find
+    position: fixed
+    top: 30px
+    right: 6.9vw
+    z-index: 10001
+    width: 130px
+    height: 30px
+    border: 0
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.09)
+    border-radius: 2px
+    &::placeholder
+        color: rgba(0, 0, 0, 0.28)
+.conForSearch
+    z-index: 10001
+
+@media(max-width: 720px)
+    .content
+        padding: 2rem
+
+@media(max-width: 420px)
+    .content
+        padding: 1rem

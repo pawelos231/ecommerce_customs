@@ -1,0 +1,91 @@
+@import '../variables/_colors'
+.MainContainer
+    color: white
+    background-color: black
+    padding-top: 5rem
+    height: 90vh
+    position: relative
+    .cover
+        position: absolute
+        height: 90vh
+        width: 100vw
+        object-fit: cover
+        z-index: 1
+        opacity: 0.55
+        user-select: none
+        top: 0
+    .MainContainerForInformation
+        display: flex
+        justify-content: space-around
+        margin-bottom: 8rem !important
+        width: 70vw
+        margin-left: 15vw
+        div
+            flex-basis: 30%
+            z-index: 2 !important
+            height: 30vh
+            ul
+                margin: 0
+                list-style-type: none
+                display: flex
+                flex-direction: column
+                justify-content: center
+                li
+                    margin-top: 2rem
+                    transition: .2s
+                    cursor: pointer
+                    font-size: 15px
+                    &:hover
+                        color: $main_Red
+    .PutOrder
+        font-size: 20px
+        flex-basis: 37% !important
+        div
+            display: flex
+            height: 20%
+            margin-top: 6rem
+            font-size: 20px
+            font-weight: 700
+            align-items: center
+            justify-content: space-between
+            button
+                height: 80%
+                font-size: 20px
+                width: 40%
+                cursor: pointer
+                font-weight: 700
+                color: white
+                background-color: transparent
+                border: 2px solid red
+
+    .MainContainerForMedia
+        display: flex
+        justify-content: space-around
+        width: 70vw
+        margin-left: 15vw
+        margin-top: 5vh
+        div
+            z-index: 2 !important
+            h2
+                font-size: 66px
+                font-weight: 200
+                margin: 0
+            .media
+                display: flex
+                width: 60%
+                margin-left: 20%
+                margin-top: 2rem !important
+                justify-content: space-around
+                div
+                    cursor: pointer
+            .divider
+                width: 70vw
+                position: absolute
+                margin-left: -25%
+                margin-top: -2rem
+                background-color: rgba(255, 255, 255, 0.25)
+                height: 1px
+            p
+                text-align: center
+                margin-top: 2rem
+                font-size: 11px

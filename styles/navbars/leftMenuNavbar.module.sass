@@ -1,0 +1,52 @@
+@import '../variables/_colors'
+.mainCon
+    height: 100vh
+    position: fixed
+    width: 20vw
+    background-color: transparent
+    z-index: 10
+    transition: .2s
+.mainConClosed
+    z-index: 0
+    height: 100vh
+    position: fixed
+    width: 20vw
+    background-color: transparent
+    transition: .2s
+    animation: znikaj 1s forwards
+
+@keyframes znikaj
+    0%
+        z-index: 10
+    100%
+        z-index: 0 !important
+
+.background
+    position: absolute
+    top: 0
+    left: 0
+    bottom: 0
+    width: 100%
+    background: $main_White
+.iconPlaceholder
+    height: 50px
+    border-radius: 5px
+    width: 70%
+    margin-left: 15%
+    text-align: center
+    margin-top: 10px
+    display: flex
+    justify-content: center
+    align-items: center
+    flex: 40px 0
+    margin-right: 20px
+    font-size: 20px
+
+.TextPlaceHolder
+    flex: 1
+    z-index: 99 !important
+.ConForUl
+    z-index: 9 !important
+    position: absolute
+    margin-top: 15vh
+    width: 100%

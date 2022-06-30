@@ -1,0 +1,79 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["mongoDb"]
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Comments {
+  id        String   @id @default(cuid()) @map("_id")
+  createdAt DateTime @default(now())
+  ProductId String
+  Author    String
+  Photo     String
+  Content   String
+  UserId    String
+}
+
+model Contact {
+  id        String @id @default(cuid()) @map("_id")
+  email     String
+  firstName String
+  lastName  String
+  message   String
+}
+
+model LoginEcommerce {
+  id    String @id @default(cuid()) @map("_id")
+  name  String
+  email String
+}
+
+model accounts {
+  id                String @id @default(cuid()) @map("_id")
+  access_token      String
+  expires_at        Int
+  id_token          String
+  provider          String
+  providerAccountId String
+  scope             String
+  token_type        String
+  type              String
+  userId            String @db.ObjectId
+}
+
+model formmodels {
+  id          String   @id @default(cuid()) @map("_id")
+  v           Int      @map("__v")
+  creteatedAt DateTime @db.Date
+  email       String?
+  message     String?
+  name        String
+}
+
+model sessions {
+  id           String   @id @default(cuid()) @map("_id")
+  expires      DateTime @db.Date
+  sessionToken String
+  userId       String   @db.ObjectId
+}
+
+model users {
+  id            String @id @default(cuid()) @map("_id")
+  email         String
+  /// Could not determine type: the field only had null or empty values in the sample set.
+  emailVerified Json?
+  image         String
+  name          String
+}
+
+model UserFavourite {
+  id              String @id @default(cuid()) @map("_id")
+  UserId          String
+  Unique          String
+  ProductIdentity String
+  ImageOfProduct  String
+}

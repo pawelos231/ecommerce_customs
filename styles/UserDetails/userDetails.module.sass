@@ -1,0 +1,67 @@
+@import  '../variables/_variables'
+@import '../variables/_colors'
+.container[data-ison="true"]
+    color: black
+    @include positionCon()
+.container[data-ison="false"]
+    background-color: $main_Black
+    color: white
+.navigation
+    position: fixed
+    left: 0
+    top: 10vh
+    ul
+        list-style-type: none
+        display: flex
+        flex-direction: column
+        height: 90vh
+        margin: 0
+        padding: 0
+        max-height: 100vh
+        justify-content: start
+        width: 10vw
+        li
+            flex-basis: 8%
+            font-size: 22px
+            margin: 3px
+            width: 100%
+            display: flex
+            align-items: center
+            justify-content: center
+            text-align: center
+            background-color: $background_White
+            color: black
+            cursor: pointer
+            transition: .3s
+            &:hover
+                color: $main_White
+                background-color: $main_Black
+
+.mainContainerForFavs
+    width: 75vw
+    display: flex
+    flex-wrap: wrap
+    gap: 22px
+    justify-content: center
+    div
+        flex-basis: 22%
+        cursor: pointer
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08)
+.NoFavs
+    @include PositionCenterSingleItem()
+    font-size: 2rem
+    text-align: center
+    top: 59%
+    box-shadow: none !important
+    p
+        font-size: 1rem
+        box-shadow: none !important
+    div
+        box-shadow: none !important
+.ContainerForImages
+    display: flex
+    width: 70vw
+    justify-content: space-around
+    margin-top: 80px
+    .ConForImage
+        flex-basis: 27%

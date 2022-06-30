@@ -1,0 +1,14 @@
+@import './variables/_colors'
+.mainContainer
+    width: 100vw
+    height: 100vh
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    transition: .3s
+    p
+        margin: 0
+.mainContainer[data-ison="false"]
+    background-color: $main_Black
+    color: white

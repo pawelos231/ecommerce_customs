@@ -1,0 +1,10 @@
+@import  '../variables/_variables'
+@import '../variables/_colors'
+.container
+    height: 100vh
+    color: black
+    background-color: white
+    @include positionCon()
+.container[data-ison="false"]
+    background-color: $main_Black
+    color: white

@@ -1,0 +1,28 @@
+@import '../variables/_colors'
+.ConForOptionsParent
+    display: flex
+    margin: 20px 20px 20px -5px
+    width: 80%
+    flex-wrap: wrap
+    .ConForOptions[data-ison="false"]
+        flex-basis: 20%
+        padding: 10px
+        text-align: center
+        margin: 5px
+        background-color: $secondary_black
+        transition: .2s
+        cursor: pointer
+        &:hover
+            background-color: $second_Green
+            color: white
+    .ConForOptions[data-ison="true"]
+        flex-basis: 20%
+        padding: 10px
+        text-align: center
+        margin: 5px
+        background-color: $main_White
+        transition: .2s
+        cursor: pointer
+        &:hover
+            background-color: $second_Green
+            color: white
