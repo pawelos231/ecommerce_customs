@@ -12,7 +12,7 @@ export const FetchProductsBySearchInput =
       return prodcs;
     } else {
       let newAray = [];
-      const fuse = new Fuse(prodcs, {
+      const fuse = new Fuse(mutable, {
         keys: ["name", "price.raw", "category.name"],
         includeScore: true,
       });

@@ -3,11 +3,11 @@
     color: white
     background-color: black
     padding-top: 5rem
-    height: 90vh
+    min-height: 90vh
     position: relative
     .cover
         position: absolute
-        height: 90vh
+        height: 100%
         width: 100vw
         object-fit: cover
         z-index: 1
@@ -89,3 +89,47 @@
                 text-align: center
                 margin-top: 2rem
                 font-size: 11px
+
+@media(max-width: 720px)
+    .MainContainer
+        .MainContainerForInformation
+            flex-direction: column
+
+            div
+                ul
+                    width: 70vw
+                    padding: 0
+                    margin-bottom: 7rem
+                    li
+                        padding: 0
+                        width: 100%
+                        text-align: center
+                        font-size: 22px
+            .PutOrder
+                margin: 4rem 20px 20px 20px
+                div
+                    flex-direction: column
+                    button
+                        width: 90%
+                        padding: 25px
+                p
+                    text-align: center
+        .MainContainerForMedia
+            background-color: red
+            margin-left: 0
+            width: 100%
+            div
+                .media
+                    width: 90%
+                    margin-left: 5%
+                    display: flex
+                    flex-wrap: wrap
+                    a
+                        flex-basis: 50%
+                        div
+                            transform: scale(1.9) !important
+                            margin: 20px
+                            text-align: center
+                .divider
+                    width: 80vw
+                    margin-left: -5vw
