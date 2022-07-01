@@ -12,7 +12,19 @@ const Comments = ({ productId, Language }) => {
   const fetchComments = async () => {
     await fetch(`/api/comments/${productId}`)
       .then((response) => response.json())
-      .then((data) => (console.log(data.comment), postComment(data.comment)));
+      .then((data) => postComment(data.comment));
+  };
+  const deleteComment = async (index) => {
+    await fetch(
+      `/api/comments/${commets[index]?.id}/deleteComments/${session.user.id}`,
+      {
+        method: "DELETE",
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+    commets.splice(index, 1);
+    postComment((prevState) => [...commets]);
   };
   const OnPostComment = async (comment) => {
     if (comment != "") {
@@ -77,10 +89,7 @@ const Comments = ({ productId, Language }) => {
           </motion.button>
           <ul>
             {commets.length !== 0 ? (
-              commets.map((item) => {
-                if (item.UserId == session.user.id) {
-                  console.log("pies");
-                }
+              commets.map((item, i) => {
                 return (
                   <>
                     <div className={styles.conForCom}>
@@ -116,6 +125,7 @@ const Comments = ({ productId, Language }) => {
                           whileTap={{
                             scale: 0.95,
                           }}
+                          onClick={() => deleteComment(i)}
                         >
                           <Delete />
                         </motion.div>
