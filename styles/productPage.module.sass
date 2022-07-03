@@ -54,7 +54,6 @@
         background-color: red
         line-height: 25vh
 
-
 .conForrelated
     margin-top: 5vh !important
     div
@@ -76,3 +75,37 @@
     transition: .2s
     &:hover
         transform: scale(1.05)
+
+@media(max-width: 720px)
+    .containerForContent
+        display: flex
+        flex-direction: column
+        margin-top: 45vh
+        width: 90%
+        margin-bottom: 20vh
+        margin-left: 5%
+        article
+            margin: 1.2rem
+    .comments
+        width: 100%
+        margin: 10vh 0px 0px 0px
+        .containerForDes
+            display: flex
+            flex-direction: column
+            justify-content: center
+            align-items: center
+            p
+                width: 85%
+    .LookAlsoFor
+        margin-left: 5%
+        flex-wrap: wrap
+        div
+            flex-basis: 45%
+            overflow: hidden
+    .conForrelated
+        display: flex
+        align-items: center
+        flex-direction: column
+        margin-top: 10vh !important
+        div
+            width: 75vw

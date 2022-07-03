@@ -120,8 +120,8 @@ const ProductDetails = ({ prodcs }) => {
               tempore exercitationem expedita dignissimos earum minima amet, eum
               itaque nesciunt, suscipit quaerat cupiditate quia sit voluptatibus
               accusamus laborum aperiam. Nemo, facere.
-              <Variants prodcs={prodcs} />
             </p>
+            <Variants prodcs={prodcs} />
           </article>
         </div>
         <div className={styles.comments}>

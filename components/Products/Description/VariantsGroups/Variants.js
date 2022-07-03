@@ -7,7 +7,7 @@ const Variants = ({ prodcs }) => {
 
   console.log(prodcs.variant_groups);
   return (
-    <div>
+    <div className={styles.ConForOptionsParentContainer}>
       <div>
         {prodcs.variant_groups.map((item) => {
           return (

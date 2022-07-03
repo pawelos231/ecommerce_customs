@@ -45,8 +45,8 @@ const Description = ({ prodcs }) => {
               <Link href={`/prodcs/${item.id}`}>
                 <Image
                   src={item.image.url}
-                  width={180}
-                  height={180}
+                  width={20}
+                  height={26}
                   quality={20}
                   objectFit="cover"
                   placeholder="blur"

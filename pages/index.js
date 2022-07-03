@@ -10,16 +10,22 @@ import { commerce } from "../lib/commerce";
 import Header from "../components/Header/Header";
 import { FetchAllProducts } from "../actions/ProductsAction";
 export async function getStaticProps() {
-  const { data } = await commerce.products.list();
+  const { data } = await commerce.products.list({
+    limit: 20,
+    page: 1,
+  });
+  const { data: categories } = await commerce.categories.list();
+
   return {
     props: {
       data,
+      categories,
     },
     revalidate: 1, //later add redux to make filtering easier
   };
 }
 
-export default function Component({ data }) {
+export default function Component({ data, categories }) {
   const dispatch = useDispatch();
   const combined = async () => {
     dispatch(FetchAllProducts(data));
@@ -43,6 +49,7 @@ export default function Component({ data }) {
         totaltems={val.cartFetch.total_items}
         data={data}
         mutData={val2}
+        categories={categories}
       />
       <Header />
       <Products setCart={setCart} data={val2}></Products>

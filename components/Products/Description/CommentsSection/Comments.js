@@ -68,25 +68,27 @@ const Comments = ({ productId, Language }) => {
             />
             <p>{session.user.name}</p>
           </div>
-          <input
-            ref={refContainerForCom}
-            placeholder="Napisz komentarz..."
-            type="text"
-            className={styles.inputStyles}
-            onChange={(e) => inputvalue(e.target.value)}
-          />
-          <motion.button
-            whileHover={{
-              scale: 1.05,
-            }}
-            whileTap={{
-              scale: 0.97,
-            }}
-            className={styles.buttonSendComment}
-            onClick={() => OnPostComment(input)}
-          >
-            Opublikuj
-          </motion.button>
+          <div className={styles.containerForButtons}>
+            <input
+              ref={refContainerForCom}
+              placeholder="Napisz komentarz..."
+              type="text"
+              className={styles.inputStyles}
+              onChange={(e) => inputvalue(e.target.value)}
+            />
+            <motion.button
+              whileHover={{
+                scale: 1.05,
+              }}
+              whileTap={{
+                scale: 0.97,
+              }}
+              className={styles.buttonSendComment}
+              onClick={() => OnPostComment(input)}
+            >
+              Opublikuj
+            </motion.button>
+          </div>
           <ul>
             {commets.length !== 0 ? (
               commets.map((item, i) => {

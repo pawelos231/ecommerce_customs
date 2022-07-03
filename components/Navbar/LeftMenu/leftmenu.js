@@ -25,10 +25,11 @@ const sidebar = {
   },
 };
 
-const LeftMenu = ({ IsOpen, opened, ArrayOfCategories, data }) => {
+const LeftMenu = ({ IsOpen, opened, data, categories }) => {
   const containerRef = useRef(null);
-  console.log(ArrayOfCategories);
   const { height } = useDimensions(containerRef);
+  let ArrayOfCategories = ["wszystko"];
+  categories.map((item) => ArrayOfCategories.push(item.slug));
   useEffect(() => {
     console.log(IsOpen);
   }, [IsOpen]);
@@ -41,11 +42,7 @@ const LeftMenu = ({ IsOpen, opened, ArrayOfCategories, data }) => {
       ref={containerRef}
     >
       <motion.div className={styles.background} variants={sidebar} />
-      <Navigation
-        ArrayOfCategories={ArrayOfCategories}
-        data={data}
-        
-      />
+      <Navigation ArrayOfCategories={ArrayOfCategories} data={data} />
     </motion.nav>
   );
 };

@@ -26,3 +26,19 @@
         &:hover
             background-color: $second_Green
             color: white
+
+@media(max-width: 720px)
+    .ConForOptionsParent
+        width: 100%
+        margin-bottom: 20px
+        justify-content: center
+        .ConForOptions[data-ison="false"]
+            flex-basis: 45%
+            border: 1px solid white
+        .ConForOptions[data-ison="true"]
+            flex-basis: 45%
+            border: 1px solid black
+    .ConForOptionsParentContainer
+        margin-bottom: 20px
+        width: 95vw
+        margin: 5vh 5vh 25vh -7.5vw

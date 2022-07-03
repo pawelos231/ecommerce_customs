@@ -13,7 +13,6 @@ import { useState } from "react";
 import LeftMenu from "./LeftMenu/leftmenu";
 import { motion, useCycle } from "framer-motion";
 import { useRef } from "react";
-import { useDimensions } from "./LeftMenu/MenuItem/use-dimmensions";
 import SearchBar from "./switchers/SeatchBar";
 const func = async (identity) => {
   await fetch(`/api/userDatabase/${identity}`)
@@ -21,10 +20,9 @@ const func = async (identity) => {
     .then((data) => console.log(data.data[0]._id.$oid));
 };
 
-const Navbar = ({ totaltems, data}) => {
+const Navbar = ({ totaltems, data, categories }) => {
   const [isOpen, toggleOpen] = useCycle(false, true);
   const containerRef = useRef(null);
-  const { height } = useDimensions(containerRef);
   const { data: session } = useSession();
   const router = useRouter();
   const [opened, onHandleOpen] = useState(false);
@@ -53,16 +51,6 @@ const Navbar = ({ totaltems, data}) => {
     }
   };
 
-  let ArrayOfCategories = ["wszystko"];
-  data?.map((item) => {
-    const itemCategory = item.categories[0]?.slug;
-    if (
-      ArrayOfCategories.findIndex((item) => item == itemCategory) == -1 &&
-      itemCategory !== undefined
-    ) {
-      ArrayOfCategories.push(itemCategory);
-    }
-  });
   useEffect(() => {
     if (session) {
       func(session.user.id);
@@ -136,13 +124,14 @@ const Navbar = ({ totaltems, data}) => {
           </ul>
         </nav>
         <Switch />
-        <LeftMenu
-          IsOpen={isOpen}
-          opened={opened}
-          ArrayOfCategories={ArrayOfCategories}
-          data={data}
-         
-        />
+        {router.pathname == "/" ? (
+          <LeftMenu
+            IsOpen={isOpen}
+            opened={opened}
+            categories={categories}
+            data={data}
+          />
+        ) : null}
       </>
     );
   }
@@ -190,12 +179,14 @@ const Navbar = ({ totaltems, data}) => {
         </ul>
       </nav>
       <Switch />
-      <LeftMenu
-        IsOpen={isOpen}
-        opened={opened}
-        ArrayOfCategories={ArrayOfCategories}
-        data={data}
-      />
+      {router.pathname == "/" ? (
+        <LeftMenu
+          IsOpen={isOpen}
+          opened={opened}
+          categories={categories}
+          data={data}
+        />
+      ) : null}
     </>
   );
 };
