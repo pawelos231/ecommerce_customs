@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Card, CardContent, CardActions, IconButton } from "@material-ui/core";
-import { AddShoppingCart, FavoriteBorder, Favorite } from "@material-ui/icons";
+import { AddShoppingCart } from "@material-ui/icons";
 import useStyles from "./style";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -12,12 +12,13 @@ import { useState } from "react";
 import { shimmer, toBase64 } from "../../ShimmerEffect/Shimmer";
 import { useSession } from "next-auth/react";
 import FavsIcon from "./favouriteIconComponent/favsIcon";
+import { useTheme } from "next-themes";
 
 const Product = ({ product, setCart, index }) => {
   const [click, setOnclick] = useState(false);
   const { data: session } = useSession();
   const dispatch = useDispatch();
-
+  const { theme, setTheme } = useTheme();
   const value = useSelector((state) => {
     return state.SwitchToggle;
   });
@@ -42,7 +43,7 @@ const Product = ({ product, setCart, index }) => {
   }, [valueOfLan]);
   return (
     <Card
-      className={String(isOn) === "true" ? classes.root : classes.darkRoot}
+      className={String(theme) === "light" ? classes.root : classes.darkRoot}
       component={motion.div}
       whileHover={{
         scale: 1.017,
@@ -50,7 +51,7 @@ const Product = ({ product, setCart, index }) => {
       }}
       whileTap={{ scale: 0.97 }}
     >
-      <div className={styles.containerForTabs} data-ison={isOn}>
+      <div className={styles.containerForTabs} data-ison={theme}>
         <Link href={`/prodcs/${product.id}`}>
           <a onClick={ClickProductHandler}>
             <div style={{ cursor: "pointer" }}>
@@ -70,11 +71,11 @@ const Product = ({ product, setCart, index }) => {
                 title={product.name}
               />
               <CardContent>
-                <div className={styles.CardContent} data-ison={isOn}>
+                <div className={styles.CardContent} data-ison={theme}>
                   <h2>{product.name}</h2>
                   <h3>{product.price.formatted_with_symbol}</h3>
                 </div>
-                <p data-ison={isOn} className={styles.conForText}>
+                <p data-ison={theme} className={styles.conForText}>
                   siema
                 </p>
               </CardContent>

@@ -14,6 +14,8 @@ import LeftMenu from "./LeftMenu/leftmenu";
 import { motion, useCycle } from "framer-motion";
 import { useRef } from "react";
 import SearchBar from "./switchers/SeatchBar";
+import { useTheme } from "next-themes";
+import useStyles from "./style";
 const func = async (identity) => {
   await fetch(`/api/userDatabase/${identity}`)
     .then((response) => response.json())
@@ -22,6 +24,7 @@ const func = async (identity) => {
 
 const Navbar = ({ totaltems, data, categories }) => {
   const [isOpen, toggleOpen] = useCycle(false, true);
+  const { theme, setTheme } = useTheme();
   const containerRef = useRef(null);
   const { data: session } = useSession();
   const router = useRouter();
@@ -50,7 +53,7 @@ const Navbar = ({ totaltems, data, categories }) => {
       div.children[2].style = "none";
     }
   };
-
+  const classes = useStyles();
   useEffect(() => {
     if (session) {
       func(session.user.id);
@@ -60,17 +63,18 @@ const Navbar = ({ totaltems, data, categories }) => {
   if (session) {
     return (
       <>
-        <nav className={styles.mainConForList}>
+        <nav className={styles.mainConForList} data-ison={theme}>
           <motion.div
             className={styles.lefty}
             onClick={() => {
               onHandleOpenMenu();
               console.log(isOpen);
             }}
+            data-ison={theme}
           >
-            <div></div>
-            <div></div>
-            <div></div>
+            <div data-ison={theme}></div>
+            <div data-ison={theme}></div>
+            <div data-ison={theme}></div>
           </motion.div>
           <SwitchLan />
           <ul>
@@ -94,16 +98,40 @@ const Navbar = ({ totaltems, data, categories }) => {
             </div>
 
             <div className={styles.leftCart}>
-              <IconButton>
+              <IconButton
+                component={motion.div}
+                whileHover={{
+                  scale: 1.07,
+                  transition: { duration: 0.2 },
+                }}
+                whileTap={{ scale: 0.97 }}
+              >
                 <Badge badgeContent={totaltems} color="secondary">
                   <Link href={"/cart"}>
-                    <ShoppingCart />
+                    <ShoppingCart
+                      className={
+                        String(theme) === "dark"
+                          ? classes.root
+                          : classes.darkRoot
+                      }
+                    />
                   </Link>
                 </Badge>
               </IconButton>
-              <IconButton>
+              <IconButton
+                component={motion.div}
+                whileHover={{
+                  scale: 1.07,
+                  transition: { duration: 0.2 },
+                }}
+                whileTap={{ scale: 0.97 }}
+              >
                 <Link href={"/user/Favourite"}>
-                  <Favorite />
+                  <Favorite
+                    className={
+                      String(theme) === "dark" ? classes.root : classes.darkRoot
+                    }
+                  />
                 </Link>
               </IconButton>
             </div>
@@ -144,10 +172,11 @@ const Navbar = ({ totaltems, data, categories }) => {
             onHandleOpenMenu();
             console.log(isOpen);
           }}
+          data-ison={theme}
         >
-          <div></div>
-          <div></div>
-          <div></div>
+          <div data-ison={theme}></div>
+          <div data-ison={theme}></div>
+          <div data-ison={theme}></div>
         </motion.div>
         <SwitchLan />
         <ul>

@@ -1,18 +1,16 @@
 import { useSelector, useDispatch } from "react-redux";
 import styles from "../../styles/Header/Header.module.sass";
 import Image from "next/image";
+import { useTheme } from "next-themes";
 import { shimmer, toBase64 } from "../ShimmerEffect/Shimmer";
 const Header = () => {
-  const val = useSelector((state) => {
-    return state;
-  });
-  let isOn = val.SwitchToggle;
   const val2 = useSelector((state) => {
     return state;
   });
+  const { theme, setTheme } = useTheme();
   const len = val2.SwitchLan.language;
   return (
-    <header className={styles.mainContainer} data-ison={isOn}>
+    <header className={styles.mainContainer} data-ison={theme}>
       <div className={styles.pasek}>
         {len == "pl" ? (
           <p>Witam cię na sklepie</p>
@@ -20,7 +18,7 @@ const Header = () => {
           <p>Welcome to BB Customs</p>
         )}
       </div>
-      <div className={styles.navBarForCategories} data-ison={isOn}>
+      <div className={styles.navBarForCategories} data-ison={theme}>
         <ul>
           <li>JACKETS</li>
           <li>SHOES</li>

@@ -3,6 +3,7 @@
 .mainConForList
     width: 100vw
     height: 10vh
+    transition: .2s
     position: fixed
     z-index: 11
     top: 0px
@@ -24,6 +25,8 @@
             cursor: pointer
             &:hover
                 background-color: grey
+.mainConForList[data-isOn="dark"]
+    background-color: $main_Black
 
 .mainRight
     position: absolute
@@ -97,6 +100,8 @@
         @for $i from 1 through 3
             &:nth-child(1n + #{$i})
                 @include customWidthIncrease(20, $i)
+    div[data-isOn="dark"]
+        background-color: $main_White
 
 .leftCart
     position: absolute
@@ -125,7 +130,7 @@
     z-index: 11 !important
     position: fixed
 
-.switch[data-isOn="false"]
+.switch[data-isOn="dark"]
     justify-content: flex-end
     background-color: $main_White
 
@@ -135,7 +140,7 @@
     background-color: $main_White
     border-radius: 50%
 
-.handle[data-isOn="false"]
+.handle[data-isOn="dark"]
     background-color: $main_Black
 
 .containerforLan

@@ -5,41 +5,17 @@ import reducers from "../reducers";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
-import React, { Fragment } from "react";
-import { useEffect, useState } from "react";
+import React from "react";
+import { ThemeProvider } from "next-themes";
 function MyApp({
   Component,
   pageProps: { session, ...pageProps },
   ...appProps
 }) {
   const getLayout = Component.getLayout || ((page) => page);
-  const localStorageKey = "background";
-  const [mounted, setMounted] = useState(false);
-  let persistedTheme;
-  if (typeof window !== "undefined") {
-    persistedTheme = localStorage.getItem(localStorageKey);
-  }
-  let initialState = {
-    SwitchToggle: persistedTheme ? JSON.parse(persistedTheme) : {},
-  };
-  const store = createStore(
-    reducers,
-    initialState,
-    compose(applyMiddleware(thunk))
-  );
-  console.log(store.getState().SwitchToggle);
-  const unsusbribe = store.subscribe(() => {
-    const SwitchToggle = store.getState().SwitchToggle;
 
-    localStorage.setItem(localStorageKey, JSON.stringify(SwitchToggle));
-  });
-  unsusbribe();
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  if (!mounted) {
-    return <Layout></Layout>;
-  }
+  const store = createStore(reducers, compose(applyMiddleware(thunk)));
+
   /*
   let isLayoutNeeded = [`/prodcs`].includes(appProps.router.pathname);
   console.log(appProps.router.pathname);
@@ -49,7 +25,9 @@ function MyApp({
     <SessionProvider session={session}>
       <Layout>
         <Provider store={store}>
-          {getLayout(<Component {...pageProps} />)}
+          <ThemeProvider>
+            {getLayout(<Component {...pageProps} />)}
+          </ThemeProvider>
         </Provider>
       </Layout>
     </SessionProvider>

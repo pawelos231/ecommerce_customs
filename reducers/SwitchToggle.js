@@ -1,7 +1,7 @@
-export default (state = true, action) => {
+export default (state = { mode: "dark" }, action) => {
   switch (action.type) {
     case "SWITCH_BUTTON":
-      return !state;
+      return state;
     default:
       return state;
   }

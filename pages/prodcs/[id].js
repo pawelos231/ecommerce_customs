@@ -12,6 +12,7 @@ import { shimmer, toBase64 } from "../../components/ShimmerEffect/Shimmer";
 import { fetchCart } from "../../actions/fetchcommerceCart";
 import { useEffect } from "react";
 import Variants from "../../components/Products/Description/VariantsGroups/Variants";
+import { useTheme } from "next-themes";
 let index = 0;
 export async function getStaticPaths() {
   const { data } = await commerce.products.list();
@@ -50,7 +51,7 @@ const ProductDetails = ({ prodcs }) => {
     setClick(!click);
     index = i;
   };
-  console.log(click);
+  const { theme, setTheme } = useTheme();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCart());
@@ -66,7 +67,7 @@ const ProductDetails = ({ prodcs }) => {
   return (
     <>
       <Navbar totaltems={cart} />
-      <div className={styles.mainContainer} data-ison={value}>
+      <div className={styles.mainContainer} data-ison={theme}>
         <div className={styles.containerForContent}>
           <div>
             {click === true ? (
