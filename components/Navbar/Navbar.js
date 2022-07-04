@@ -24,6 +24,7 @@ const func = async (identity) => {
 
 const Navbar = ({ totaltems, data, categories }) => {
   const [isOpen, toggleOpen] = useCycle(false, true);
+  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
   const containerRef = useRef(null);
   const { data: session } = useSession();
@@ -58,8 +59,11 @@ const Navbar = ({ totaltems, data, categories }) => {
     if (session) {
       func(session.user.id);
     }
+    setMounted(true);
   }, [session, router.pathname]);
-
+  if (!mounted) {
+    return <></>;
+  }
   if (session) {
     return (
       <>
@@ -70,7 +74,6 @@ const Navbar = ({ totaltems, data, categories }) => {
               onHandleOpenMenu();
               console.log(isOpen);
             }}
-            data-ison={theme}
           >
             <div data-ison={theme}></div>
             <div data-ison={theme}></div>

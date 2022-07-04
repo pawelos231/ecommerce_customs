@@ -47,6 +47,7 @@ export async function getStaticProps({ params }) {
 }
 const ProductDetails = ({ prodcs }) => {
   const [click, setClick] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const setClickModal = (i) => {
     setClick(!click);
     index = i;
@@ -55,6 +56,7 @@ const ProductDetails = ({ prodcs }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCart());
+    setMounted(true);
   }, []);
   let value = useSelector((state) => {
     return state.SwitchToggle;
@@ -63,7 +65,7 @@ const ProductDetails = ({ prodcs }) => {
     return state.cartFetch.total_items;
   });
   console.log(prodcs, "SIEMA");
-  if (!prodcs) return <div>loading...</div>;
+  if (!prodcs || !mounted) return <div>loading...</div>;
   return (
     <>
       <Navbar totaltems={cart} />

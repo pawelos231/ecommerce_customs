@@ -17,10 +17,8 @@ const Switch = () => {
     switchHandle(!switcher);
     if (switcher == true) {
       setTheme("dark");
-      dispatch(SwitchMode(theme));
     } else {
       setTheme("light");
-      dispatch(SwitchMode(theme));
     }
   };
   return (

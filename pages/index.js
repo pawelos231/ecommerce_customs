@@ -42,9 +42,14 @@ export default function Component({ data, categories }) {
     return state;
   });
   let isOn = val.SwitchToggle;
+  const [mounted, setMounted] = useState(false);
   useEffect(() => {
     combined();
+    setMounted(true);
   }, [dispatch, val.cartAdd.cart]);
+  if (!mounted) {
+    return null;
+  }
   return (
     <div className={styles.mainContainer} data-ison={theme}>
       <Navbar
