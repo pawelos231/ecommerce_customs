@@ -29,13 +29,13 @@ const Layout = ({ children }) => {
           name="keywords"
           content="Custom, design, custom jackets, custom shoes, custom t-shirts"
         />
-        <meta name="author" content="Pawelos inc" />
         <meta
           name="description"
-          content="Website Containing my portfolio and things that i worked on, also presenting some of the revievs from my clients"
+          content="sklep ecommerce zawierający customowe wykonane kurtki i buty"
         />
+        <meta name="author" content="Pawelos" />
       </Head>
-      {children}
+      <main>{children}</main>
       <Footer />
     </>
   );

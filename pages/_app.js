@@ -6,12 +6,15 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import React, { Fragment } from "react";
+import { useEffect, useState } from "react";
 function MyApp({
   Component,
   pageProps: { session, ...pageProps },
   ...appProps
 }) {
+  const getLayout = Component.getLayout || ((page) => page);
   const localStorageKey = "background";
+  const [mounted, setMounted] = useState(false);
   let persistedTheme;
   if (typeof window !== "undefined") {
     persistedTheme = localStorage.getItem(localStorageKey);
@@ -31,10 +34,12 @@ function MyApp({
     localStorage.setItem(localStorageKey, JSON.stringify(SwitchToggle));
   });
   unsusbribe();
-  if (typeof window == "undefined") {
-    return <></>;
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  if (!mounted) {
+    return <Layout></Layout>;
   }
-  const getLayout = Component.getLayout || ((page) => page);
   /*
   let isLayoutNeeded = [`/prodcs`].includes(appProps.router.pathname);
   console.log(appProps.router.pathname);

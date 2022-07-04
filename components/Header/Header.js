@@ -46,9 +46,9 @@ const Header = () => {
           />
         </div>
         <div className={styles.heart}>
-          <h3>
+          <h1>
             <span>Put your </span> Heart into style
-          </h3>
+          </h1>
           <p>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos,
             cumque expedita? Architecto cumque expedita consequuntur, numquam
