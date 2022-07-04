@@ -86,16 +86,18 @@ const Navbar = ({ totaltems, data, categories }) => {
               <button onClick={() => signOut()}>Sign out</button>
               <div className={styles.ImageCon}>
                 <Link href={`/user`}>
-                  <div>
-                    <Image
-                      src={session.user.image}
-                      width={40}
-                      height={40}
-                      alt={`photo of${session.user.name}`}
-                      layout="responsive"
-                      objectFit="cover"
-                    />
-                  </div>
+                  <a>
+                    <div>
+                      <Image
+                        src={session.user.image}
+                        width={40}
+                        height={40}
+                        alt={`photo of${session.user.name}`}
+                        layout="responsive"
+                        objectFit="cover"
+                      />
+                    </div>
+                  </a>
                 </Link>
               </div>
             </div>
@@ -111,13 +113,15 @@ const Navbar = ({ totaltems, data, categories }) => {
               >
                 <Badge badgeContent={totaltems} color="secondary">
                   <Link href={"/cart"}>
-                    <ShoppingCart
-                      className={
-                        String(theme) === "dark"
-                          ? classes.root
-                          : classes.darkRoot
-                      }
-                    />
+                    <a>
+                      <ShoppingCart
+                        className={
+                          String(theme) === "dark"
+                            ? classes.root
+                            : classes.darkRoot
+                        }
+                      />
+                    </a>
                   </Link>
                 </Badge>
               </IconButton>
@@ -130,25 +134,31 @@ const Navbar = ({ totaltems, data, categories }) => {
                 whileTap={{ scale: 0.97 }}
               >
                 <Link href={"/user/Favourite"}>
-                  <Favorite
-                    className={
-                      String(theme) === "dark" ? classes.root : classes.darkRoot
-                    }
-                  />
+                  <a>
+                    <Favorite
+                      className={
+                        String(theme) === "dark"
+                          ? classes.root
+                          : classes.darkRoot
+                      }
+                    />
+                  </a>
                 </Link>
               </IconButton>
             </div>
 
             <Typography>
               <Link href={"/"}>
-                <div className={styles.Aquatta}>
-                  <Image
-                    src={"/logo.png"}
-                    width={140}
-                    height={140}
-                    alt="logo_BB"
-                  />
-                </div>
+                <a>
+                  <div className={styles.Aquatta}>
+                    <Image
+                      src={"/logo.png"}
+                      width={140}
+                      height={140}
+                      alt="logo_BB"
+                    />
+                  </div>
+                </a>
               </Link>
             </Typography>
             <SearchBar data={data} />
@@ -189,22 +199,26 @@ const Navbar = ({ totaltems, data, categories }) => {
           <div className={styles.leftCart}>
             <IconButton>
               <Badge badgeContent={totaltems} color="secondary">
-                <Link href={"/cart"}>
-                  <ShoppingCart />
-                </Link>
+                <a>
+                  <Link href={"/cart"}>
+                    <ShoppingCart />
+                  </Link>
+                </a>
               </Badge>
             </IconButton>
           </div>
           <Typography>
             <Link href={"/"}>
-              <div className={styles.Aquatta}>
-                <Image
-                  src={"/logo.png"}
-                  width={140}
-                  height={140}
-                  alt="logo_BB"
-                />
-              </div>
+              <a>
+                <div className={styles.Aquatta}>
+                  <Image
+                    src={"/logo.png"}
+                    width={140}
+                    height={140}
+                    alt="logo_BB"
+                  />
+                </div>
+              </a>
             </Link>
           </Typography>
           <SearchBar data={data} />

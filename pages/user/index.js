@@ -5,15 +5,14 @@ import UserDetailsComponent from "../../components/UserDetails/userDetailsCompon
 import Navbar from "../../components/Navbar/Navbar";
 import { fetchCart } from "../../actions/fetchcommerceCart";
 import NestedLayout from "../../components/Layouts/layouUserInterface";
-const getServerSideProps = async () => {
-  //database data from all orders of an client
-};
+import { useTheme } from "next-themes";
 
 const UserDetails = () => {
   const valueOfColor = useSelector((state) => {
     return state.SwitchToggle;
   });
   const dispatch = useDispatch();
+  const { theme, setTheme } = useTheme();
   useEffect(() => {
     dispatch(fetchCart());
   }, []);
@@ -23,7 +22,7 @@ const UserDetails = () => {
   console.log(valueOfCart);
   return (
     <>
-      <div className={styles.container} data-ison={valueOfColor}>
+      <div className={styles.container} data-ison={theme}>
         <h1>Twoje zamówienia</h1>
         <UserDetailsComponent />
       </div>

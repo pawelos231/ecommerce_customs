@@ -11,12 +11,14 @@ import { motion } from "framer-motion";
 import { CircularProgress } from "@material-ui/core";
 import Image from "next/image";
 import { shimmer, toBase64 } from "../../components/ShimmerEffect/Shimmer";
+import { useTheme } from "next-themes";
 const Favourite = () => {
   const valueOfColor = useSelector((state) => {
     return state.SwitchToggle;
   });
   const [fetchedProdcs, fetchHandle] = useState([]);
   const { data: session } = useSession();
+  const { theme, setTheme } = useTheme();
   const dispatch = useDispatch();
   useEffect(() => {
     const fetchAllProdcs = async () => {
@@ -51,7 +53,7 @@ const Favourite = () => {
   }
   return (
     <>
-      <div className={styles.container} data-ison={valueOfColor}>
+      <div className={styles.container} data-ison={theme}>
         <section className={styles.mainContainerForFavs}>
           {fetchedProdcs.prodcs.length !== 0 ? (
             <div>
