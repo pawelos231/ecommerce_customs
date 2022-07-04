@@ -48,7 +48,18 @@ export default function Component({ data, categories }) {
     setMounted(true);
   }, [dispatch, val.cartAdd.cart]);
   if (!mounted) {
-    return null;
+    return (
+      <div className={styles.mainContainer}>
+        <Navbar
+          totaltems={val.cartFetch.total_items}
+          data={data}
+          mutData={val2}
+          categories={categories}
+        />
+        <Header />
+        <Products setCart={setCart} data={val2}></Products>
+      </div>
+    );
   }
   return (
     <div className={styles.mainContainer} data-ison={theme}>

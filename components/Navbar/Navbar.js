@@ -168,7 +168,7 @@ const Navbar = ({ totaltems, data, categories }) => {
   }
   return (
     <>
-      <nav className={styles.mainConForList}>
+      <nav className={styles.mainConForList} data-ison={theme}>
         <motion.div
           className={styles.lefty}
           onClick={() => {
