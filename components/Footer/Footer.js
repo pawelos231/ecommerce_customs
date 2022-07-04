@@ -1,10 +1,15 @@
 import styles from "../../styles/Footer/FooterStyles.module.sass";
 import { motion } from "framer-motion";
 import { Facebook, Instagram, MailOutline, Twitter } from "@material-ui/icons";
+import Link from "next/link";
 const Footer = () => {
   return (
     <footer className={styles.MainContainer}>
-      <img src="/STORY_buty 1-min.jpg" className={styles.cover} />
+      <img
+        src="/STORY_buty 1-min.jpg"
+        className={styles.cover}
+        alt="cover for footer"
+      />
       <div className={styles.MainContainerForInformation}>
         <div>
           <ul>
@@ -19,9 +24,21 @@ const Footer = () => {
           <ul>
             <li>My account</li>
             <li>Store Locator</li>
-            <li>Legal & Privacy</li>
-            <li>Contact</li>
-            <li>Cookie Settings</li>
+            <Link href="/">
+              <a>
+                <li>Legal & Privacy</li>
+              </a>
+            </Link>
+            <Link href="/">
+              <a>
+                <li>Contact</li>
+              </a>
+            </Link>
+            <Link href="/">
+              <a>
+                <li>Cookie Settings</li>
+              </a>
+            </Link>
           </ul>
         </div>
         <div className={styles.PutOrder}>
@@ -64,7 +81,10 @@ const Footer = () => {
                 <Facebook />
               </motion.div>
             </a>
-            <a href="https://www.instagram.com/_bb_custom/" target={"_blank"}>
+            <a
+              href="https://www.youtube.com/channel/UCNFbvMD45Kn_kccYyisc-WA"
+              target={"_blank"}
+            >
               <motion.div
                 whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.9 }}
@@ -72,12 +92,23 @@ const Footer = () => {
                 <MailOutline />
               </motion.div>
             </a>
-            <a href="https://www.instagram.com/_bb_custom/" target={"_blank"}>
+            <a href="https://twitter.com/LinekPawe" target={"_blank"}>
               <motion.div
                 whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.9 }}
               >
                 <Twitter />
+              </motion.div>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/basia-bochenczak-7b8514238/"
+              target={"_blank"}
+            >
+              <motion.div
+                whileHover={{ scale: 1.15 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                Linkedin
               </motion.div>
             </a>
           </div>

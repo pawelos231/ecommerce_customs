@@ -18,6 +18,12 @@ const Layout = ({ children }) => {
           href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;1,400;1,500&family=Hahmlet:wght@100;200;300;500;600&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
           rel="stylesheet"
         />
+        <link rel="canonical" href="https://ecommerce-basia.vercel.app" />
+        <link
+          rel="alternate"
+          href="https://ecommerce-basia.vercel.app"
+          hreflang="en-us"
+        />
         <title>BB Customs</title>
 
         <meta charSet="UTF-8" />
@@ -27,11 +33,11 @@ const Layout = ({ children }) => {
         ></meta>
         <meta
           name="keywords"
-          content="Custom, design, custom jackets, custom shoes, custom t-shirts"
+          content="Custom, design, customowe kurtki, customowe buty, customowe bluzki, malowane, ręcznie"
         />
         <meta
           name="description"
-          content="sklep ecommerce zawierający customowe wykonane kurtki i buty"
+          content="Sklep ecommerce sprzedający wysokiej jakości kurtki oraz buty, szeroki wybór w customach oraz możliwość dodania własnych możliwości"
         />
         <meta name="author" content="Pawelos" />
       </Head>

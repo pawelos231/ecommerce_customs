@@ -103,10 +103,12 @@ const Header = () => {
             <span>Put your </span> Heart into style
           </h1>
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos,
-            cumque expedita? Architecto cumque expedita consequuntur, numquam
-            facere recusandae dignissimos sequi modi minima ex at voluptatem,
-            reprehenderit facilis tenetur. Pariatur, amet.
+            Strona poświęcona customą, sprzedająca najwyższej klasy customowe
+            kurtki oraz customowe buty. Szeroki wybór pozwala na dobranie
+            ciuchów idealnie pod twoje oczekiwania. Jeżeli wybór wciąż byłby dla
+            ciebie za mały, zawsze możesz do mnie napisać w wiadomości
+            dołączonej obok każdego produktu, mam nadzieję że moje prace ci się
+            spodobają i że za niedługo będziesz już mógł się cieszyć produktem !
           </p>
         </div>
       </div>
