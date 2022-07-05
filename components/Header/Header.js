@@ -100,10 +100,10 @@ const Header = () => {
         </div>
         <div className={styles.heart}>
           <h1>
-            <span>Put your </span> Heart into style
+            <span>BB customs, </span> Heart into style
           </h1>
           <p>
-            Strona poświęcona customą, sprzedająca najwyższej klasy customowe
+            Strona poświęcona customs, sprzedająca najwyższej klasy customowe
             kurtki oraz customowe buty. Szeroki wybór pozwala na dobranie
             ciuchów idealnie pod twoje oczekiwania. Jeżeli wybór wciąż byłby dla
             ciebie za mały, zawsze możesz do mnie napisać w wiadomości

@@ -62,7 +62,11 @@ const Footer = () => {
           <div className={styles.divider}></div>
           <h2>BB Custom</h2>
           <div className={styles.media}>
-            <a href="https://www.instagram.com/_bb_custom/" target={"_blank"}>
+            <a
+              title="Instagram"
+              href="https://www.instagram.com/_bb_custom/"
+              target={"_blank"}
+            >
               <motion.div
                 whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.9 }}
@@ -71,6 +75,7 @@ const Footer = () => {
               </motion.div>
             </a>
             <a
+              title="Facebook"
               href="https://www.facebook.com/basia.bochenczak"
               target={"_blank"}
             >
@@ -82,6 +87,7 @@ const Footer = () => {
               </motion.div>
             </a>
             <a
+              title="Mail"
               href="https://www.youtube.com/channel/UCNFbvMD45Kn_kccYyisc-WA"
               target={"_blank"}
             >
@@ -92,7 +98,11 @@ const Footer = () => {
                 <MailOutline />
               </motion.div>
             </a>
-            <a href="https://twitter.com/LinekPawe" target={"_blank"}>
+            <a
+              title="Twitter"
+              href="https://twitter.com/LinekPawe"
+              target={"_blank"}
+            >
               <motion.div
                 whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.9 }}
@@ -101,6 +111,7 @@ const Footer = () => {
               </motion.div>
             </a>
             <a
+              title="linkedin"
               href="https://www.linkedin.com/in/basia-bochenczak-7b8514238/"
               target={"_blank"}
             >

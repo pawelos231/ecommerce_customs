@@ -24,7 +24,8 @@ const Layout = ({ children }) => {
           href="https://ecommerce-basia.vercel.app"
           hreflang="en-us"
         />
-        <title>BB Customs</title>
+        <link rel="icon" type="image/x-icon" href="/logoBasia.png" />
+        <title>BB Customs Eccomerce Shop</title>
 
         <meta charSet="UTF-8" />
         <meta
@@ -33,7 +34,7 @@ const Layout = ({ children }) => {
         ></meta>
         <meta
           name="keywords"
-          content="Custom, design, customowe kurtki, customowe buty, customowe bluzki, malowane, ręcznie"
+          content="Custom, design, customowe kurtki, customowe buty, customowe bluzki, malowane, ręcznie, style"
         />
         <meta
           name="description"
@@ -43,12 +44,28 @@ const Layout = ({ children }) => {
         <meta property="og:title" content="BB customs shop" />
         <meta property="og:url" content="https://ecommerce-basia.vercel.app/" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="/STORY_buty 1-min.jpg" />
+        <meta
+          property="og:image"
+          content="https://ecommerce-basia.vercel.app/STORY_buty%201-min.jpg"
+        />
         <meta
           property="og:description"
           content="Sklep ecommerce sprzedający wysokiej jakości kurtki oraz buty, szeroki wybór w customach oraz możliwość dodania własnych możliwości, pozwala to na gustowne stworzenie swojego własnego stylu!"
         />
         <meta property="og:locale" content="pl_PL" />
+        <meta property="og:site_name" content="BB customs" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@LinekPawe" />
+        <meta name="twitter:title" content="BB Customs Eccomerce Shop" />
+        <meta
+          name="twitter:description"
+          content="Sklep ecommerce sprzedający wysokiej jakości kurtki oraz buty, szeroki wybór w customach oraz możliwość dodania własnych możliwości, pozwala to na gustowne stworzenie swojego własnego stylu!"
+        />
+        <meta
+          name="twitter:image"
+          content="https://ecommerce-basia.vercel.app/STORY_buty%201-min.jpg"
+        />
       </Head>
       <main>{children}</main>
       <Footer />
