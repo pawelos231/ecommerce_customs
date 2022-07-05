@@ -4,10 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchCart } from "../../actions/fetchcommerceCart";
 import styles from "../../styles/layouts/layoutUserInterface.module.sass";
+import { useTheme } from "next-themes";
 const NestedLayout = ({ children }) => {
-  const valueOfColor = useSelector((state) => {
-    return state.SwitchToggle;
-  });
+  const { theme, setTheme } = useTheme();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCart());
@@ -18,7 +17,7 @@ const NestedLayout = ({ children }) => {
   return (
     <>
       <Navbar totaltems={valueOfCart} />
-      <main className={styles.container} data-ison={valueOfColor}>
+      <main className={styles.container} data-ison={theme}>
         <div>{children}</div>
         <NavbarUser />
       </main>
