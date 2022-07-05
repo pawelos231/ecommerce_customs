@@ -20,6 +20,7 @@ const ModalForPhotos = ({ setClickModal, itemId, prodcs }) => {
       <div className={styles.photoContainer}>
         <Image
           src={src}
+          alt={`${itemId} image of ${prodcs.name}`}
           width={width}
           height={height}
           placeholder="blur"

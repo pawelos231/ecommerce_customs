@@ -58,13 +58,9 @@ const ProductDetails = ({ prodcs }) => {
     dispatch(fetchCart());
     setMounted(true);
   }, []);
-  let value = useSelector((state) => {
-    return state.SwitchToggle;
-  });
   let cart = useSelector((state) => {
     return state.cartFetch.total_items;
   });
-  console.log(prodcs, "SIEMA");
   if (!prodcs || !mounted) return <div>loading...</div>;
   return (
     <>
@@ -102,6 +98,7 @@ const ProductDetails = ({ prodcs }) => {
                         src={item.url}
                         width={400}
                         height={300}
+                        alt={`${i} image of ${prodcs.name}`}
                         placeholder="blur"
                         blurDataURL={`data:image/svg+xml;base64,${toBase64(
                           shimmer(400, 300)

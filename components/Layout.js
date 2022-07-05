@@ -40,6 +40,15 @@ const Layout = ({ children }) => {
           content="Sklep ecommerce sprzedający wysokiej jakości kurtki oraz buty, szeroki wybór w customach oraz możliwość dodania własnych możliwości"
         />
         <meta name="author" content="Pawelos" />
+        <meta property="og:title" content="BB customs shop" />
+        <meta property="og:url" content="https://ecommerce-basia.vercel.app/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/STORY_buty 1-min.jpg" />
+        <meta
+          property="og:description"
+          content="Sklep ecommerce sprzedający wysokiej jakości kurtki oraz buty, szeroki wybór w customach oraz możliwość dodania własnych możliwości, pozwala to na gustowne stworzenie swojego własnego stylu!"
+        />
+        <meta property="og:locale" content="pl_PL" />
       </Head>
       <main>{children}</main>
       <Footer />
