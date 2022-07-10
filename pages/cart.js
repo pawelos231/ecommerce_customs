@@ -8,6 +8,7 @@ import Navbar from "../components/Navbar/Navbar.js";
 import styles from "../styles/cart.module.sass";
 import CartItem from "../components/Cart/CartItem";
 import { useTheme } from "next-themes";
+import React from "react";
 const CartPage = ({ data }) => {
   console.log(data);
   const classes = useStyles();

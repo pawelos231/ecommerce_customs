@@ -1,9 +1,11 @@
 import prisma from "../../../lib/prisma";
-export default async function handler(req, res) {
+import type { NextApiRequest, NextApiResponse } from 'next'
+import FavsInfo from "./userDataFetch/interfaceFacs";
+export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
   const data = req.body;
   if (req.method == "POST") {
     const SendUserFavourite = async () => {
-      const post = await prisma.UserFavourite.create({
+      const post: FavsInfo = await prisma.UserFavourite.create({
         data: JSON.parse(data),
       });
       console.log(post);

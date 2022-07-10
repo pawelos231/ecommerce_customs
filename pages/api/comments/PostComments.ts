@@ -1,7 +1,10 @@
 import prisma from "../../../lib/prisma";
-export default async function handler(req, res) {
+import type { NextApiRequest, NextApiResponse } from 'next'
+type ResponseData = {
+  text: string
+}
+export default async function handler(req: NextApiRequest, res : NextApiResponse<ResponseData>) {
   const data = req.body;
-  const parsedobj = JSON.parse(data);
   console.log(data);
   const postMessageCom = async () => {
     const post = await prisma.Comments.create({
@@ -13,5 +16,5 @@ export default async function handler(req, res) {
     await postMessageCom();
   };
   await init();
-  res.status(200).json({ name: "John Doe" });
+  res.status(200).json({ text: "success !!" });
 }

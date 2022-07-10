@@ -16,6 +16,7 @@ import { useRef } from "react";
 import SearchBar from "./switchers/SeatchBar";
 import { useTheme } from "next-themes";
 import useStyles from "./style";
+import React from "react";
 const func = async (identity) => {
   await fetch(`/api/userDatabase/${identity}`)
     .then((response) => response.json())
