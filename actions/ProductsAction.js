@@ -12,7 +12,6 @@ import {
   DESCENDING,
   NATIVE,
 } from "../constants/SearchByInputsInMenu";
-import { commerce } from "../lib/commerce";
 export const FetchAllProducts = (prodcs) => async (dispatch) => {
   dispatch({ type: FETCH_ALL_PRODUCTS, payload: prodcs });
 };

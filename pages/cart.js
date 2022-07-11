@@ -36,11 +36,21 @@ const CartPage = ({ data }) => {
   const FilledCart = () => (
     <>
       <Grid className={classes.con} container spacing={3}>
-        {lineItems.map((lineItem) => (
-          <Grid item xs={12} sm={3} key={lineItem.id}>
-            <CartItem lineItem={lineItem} />
-          </Grid>
-        ))}
+        <div className={classes.containerForCards}>
+          {lineItems.map((lineItem) => (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              lg={5}
+              key={lineItem.id}
+              className={classes.conForCards}
+            >
+              <CartItem lineItem={lineItem} />
+            </Grid>
+          ))}
+        </div>
         <div className={classes.details}>
           <Typography variant="h4">
             Subtotal: {cartItems.cartFetch.subtotal.formatted_with_symbol}

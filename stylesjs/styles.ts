@@ -1,6 +1,6 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
-export default makeStyles((theme) => ({
+export default makeStyles((theme: Theme) => createStyles  ({
   toolbar: theme.mixins.toolbar,
   title: {
     marginTop: "5%",
@@ -28,6 +28,16 @@ export default makeStyles((theme) => ({
   },
   con: {
     marginTop: "7%",
-    padding: "5rem",
+    padding: "2rem",
+  },
+  containerForCards: {
+    display: "flex",
+    gap: "12px",
+    flexWrap: "wrap",
+    width: "80vw",
+  },
+  conForCards: {
+    flexBasis: "20%",
+    width: "10%",
   },
 }));

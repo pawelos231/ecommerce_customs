@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "esnext",
+    "moduleResolution": "node",
     "lib": [
+      "es6",
       "dom",
       "dom.iterable",
       "esnext"
@@ -15,13 +17,20 @@
     "esModuleInterop": true,
     "module": "esnext",
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "noImplicitAny": true,
+     "noImplicitThis": true,
+     "strictNullChecks": true,
+    "resolveJsonModule": true
   },
   "include": [
     "next-env.d.ts",
+    "pages/**/*",
+    "src/**/*",
     "**/*.ts",
-    "**/*.tsx"
-  ],
+    "**/*.tsx",
+    "pages/404.js"
+, "components/Navbar/Navbar.js"  ],
   "exclude": [
     "node_modules"
   ]

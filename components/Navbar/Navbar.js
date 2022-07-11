@@ -2,7 +2,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 import { Typography } from "@material-ui/core";
 import styles from "../../styles/navbar.module.sass";
-import { ShoppingCart, Favorite, MenuOutlined } from "@material-ui/icons";
+import { ShoppingCart, Favorite } from "@material-ui/icons";
 import { IconButton, Badge } from "@material-ui/core";
 import { useEffect } from "react";
 import Switch from "./switchers/switch";
@@ -12,7 +12,6 @@ import SwitchLan from "./switchers/switchLan";
 import { useState } from "react";
 import LeftMenu from "./LeftMenu/leftmenu";
 import { motion, useCycle } from "framer-motion";
-import { useRef } from "react";
 import SearchBar from "./switchers/SeatchBar";
 import { useTheme } from "next-themes";
 import useStyles from "./style";
@@ -27,7 +26,6 @@ const Navbar = ({ totaltems, data, categories }) => {
   const [isOpen, toggleOpen] = useCycle(false, true);
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
-  const containerRef = useRef(null);
   const { data: session } = useSession();
   const router = useRouter();
   const [opened, onHandleOpen] = useState(false);
@@ -58,6 +56,7 @@ const Navbar = ({ totaltems, data, categories }) => {
   const classes = useStyles();
   useEffect(() => {
     if (session) {
+      console.log(session.user);
       func(session.user.id);
     }
     setMounted(true);

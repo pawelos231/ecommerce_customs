@@ -9,7 +9,7 @@ import useStyles from "./styles";
 import React from "react";
 import Image from "next/image";
 
-const CartItem = ({ lineItem }) => {
+const CartItem = ({ lineItem }: any) => {
   if (lineItem.image == null) {
     return <></>;
   }
@@ -25,12 +25,12 @@ const CartItem = ({ lineItem }) => {
         objectFit="cover"
         layout="responsive"
       />
-      <CardContent className={classes.CardContent}>
-        <Typography variant="h5">{lineItem.name}</Typography>
-        <Typography variant="h6">
+      <CardContent className={classes.cardContent}>
+        <p className={classes.InfoForProdName}>{lineItem.name}</p>
+        <p className={classes.InfoForProdPrice}>
           {lineItem.price.formatted_with_symbol}
-        </Typography>
-        <CardActions className={classes.cardActions}>
+        </p>
+        <CardActions className={classes.cartActions}>
           <div className={classes.buttons}>
             <Button type="button" size="small">
               {" "}

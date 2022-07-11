@@ -1,6 +1,6 @@
 import { CircularProgress } from "@material-ui/core";
 import Products from "../components/Products/Products";
-import Navbar from "../components/Navbar/Navbar.js";
+import Navbar from "../components/Navbar/Navbar";
 import { fetchCart } from "../actions/fetchcommerceCart";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
