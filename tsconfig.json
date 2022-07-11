@@ -18,10 +18,6 @@
     "module": "esnext",
     "isolatedModules": true,
     "jsx": "preserve",
-    "noImplicitAny": true,
-     "noImplicitThis": true,
-     "strictNullChecks": true,
-    "resolveJsonModule": true
   },
   "include": [
     "next-env.d.ts",
