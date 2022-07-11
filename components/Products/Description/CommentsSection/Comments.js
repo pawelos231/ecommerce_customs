@@ -137,7 +137,7 @@ const Comments = ({ productId, Language }) => {
                 );
               })
             ) : (
-              <div>Nic tu nie ma</div>
+              <div className={styles.nothingIsHere}>Nic tu nie ma</div>
             )}
           </ul>
         </div>

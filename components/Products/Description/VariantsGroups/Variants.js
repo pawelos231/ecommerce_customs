@@ -1,9 +1,8 @@
 import styles from "../../../../styles/Description/DescriptionVariants.module.sass";
 import { useSelector } from "react-redux";
+import { useTheme } from "next-themes";
 const Variants = ({ prodcs }) => {
-  const DarkMode = useSelector((state) => {
-    return state.SwitchToggle;
-  });
+  const { theme, setTheme } = useTheme();
 
   console.log(prodcs.variant_groups);
   return (
@@ -11,10 +10,10 @@ const Variants = ({ prodcs }) => {
       <div>
         {prodcs.variant_groups.map((item) => {
           return (
-            <div className={styles.ConForOptionsParent} data-ison={DarkMode}>
+            <div className={styles.ConForOptionsParent} data-ison={theme}>
               {item.options.map((item) => {
                 return (
-                  <div className={styles.ConForOptions} data-ison={DarkMode}>
+                  <div className={styles.ConForOptions} data-ison={theme}>
                     {item.name}
                   </div>
                 );

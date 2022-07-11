@@ -1,14 +1,10 @@
 import styles from "../styles/notFound.module.sass";
 import Navbar from "../components/Navbar/Navbar";
-import { useSelector } from "react-redux";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 const NotFound = () => {
-  const value = useSelector((state) => {
-    return state.SwitchToggle;
-  });
   const { theme, setTheme } = useTheme();
-  let isOn = value;
+
   return (
     <>
       <Navbar />
