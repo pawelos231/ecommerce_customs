@@ -18,6 +18,7 @@
     "module": "esnext",
     "isolatedModules": true,
     "jsx": "preserve",
+    "resolveJsonModule": true
   },
   "include": [
     "next-env.d.ts",
@@ -25,8 +26,9 @@
     "src/**/*",
     "**/*.ts",
     "**/*.tsx",
-    "pages/404.js"
-, "components/Navbar/Navbar.js"  ],
+    "pages/404.js",
+    "components/Navbar/Navbar.js"
+  ],
   "exclude": [
     "node_modules"
   ]
