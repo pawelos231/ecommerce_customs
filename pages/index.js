@@ -82,9 +82,7 @@ export default function Component({ data, categories, pagination, LIMIT }) {
       <Header />
       <Products
         setCart={setCart}
-        {...(val3 == 1 && pagination.count / LIMIT > 1
-          ? { data: data }
-          : { data: val2 })}
+        {...(val3 == 1 ? { data: data } : { data: val2 })}
       ></Products>
       {PagesCount !== 1 ? (
         <Pagination
