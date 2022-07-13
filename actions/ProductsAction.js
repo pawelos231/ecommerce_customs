@@ -12,8 +12,13 @@ import {
   DESCENDING,
   NATIVE,
 } from "../constants/SearchByInputsInMenu";
-export const FetchAllProducts = (prodcs) => async (dispatch) => {
-  dispatch({ type: FETCH_ALL_PRODUCTS, payload: prodcs });
+import { commerce } from "../lib/commerce";
+export const FetchAllProducts = (page, LIMIT) => async (dispatch) => {
+  const { data } = await commerce.products.list({
+    limit: LIMIT,
+    page: page,
+  });
+  dispatch({ type: FETCH_ALL_PRODUCTS, payload: data });
 };
 export const FetchProductsBySearchInput =
   (prodcs, mutable, search) => async (dispatch) => {

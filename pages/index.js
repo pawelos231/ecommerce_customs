@@ -1,4 +1,3 @@
-import { CircularProgress } from "@material-ui/core";
 import Products from "../components/Products/Products";
 import Navbar from "../components/Navbar/Navbar";
 import { fetchCart } from "../actions/fetchcommerceCart";
@@ -10,26 +9,34 @@ import { commerce } from "../lib/commerce";
 import Header from "../components/Header/Header";
 import { FetchAllProducts } from "../actions/ProductsAction";
 import { useTheme } from "next-themes";
+import { Pagination } from "@mui/material";
+import { SetPaginatedSite } from "../actions/Pagination";
 export async function getStaticProps() {
+  const LIMIT = 20;
   const { data } = await commerce.products.list({
-    limit: 20,
+    limit: LIMIT,
     page: 1,
   });
   const { data: categories } = await commerce.categories.list();
-
+  const {
+    meta: { pagination },
+  } = await commerce.products.list();
   return {
     props: {
       data,
       categories,
+      pagination,
+      LIMIT,
     },
     revalidate: 1, //later add redux to make filtering easier
   };
 }
 
-export default function Component({ data, categories }) {
+export default function Component({ data, categories, pagination, LIMIT }) {
   const dispatch = useDispatch();
+  const PagesCount = Math.ceil(pagination.count / LIMIT);
   const combined = async () => {
-    dispatch(FetchAllProducts(data));
+    dispatch(FetchAllProducts());
     dispatch(fetchCart());
   };
   const { theme, setTheme } = useTheme();
@@ -37,11 +44,14 @@ export default function Component({ data, categories }) {
   const val2 = useSelector((state) => {
     return state.ProductsHandle.prodcs;
   });
+  const val3 = useSelector((state) => {
+    return state.Pagination;
+  });
+  console.log(val3);
   console.log(val2);
   const val = useSelector((state) => {
     return state;
   });
-  let isOn = val.SwitchToggle;
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     combined();
@@ -70,7 +80,25 @@ export default function Component({ data, categories }) {
         categories={categories}
       />
       <Header />
-      <Products setCart={setCart} data={val2}></Products>
+      <Products
+        setCart={setCart}
+        {...(val3 == 1 && pagination.count / LIMIT > 1
+          ? { data: data }
+          : { data: val2 })}
+      ></Products>
+      {PagesCount !== 1 ? (
+        <Pagination
+          color="secondary"
+          onChange={function (event, page) {
+            console.log(page);
+            dispatch(FetchAllProducts(page, LIMIT));
+            dispatch(SetPaginatedSite(page));
+          }}
+          className={styles.ContainerForPagination}
+          count={PagesCount}
+          size="large"
+        />
+      ) : null}
     </div>
   );
 }

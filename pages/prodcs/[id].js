@@ -13,6 +13,7 @@ import { fetchCart } from "../../actions/fetchcommerceCart";
 import { useEffect } from "react";
 import Variants from "../../components/Products/Description/VariantsGroups/Variants";
 import { useTheme } from "next-themes";
+import Head from "next/head";
 let index = 0;
 export async function getStaticPaths() {
   const { data } = await commerce.products.list();
@@ -31,6 +32,8 @@ export async function getStaticProps({ params }) {
   const id = params.id;
   const { data } = await commerce.products.list({
     query: id,
+    limit: 5,
+    page: 1,
   });
   if (!data.length) {
     return {
@@ -41,11 +44,11 @@ export async function getStaticProps({ params }) {
     };
   }
   return {
-    props: { prodcs: data[0], updatedAt: Date.now() },
+    props: { prodcs: data[0] },
     revalidate: 1,
   };
 }
-const ProductDetails = ({ prodcs }) => {
+const ProductDetails = ({ prodcs, pagination }) => {
   const [click, setClick] = useState(false);
   const [mounted, setMounted] = useState(false);
   const setClickModal = (i) => {
