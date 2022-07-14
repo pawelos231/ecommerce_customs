@@ -27,7 +27,6 @@ export const FetchAllProducts = (page, LIMIT) => async (dispatch) => {
 };
 export const FetchProductsBySearchInput =
   (prodcs, mutable, search) => async (dispatch) => {
-    console.log(dataProdcs.data);
     if (search == "") {
       dispatch({
         type: FETCH_PRODCS_BY_SEARCH_INPUT,
@@ -93,6 +92,7 @@ export const FetchProductByCategory =
       const { data } = await commerce.products.list({
         category_slug: [category],
       });
+      dataProdcs.data = data;
       dispatch({
         type: FETCH_PRODCS_BY_CATEGORY,
         payload: data,

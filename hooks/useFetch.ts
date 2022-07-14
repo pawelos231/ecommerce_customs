@@ -27,6 +27,7 @@ const useFetch = (url: string) : [any, boolean, boolean] => {
 			.catch(() => {
 				setError(true);
 			})
+		clearState()
 	}, [url]);
 
 	return [data, isLoading, error];

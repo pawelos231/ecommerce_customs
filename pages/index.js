@@ -36,7 +36,7 @@ export default function Component({ data, categories, pagination, LIMIT }) {
   const dispatch = useDispatch();
   const PagesCount = Math.ceil(pagination.count / LIMIT);
   const combined = async () => {
-    dispatch(FetchAllProducts());
+    //dispatch(FetchAllProducts());
     dispatch(fetchCart());
   };
   const { theme, setTheme } = useTheme();
@@ -63,7 +63,6 @@ export default function Component({ data, categories, pagination, LIMIT }) {
         <Navbar
           totaltems={val.cartFetch.total_items}
           data={data}
-          mutData={val2}
           categories={categories}
         />
         <Header />
@@ -82,7 +81,7 @@ export default function Component({ data, categories, pagination, LIMIT }) {
       <Header />
       <Products
         setCart={setCart}
-        {...(val3 == 1 ? { data: data } : { data: val2 })}
+        {...(val3 == 1 && val2.length == 0 ? { data: data } : { data: val2 })}
       ></Products>
       {PagesCount !== 1 ? (
         <Pagination
