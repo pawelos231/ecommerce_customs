@@ -1,6 +1,6 @@
 import prisma from "../../../../lib/prisma";
 import type { NextApiRequest, NextApiResponse } from 'next'
-import FavsInfo from "./interfaceFacs";
+import FavsInfo from '../../../../interfaces/interfaces'
 
 type ResponseData = {
   prodcs: FavsInfo[]

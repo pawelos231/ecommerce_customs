@@ -12,7 +12,7 @@ import { useTheme } from "next-themes";
 import { Pagination } from "@mui/material";
 import { SetPaginatedSite } from "../actions/Pagination";
 export async function getStaticProps() {
-  const LIMIT = 20;
+  const LIMIT = 10;
   const { data } = await commerce.products.list({
     limit: LIMIT,
     page: 1,

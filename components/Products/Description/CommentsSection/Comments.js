@@ -4,11 +4,14 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Delete } from "@material-ui/icons";
+import useFetch from "../../../../hooks/useFetch";
+import { CircularProgress} from "@material-ui/core";
 const Comments = ({ productId, Language }) => {
   const { data: session } = useSession();
   const [input, inputvalue] = useState("");
   const [commets, postComment] = useState([]);
   const refContainerForCom = useRef(null);
+
   const fetchComments = async () => {
     await fetch(`/api/comments/${productId}`)
       .then((response) => response.json())
@@ -46,13 +49,9 @@ const Comments = ({ productId, Language }) => {
   };
   console.log(commets);
   console.log(productId);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      await fetchComments();
-    };
-    fetchData();
-  }, [productId]);
+  const [comments, loading, error] = useFetch(`/api/comments/${productId}`);
+  console.log(comments?.comment, loading, error);
+  const commentsUsers = comments?.comment
 
   return (
     <>
@@ -146,7 +145,44 @@ const Comments = ({ productId, Language }) => {
           {Language == "pl" ? (
             <div className={styles.conForComments}>
               <h3>Komentarze</h3>
-              Zaloguj się by móc komentować
+              {loading == false ? 
+              <>
+              {commentsUsers?.length !== 0 ? (
+                commentsUsers?.map((item, i) => {
+                  return (
+                    <>
+                      <div className={styles.conForCom}>
+                        <p className={styles.date}>
+                          Dodane:{" "}
+                          {item.createdAt !== "" &&
+                          item.createdAt !== null &&
+                          item.createdAt !== undefined ? (
+                            String(item.createdAt).split("T")[0]
+                          ) : (
+                            <p>brak danych</p>
+                          )}
+                        </p>
+                        <div className={styles.photoContainer}>
+                          <Image
+                            src={item.Photo}
+                            width={20}
+                            height={20}
+                            objectFit="cover"
+                            layout="responsive"
+                          />
+                        </div>
+                        <p className={styles.author}>{item.Author}</p>
+                      </div>
+                      <div className={styles.conForContentComment}>
+                        <p className={styles.Content}>{item.Content}</p>
+                      </div>
+                    </>
+                  );
+                })
+              ) : (
+                <div className={styles.nothingIsHere}>Nic tu nie ma</div>
+              )}</> : <CircularProgress/>
+            }
             </div>
           ) : (
             <div className={styles.conForComments}>

@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 type ResponseData = {
   text: string
 }
-export default async function handler(req: NextApiRequest, res : NextApiResponse<ResponseData>) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse<ResponseData>) {
   interface IDS {
     id?: string,
     pid?: string

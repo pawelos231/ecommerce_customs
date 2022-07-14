@@ -22,6 +22,9 @@ export default NextAuth({
       return { session, user, token };
     },
   },
+  theme: {
+    colorScheme: "dark",
+  },
   adapter: MongoDBAdapter(clientPromise),
   /*
   pages: {
