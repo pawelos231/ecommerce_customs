@@ -186,7 +186,9 @@ const Comments = ({ productId, Language }) => {
                   )}
                 </>
               ) : (
-                <CircularProgress />
+                <div className={styles.ContainerForSpinner}>
+                  <CircularProgress thickness={2} color="success" size={80} />
+                </div>
               )}
             </div>
           ) : (

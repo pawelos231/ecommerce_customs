@@ -56,7 +56,7 @@ const Favourite = () => {
       <div className={styles.container} data-ison={theme}>
         <section className={styles.mainContainerForFavs}>
           {fetchedProdcs.prodcs.length !== 0 ? (
-            <div>
+            <div className={styles.contained}>
               {fetchedProdcs.prodcs.map((item) => (
                 <Link href={`/prodcs/${item.ProductIdentity}`}>
                   <motion.div

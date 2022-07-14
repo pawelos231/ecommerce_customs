@@ -28,7 +28,7 @@
     "**/*.tsx",
     "pages/404.js",
     "components/Navbar/Navbar.js"
-  ],
+, "components/Layouts/HeadForProdcs.js"  ],
   "exclude": [
     "node_modules"
   ]

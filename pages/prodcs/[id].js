@@ -13,7 +13,7 @@ import { fetchCart } from "../../actions/fetchcommerceCart";
 import { useEffect } from "react";
 import Variants from "../../components/Products/Description/VariantsGroups/Variants";
 import { useTheme } from "next-themes";
-import Head from "next/head";
+import HeadForProdcs from "../../components/Layouts/HeadForProdcs";
 let index = 0;
 export async function getStaticPaths() {
   const { data } = await commerce.products.list();
@@ -64,9 +64,17 @@ const ProductDetails = ({ prodcs, pagination }) => {
   let cart = useSelector((state) => {
     return state.cartFetch.total_items;
   });
+  console.log(prodcs);
+  //title, description, link, image
   if (!prodcs || !mounted) return <div>loading...</div>;
   return (
     <>
+      <HeadForProdcs
+        title={prodcs.name}
+        description={prodcs.attributes[0].value}
+        link={`ecommerce-basia.vercel.app/prodcs/${prodcs.id}`}
+        image={prodcs.image.url}
+      />
       <Navbar totaltems={cart} />
       <div className={styles.mainContainer} data-ison={theme}>
         <div className={styles.containerForContent}>

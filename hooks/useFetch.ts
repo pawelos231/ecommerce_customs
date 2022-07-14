@@ -10,9 +10,8 @@ const useFetch = (url: string) : [any, boolean, boolean] => {
 		setIsLoading(false);
 		setError(false);
 	};
-
-	useEffect(() => {
-        setIsLoading(true);
+	  const testFunc = async() => {
+		setIsLoading(true);
 		fetch(url)
 			.then((res) => {
 				if (!res.ok) {
@@ -28,6 +27,10 @@ const useFetch = (url: string) : [any, boolean, boolean] => {
 				setError(true);
 			})
 		clearState()
+	  }
+
+	useEffect(() => {
+        testFunc()
 	}, [url]);
 
 	return [data, isLoading, error];
