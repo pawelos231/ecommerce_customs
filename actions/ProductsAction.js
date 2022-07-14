@@ -13,6 +13,11 @@ import {
   NATIVE,
 } from "../constants/SearchByInputsInMenu";
 import { commerce } from "../lib/commerce";
+let dataProdcs;
+const init = async () => {
+  dataProdcs = await commerce.products.list();
+};
+init();
 export const FetchAllProducts = (page, LIMIT) => async (dispatch) => {
   const { data } = await commerce.products.list({
     limit: LIMIT,
@@ -22,15 +27,16 @@ export const FetchAllProducts = (page, LIMIT) => async (dispatch) => {
 };
 export const FetchProductsBySearchInput =
   (prodcs, mutable, search) => async (dispatch) => {
+    console.log(dataProdcs.data);
     if (search == "") {
       dispatch({
         type: FETCH_PRODCS_BY_SEARCH_INPUT,
-        payload: prodcs,
+        payload: dataProdcs.data,
       });
-      return prodcs;
+      return dataProdcs.data;
     } else {
       let newAray = [];
-      const fuse = new Fuse(mutable, {
+      const fuse = new Fuse(dataProdcs.data, {
         keys: ["name", "price.raw", "category.name"],
         includeScore: true,
       });
@@ -47,7 +53,7 @@ export const FetchProductsBySearchInput =
       return characterResults;
     }
   };
-
+/*
 export const FetchProductByCategory =
   (prodcs, mutable, category) => async (dispatch) => {
     if (category == ALL) {
@@ -59,24 +65,23 @@ export const FetchProductByCategory =
     } else {
       dispatch({
         type: FETCH_PRODCS_BY_CATEGORY,
-        payload: prodcs.filter((item) => {
+        payload: dataProdcs.data.filter((item) => {
           if (item?.categories[0]?.slug == category) {
             return item;
           }
         }),
       });
-      return prodcs.filter((item) => {
+      return dataProdcs.data.filter((item) => {
         if (item?.categories[0]?.slug == category) {
           return item;
         }
       });
     }
-  };
-/*
-  //EXAMPLE OF CODE BY FETCHING COMMERCE.JS API FOR FUTURE DEVELOPMENT
+  };*/
 
+//EXAMPLE OF CODE BY FETCHING COMMERCE.JS API FOR FUTURE DEVELOPMENT
 
-  export const FetchProductByCategory =
+export const FetchProductByCategory =
   (prodcs, mutable, category) => async (dispatch) => {
     if (category == ALL) {
       dispatch({
@@ -96,8 +101,6 @@ export const FetchProductByCategory =
     }
   };
 
-  */
-
 export const FetchProductByPriceSearch =
   (prodcs, mutable, price) => async (dispatch) => {
     if (price == NATIVE) {
@@ -115,7 +118,7 @@ export const FetchProductByPriceSearch =
         }
         dispatch({
           type: FETCH_PRODCS_BY_PRICE,
-          payload: mutable.sort(compareNumbersDown),
+          payload: dataProdcs.data.sort(compareNumbersDown),
         });
         return mutable.sort(compareNumbersDown);
       } else if (price == DESCENDING) {
@@ -126,9 +129,9 @@ export const FetchProductByPriceSearch =
         }
         dispatch({
           type: FETCH_PRODCS_BY_PRICE,
-          payload: mutable.sort(compareNumbersUp),
+          payload: dataProdcs.data.sort(compareNumbersUp),
         });
-        return mutable.sort(compareNumbersUp);
+        return dataProdcs.data.sort(compareNumbersUp);
       }
     }
   };
