@@ -6,7 +6,7 @@ import styles from "../../styles/Product.module.sass";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-const Products = ({ setCart, data}) => {
+const Products = ({ setCart, data }) => {
   console.log(data);
   const [switcher, swtchervalue] = useState("");
   const container = {
