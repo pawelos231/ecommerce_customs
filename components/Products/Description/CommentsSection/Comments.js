@@ -5,15 +5,27 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Delete } from "@material-ui/icons";
 import useFetch from "../../../../hooks/useFetch";
+import { Pagination } from "@mui/material";
 import { CircularProgress } from "@material-ui/core";
 const Comments = ({ productId, Language }) => {
   const { data: session } = useSession();
   const [input, inputvalue] = useState("");
   const [commets, postComment] = useState([]);
+  const [pages, SetPage] = useState(1);
   const refContainerForCom = useRef(null);
-
-  const fetchComments = async () => {
-    await fetch(`/api/comments/${productId}`)
+  const Paginated = async () => {
+    await fetch(`/api/comments/${productId}/countPages`)
+      .then((response) => response.json())
+      .then((data) => SetPage(data.NumberOfPaginatedPages));
+  };
+  const fetchComments = async (pages, currentPage = 1) => {
+    await fetch(`/api/comments/${productId}`, {
+      method: "POST",
+      body: JSON.stringify({
+        pages,
+        currentPage,
+      }),
+    })
       .then((response) => response.json())
       .then((data) => postComment(data.comment));
   };
@@ -49,11 +61,15 @@ const Comments = ({ productId, Language }) => {
   };
   console.log(commets);
   console.log(productId);
+
   const [comments, loading, error] = useFetch(`/api/comments/${productId}`);
-  console.log(comments?.comment, loading, error);
   const commentsUsers = comments?.comment;
   useEffect(() => {
-    fetchComments();
+    Paginated();
+  }, [productId]);
+
+  useEffect(() => {
+    fetchComments(pages, 1);
   }, [productId]);
   return (
     <>
@@ -199,6 +215,16 @@ const Comments = ({ productId, Language }) => {
           )}
         </>
       )}
+      <div className={styles.containerForPagination}>
+        <Pagination
+          count={pages}
+          size="large"
+          color="secondary"
+          onChange={function (event, page) {
+            fetchComments(pages, page);
+          }}
+        />
+      </div>
     </>
   );
 };
