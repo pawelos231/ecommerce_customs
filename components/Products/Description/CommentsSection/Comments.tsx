@@ -41,7 +41,7 @@ const Comments = ({ productId, Language }) => {
     commets.splice(index, 1);
     postComment((prevState) => [...commets]);
   };
-  const OnPostComment = async (comment) => {
+  const OnPostComment = async (comment: any) => {
     if (comment != "") {
       refContainerForCom.current.value = "";
       let userObj = {
@@ -203,7 +203,7 @@ const Comments = ({ productId, Language }) => {
                 </>
               ) : (
                 <div className={styles.ContainerForSpinner}>
-                  <CircularProgress thickness={2} color="success" size={80} />
+                  <CircularProgress thickness={2} color="primary" size={80} />
                 </div>
               )}
             </div>

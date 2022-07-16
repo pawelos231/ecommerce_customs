@@ -3,12 +3,12 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { shimmer, toBase64 } from "../../ShimmerEffect/Shimmer";
 const ModalForPhotos = ({ setClickModal, itemId, prodcs }) => {
-  let width = prodcs.assets[itemId].image_dimensions.width;
-  let height = prodcs.assets[itemId].image_dimensions.height;
-  let displayHeight = (height + 140) / window.innerHeight;
+  let width: number = prodcs.assets[itemId].image_dimensions.width;
+  let height: number = prodcs.assets[itemId].image_dimensions.height;
+  let displayHeight: number = (height + 140) / window.innerHeight;
   width = width / displayHeight;
   height = height / displayHeight;
-  const src = prodcs.assets[itemId].url;
+  const src: string = prodcs.assets[itemId].url;
   return (
     <motion.div
       className={styles.ModalCon}

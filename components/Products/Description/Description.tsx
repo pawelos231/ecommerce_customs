@@ -4,14 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { shimmer, toBase64 } from "../../ShimmerEffect/Shimmer";
 import Comments from "./CommentsSection/Comments";
-import { useSelector } from "react-redux";
+import { useSelector, RootStateOrAny } from "react-redux";
 const Description = ({ prodcs }) => {
-  const productId = prodcs.id;
+  const productId: string = prodcs.id;
   console.log(productId);
-  const Language = useSelector((state) => {
+  const Language: string = useSelector((state: RootStateOrAny) => {
     return state.SwitchLan.language;
   });
-  console.log(Language);
   return (
     <>
       <div className={styles.containerForDes}>

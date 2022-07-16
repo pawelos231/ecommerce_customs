@@ -1,5 +1,4 @@
 import styles from "../../../../styles/Description/DescriptionVariants.module.sass";
-import { useSelector } from "react-redux";
 import { useTheme } from "next-themes";
 const Variants = ({ prodcs }) => {
   const { theme, setTheme } = useTheme();
