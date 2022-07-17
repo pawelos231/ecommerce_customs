@@ -1,7 +1,7 @@
 import styles from "../../../styles/UserDetails/userDetails.module.sass";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Links from "../../../interfaces/interfacesAboutUserDetails";
+import {Links} from "../../../interfaces/interfacesAboutUserDetails";
 const NavbarUser = () => {
   const TabOfLinksToUserDetailedPages: Links[] = [
     { text: "zamowienia", link: "/user" },
