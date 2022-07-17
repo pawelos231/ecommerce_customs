@@ -6,12 +6,12 @@ import { useEffect } from "react";
 
 const FavsIcon = ({ session, product }) => {
   const [favourite, setFavourite] = useState(false);
-  const [fetchedProdcs, fetchHandle] = useState([]);
+  const [fetchedProdcs, fetchHandle] = useState<any>([]);
   const classes = useStyles();
   const AddToFavouriteProductHandler = async () => {
     //id uzytkonika, zdjęcie produktu, id produktu
     if (session) {
-      let unique = product.id + session.user.id;
+      let unique: string = product.id + session.user.id;
       if (!favourite) {
         let DataObjectUserFavourite = {
           UserId: session.user.id,
@@ -42,6 +42,7 @@ const FavsIcon = ({ session, product }) => {
         .then((response) => response.json())
         .then((data) => {
           fetchHandle(data);
+          console.log(fetchedProdcs.prodcs);
         });
     };
     fetchAllProdcs();

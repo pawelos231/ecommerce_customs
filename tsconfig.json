@@ -28,7 +28,7 @@
     "**/*.tsx",
     "pages/404.js",
     "components/Navbar/Navbar.js"
-, "components/Layouts/HeadForProdcs.js", "components/Layouts/HeadForProdcs.js"  ],
+, "components/Layouts/HeadForProdcs.tsx", "components/Layouts/HeadForProdcs.tsx", "components/Products/Product/style.js", "components/ShimmerEffect/Shimmer.js", "components/Layouts/layouUserInterface.js"  ],
   "exclude": [
     "node_modules"
   ]

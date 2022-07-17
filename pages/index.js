@@ -1,4 +1,4 @@
-import Products from "../components/Products/Products";
+import Products from "../components/Products/Products.tsx";
 import Navbar from "../components/Navbar/Navbar";
 import { fetchCart } from "../actions/fetchcommerceCart";
 import { useEffect, useState } from "react";

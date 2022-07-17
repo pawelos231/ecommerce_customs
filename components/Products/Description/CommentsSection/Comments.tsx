@@ -7,11 +7,12 @@ import { Delete } from "@material-ui/icons";
 import useFetch from "../../../../hooks/useFetch";
 import { Pagination } from "@mui/material";
 import { CircularProgress } from "@material-ui/core";
+import userInfo from "../../../../interfaces/interfaces";
 const Comments = ({ productId, Language }) => {
   const { data: session } = useSession();
-  const [input, inputvalue] = useState("");
-  const [commets, postComment] = useState([]);
-  const [pages, SetPage] = useState(1);
+  const [input, inputvalue] = useState<string>("");
+  const [commets, postComment] = useState<userInfo | any>([]);
+  const [pages, SetPage] = useState<number>(1);
   const refContainerForCom = useRef(null);
   const Paginated = async () => {
     await fetch(`/api/comments/${productId}/countPages`)
@@ -51,7 +52,7 @@ const Comments = ({ productId, Language }) => {
         ProductId: productId,
         UserId: session.user.id,
       };
-      postComment((prevState) => [...prevState, userObj]);
+      postComment((prevState: any) => [...prevState, userObj]);
       await fetch("/api/comments/PostComments", {
         method: "POST",
         body: JSON.stringify(userObj),

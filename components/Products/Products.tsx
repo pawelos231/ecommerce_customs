@@ -4,12 +4,12 @@ import Product from "./Product/Product";
 import { motion } from "framer-motion";
 import styles from "../../styles/Product.module.sass";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, RootStateOrAny } from "react-redux";
 
 const Products = ({ setCart, data }) => {
-  console.log(data);
-  const [switcher, swtchervalue] = useState("");
-  const container = {
+  const [switcher, swtchervalue] = useState<string>("");
+
+  const container: any = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -18,23 +18,21 @@ const Products = ({ setCart, data }) => {
       },
     },
   };
-  const container2 = {
+  const container2: any = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
     },
   };
-  const Language = useSelector((state) => {
+  const Language: string = useSelector((state: RootStateOrAny) => {
     return state.SwitchLan.language;
   });
-  console.log(Language);
-
-  const itemos = {
+  const itemos: any = {
     hidden: { opacity: 0 },
     show: { opacity: 1 },
   };
   const swtchervalueHandler = () => {
-    let load = localStorage.getItem("click");
+    let load: string = localStorage.getItem("click");
     swtchervalue(load);
   };
 
@@ -44,7 +42,7 @@ const Products = ({ setCart, data }) => {
   if (data.length === 0) {
     return (
       <div className={styles.CircContainer}>
-        <CircularProgress color="black" size={102} />
+        <CircularProgress color="secondary" size={102} />
       </div>
     );
   }

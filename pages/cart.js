@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { fetchCart } from "../actions/fetchcommerceCart";
 import { Typography, Grid, Button, CircularProgress } from "@material-ui/core";
 import useStyles from "../stylesjs/styles";
-import Navbar from "../components/Navbar/Navbar.js";
+import Navbar from "../components/Navbar/Navbar";
 import styles from "../styles/cart.module.sass";
 import CartItem from "../components/Cart/CartItem";
 import { useTheme } from "next-themes";

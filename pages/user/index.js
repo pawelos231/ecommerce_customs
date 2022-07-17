@@ -2,15 +2,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import styles from "../../styles/UserDetails/userDetails.module.sass";
 import UserDetailsComponent from "../../components/UserDetails/userDetailsComponent";
-import Navbar from "../../components/Navbar/Navbar";
 import { fetchCart } from "../../actions/fetchcommerceCart";
 import NestedLayout from "../../components/Layouts/layouUserInterface";
 import { useTheme } from "next-themes";
 
 const UserDetails = () => {
-  const valueOfColor = useSelector((state) => {
-    return state.SwitchToggle;
-  });
   const dispatch = useDispatch();
   const { theme, setTheme } = useTheme();
   useEffect(() => {
