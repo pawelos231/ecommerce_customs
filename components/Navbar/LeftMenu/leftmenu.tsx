@@ -1,11 +1,11 @@
 import styles from "../../../styles/navbars/leftMenuNavbar.module.sass";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { useDimensions } from "./MenuItem/use-dimmensions";
 import Navigation from "./MenuItem/NavigationComponent";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { useTheme } from "next-themes";
-const sidebar = {
+const sidebar: Variants = {
   open: (height = 1000) => ({
     clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
     transition: {
@@ -28,8 +28,8 @@ const sidebar = {
 const LeftMenu = ({ IsOpen, opened, data, categories }) => {
   const { theme, setTheme } = useTheme();
   const containerRef = useRef(null);
-  const { height } = useDimensions(containerRef);
-  let ArrayOfCategories = ["wszystko"];
+  const { height }: { height: number } = useDimensions(containerRef);
+  let ArrayOfCategories: Array<string> = ["wszystko"];
   categories.map((item) => ArrayOfCategories.push(item.slug));
   useEffect(() => {
     console.log(IsOpen);

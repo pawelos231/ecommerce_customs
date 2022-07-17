@@ -1,12 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, RootStateOrAny } from "react-redux";
 import styles from "../../../styles/navbar.module.sass";
-import { SwitchMode } from "../../../actions/switchAction";
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 import { useState } from "react";
 const Switch = () => {
-  const dispatch = useDispatch();
-  const value = useSelector((state) => {
+  const value: boolean = useSelector((state: RootStateOrAny) => {
     return state.SwitchToggle;
   });
   const [switcher, switchHandle] = useState(false);
@@ -36,7 +34,7 @@ const Switch = () => {
     </div>
   );
 };
-const spring = {
+const spring: Object = {
   type: "spring",
   stiffness: 700,
   damping: 30,

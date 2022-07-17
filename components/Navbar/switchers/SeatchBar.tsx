@@ -1,19 +1,17 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 import styles from "../../../styles/navbar.module.sass";
 import { FetchProductsBySearchInput } from "../../../actions/ProductsAction";
 import { useState } from "react";
 const SearchBar = ({ data }) => {
-  const [searchedInput, handleSearchInput] = useState("");
+  const [searchedInput, handleSearchInput] = useState<string>("");
   const dispatch = useDispatch();
-  const val2 = useSelector((state) => {
+  const val2: any = useSelector((state: RootStateOrAny) => {
     return state;
   });
-  const mutable = val2.ProductsHandle.prodcs;
-  const HandleSearch = (e) => {
-    const dataFromSearchBar = e.target.value;
+  const mutable: Object = val2.ProductsHandle.prodcs;
+  const HandleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const dataFromSearchBar: string = e.target.value;
     handleSearchInput(dataFromSearchBar);
-    console.log(data); //name, category, price
-    //categories[0].name, .name, .price.raw
     dispatch(FetchProductsBySearchInput(data, mutable, dataFromSearchBar));
   };
   return (

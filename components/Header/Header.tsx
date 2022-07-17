@@ -1,16 +1,16 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, RootStateOrAny } from "react-redux";
 import styles from "../../styles/Header/Header.module.sass";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { shimmer, toBase64 } from "../ShimmerEffect/Shimmer";
 import { useEffect, useState } from "react";
 const Header = () => {
-  const val2 = useSelector((state) => {
-    return state;
+  const val2: string = useSelector((state: RootStateOrAny) => {
+    return state.SwitchLan.language;
   });
-  const [opened, onHandleOpen] = useState(false);
+  const [opened, onHandleOpen] = useState<boolean>(false);
   const { theme, setTheme } = useTheme();
-  const len = val2.SwitchLan.language;
+  const len: string = val2;
   useEffect(() => {
     onHandleOpen(true);
   });

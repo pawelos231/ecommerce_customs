@@ -1,10 +1,9 @@
-import { motion } from "framer-motion";
-import MenuItem from "./MenuItem";
+import { motion, Variants } from "framer-motion";
 import styles from "../../../../styles/navbars/leftMenuNavbar.module.sass";
 import DateSearch from "./SearchProdcsByData/AddDateSearch";
 import CategorySearch from "./SearchProdcsByData/CategorySearch";
 import PriceSearch from "./SearchProdcsByData/PriceSearch";
-const variants = {
+const variants: Variants = {
   open: {
     transition: { staggerChildren: 0.07, delayChildren: 0.2 },
   },
@@ -12,7 +11,7 @@ const variants = {
     transition: { staggerChildren: 0.05, staggerDirection: -1 },
   },
 };
-const variantsForChildren = {
+const variantsForChildren: Variants = {
   open: {
     y: 0,
     opacity: 1,
@@ -29,7 +28,6 @@ const variantsForChildren = {
   },
 };
 const Navigation = ({ ArrayOfCategories, data }) => {
-  console.log(ArrayOfCategories);
   return (
     <motion.div variants={variants} className={styles.ConForUl}>
       <PriceSearch variants={variantsForChildren} data={data} />
@@ -38,10 +36,7 @@ const Navigation = ({ ArrayOfCategories, data }) => {
         ArrayOfCategories={ArrayOfCategories}
         data={data}
       />
-      <DateSearch
-        variants={variantsForChildren}
-        data={data}
-      />
+      <DateSearch variants={variantsForChildren} />
     </motion.div>
   );
 };

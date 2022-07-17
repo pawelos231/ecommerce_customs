@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import styles from "../../../../styles/navbars/leftMenuNavbar.module.sass";
-const colors = ["#FF008C", "#D309E1", "#9C1AFF"];
+const colors: Array<string> = ["#FF008C", "#D309E1", "#9C1AFF"];
 const MenuItem = ({ i, item, variants }) => {
-  const style = { border: `2px solid ${colors[i]}`, zIndex: 9999 };
+  const style: Object = { border: `2px solid ${colors[i]}`, zIndex: 9999 };
   return (
     <motion.div
       variants={variants}

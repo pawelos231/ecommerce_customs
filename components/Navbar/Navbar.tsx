@@ -1,3 +1,4 @@
+import React from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 import { Typography } from "@material-ui/core";
@@ -15,8 +16,7 @@ import { motion, useCycle } from "framer-motion";
 import SearchBar from "./switchers/SeatchBar";
 import { useTheme } from "next-themes";
 import useStyles from "./style";
-import React from "react";
-const func = async (identity) => {
+const func = async (identity: string) => {
   await fetch(`/api/userDatabase/${identity}`)
     .then((response) => response.json())
     .then((data) => console.log(data.data[0]._id.$oid));
@@ -24,14 +24,14 @@ const func = async (identity) => {
 
 const Navbar = ({ totaltems, data, categories }) => {
   const [isOpen, toggleOpen] = useCycle(false, true);
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState<boolean>(false);
   const { theme, setTheme } = useTheme();
   const { data: session } = useSession();
   const router = useRouter();
   const [opened, onHandleOpen] = useState(false);
   const onHandleOpenMenu = () => {
     onHandleOpen(!opened);
-    const div = document.querySelector(".navbar_lefty__yPSQk");
+    const div = document.querySelector<any>(".navbar_lefty__yPSQk");
     toggleOpen();
     if (opened == false) {
       div.style.marginTop = "15px";

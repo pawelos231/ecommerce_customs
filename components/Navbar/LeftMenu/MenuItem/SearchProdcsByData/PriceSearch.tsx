@@ -1,16 +1,16 @@
 import { motion } from "framer-motion";
 import styles from "../../../../../styles/navbars/leftMenuNavbar.module.sass";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 import { FetchProductByPriceSearch } from "../../../../../actions/ProductsAction";
 const PriceSearch = ({ variants, data }) => {
   const dispatch = useDispatch();
-  const color = "#FF008C";
-  const style = { border: `2px solid ${color}`, zIndex: 9999 };
-  const val2 = useSelector((state) => {
+  const color: string = "#FF008C";
+  const style: Object = { border: `2px solid ${color}`, zIndex: 9999 };
+  const val2 = useSelector((state: RootStateOrAny) => {
     return state;
   });
-  const mutable = val2.ProductsHandle.prodcs;
-  const OnChangeSelectHandler = (e) => {
+  const mutable: Object = val2.ProductsHandle.prodcs;
+  const OnChangeSelectHandler = (e: any) => {
     dispatch(FetchProductByPriceSearch(data, mutable, e.target.value));
   };
 
