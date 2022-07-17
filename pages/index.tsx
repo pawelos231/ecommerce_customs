@@ -1,8 +1,8 @@
-import Products from "../components/Products/Products.tsx";
+import Products from "../components/Products/Products";
 import Navbar from "../components/Navbar/Navbar";
 import { fetchCart } from "../actions/fetchcommerceCart";
 import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, RootStateOrAny } from "react-redux";
 import styles from "../styles/main.module.sass";
 import { setCart } from "../actions/setCart";
 import { commerce } from "../lib/commerce";
@@ -41,15 +41,15 @@ export default function Component({ data, categories, pagination, LIMIT }) {
   };
   const { theme, setTheme } = useTheme();
 
-  const val2 = useSelector((state) => {
+  const val2: any = useSelector((state: RootStateOrAny) => {
     return state.ProductsHandle.prodcs;
   });
-  const val3 = useSelector((state) => {
+  const val3: number = useSelector((state: RootStateOrAny) => {
     return state.Pagination;
   });
   console.log(val3);
   console.log(val2);
-  const val = useSelector((state) => {
+  const val: any = useSelector((state: RootStateOrAny) => {
     return state;
   });
   const [mounted, setMounted] = useState(false);
@@ -75,7 +75,6 @@ export default function Component({ data, categories, pagination, LIMIT }) {
       <Navbar
         totaltems={val.cartFetch.total_items}
         data={data}
-        mutData={val2}
         categories={categories}
       />
       <Header />

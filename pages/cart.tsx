@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useDispatch, RootStateOrAny } from "react-redux";
 import { fetchCart } from "../actions/fetchcommerceCart";
 import { Typography, Grid, Button, CircularProgress } from "@material-ui/core";
 import useStyles from "../stylesjs/styles";
@@ -10,21 +10,18 @@ import CartItem from "../components/Cart/CartItem";
 import { useTheme } from "next-themes";
 import React from "react";
 const CartPage = ({ data }) => {
-  console.log(data);
   const classes = useStyles();
   const dispatch = useDispatch();
   const { theme, setTheme } = useTheme();
   useEffect(() => {
     dispatch(fetchCart());
   }, []);
-  const cartItems = useSelector((state) => {
+  const cartItems: any = useSelector((state: RootStateOrAny) => {
     return state;
   });
 
-  const language = cartItems.SwitchLan.language;
-  console.log(cartItems.cartFetch);
-  let isOn = cartItems.SwitchToggle;
-  const lineItems = cartItems.cartFetch.line_items;
+  const language: string = cartItems.SwitchLan.language;
+  const lineItems: any = cartItems.cartFetch.line_items;
   if (Object.keys(cartItems.cartFetch).length === 0) {
     return (
       <div className={styles.containerForCircular} data-ison={theme}>
@@ -80,7 +77,7 @@ const CartPage = ({ data }) => {
 
   return (
     <>
-      <Navbar />
+      <Navbar totaltems={null} data={null} categories={null} />
       <div className={styles.mainContainer} data-ison={theme}>
         <div>.</div>
         <div className={styles.ContainerForNothing}>

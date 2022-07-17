@@ -1,5 +1,5 @@
 import { fetchCart } from "../../actions/fetchcommerceCart";
-import { useSelector, useDispatch, RootStateOrAny } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import styles from "../../styles/UserDetails/userDetails.module.sass";
 import NestedLayout from "../../components/Layouts/layouUserInterface";
@@ -12,12 +12,15 @@ import { CircularProgress } from "@material-ui/core";
 import Image from "next/image";
 import { shimmer, toBase64 } from "../../components/ShimmerEffect/Shimmer";
 import { useTheme } from "next-themes";
+import { RecommandedProducts } from "../../interfaces/interfacesAboutUserDetails";
 import FavsInfo from "../../interfaces/interfaces";
 type StateOfFavsProduts = {
   prodcs: FavsInfo[];
 };
 const Favourite = () => {
-  const [fetchedProdcs, SetFetchedProductsHandler] = useState<StateOfFavsProduts| any>([]);
+  const [fetchedProdcs, SetFetchedProductsHandler] = useState<
+    StateOfFavsProduts | any
+  >([]);
   const { data: session } = useSession();
   const { theme, setTheme } = useTheme();
   const dispatch = useDispatch();
@@ -32,7 +35,7 @@ const Favourite = () => {
     fetchAllProdcs();
     dispatch(fetchCart());
   }, [session]);
-  const tabOfPol = [
+  const tabOfPol: RecommandedProducts[] = [
     {
       link: "prod_nPEVlNaMZL5a7d",
       image:
@@ -58,7 +61,7 @@ const Favourite = () => {
         <section className={styles.mainContainerForFavs}>
           {fetchedProdcs.prodcs.length !== 0 ? (
             <div className={styles.contained}>
-              {fetchedProdcs.prodcs.map((item) => (
+              {fetchedProdcs.prodcs.map((item: any) => (
                 <Link href={`/prodcs/${item.ProductIdentity}`}>
                   <motion.div
                     whileHover={{ scale: 1.05 }}
@@ -74,7 +77,7 @@ const Favourite = () => {
               <div>Brak Ulubionych :c</div>
               <p>zobacz polecane produkty</p>
               <div className={styles.ContainerForImages}>
-                {tabOfPol.map((item) => (
+                {tabOfPol.map((item: any) => (
                   <Link href={`../prodcs/${item.link}`}>
                     <div className={styles.ConForImage}>
                       <Image

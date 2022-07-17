@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import styles from "../../styles/UserDetails/userDetails.module.sass";
 import UserDetailsComponent from "../../components/UserDetails/userDetailsComponent";
@@ -12,10 +12,6 @@ const UserDetails = () => {
   useEffect(() => {
     dispatch(fetchCart());
   }, []);
-  let valueOfCart = useSelector((state) => {
-    return state.cartFetch.total_items;
-  });
-  console.log(valueOfCart);
   return (
     <>
       <div className={styles.container} data-ison={theme}>
@@ -26,7 +22,7 @@ const UserDetails = () => {
   );
 };
 
-UserDetails.getLayout = (page) => {
+UserDetails.getLayout = (page: any) => {
   return <NestedLayout>{page}</NestedLayout>;
 };
 

@@ -40,4 +40,7 @@ export default makeStyles((theme: Theme) => createStyles  ({
     flexBasis: "20%",
     width: "10%",
   },
+  details:{
+    
+  }
 }));

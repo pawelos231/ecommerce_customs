@@ -7,7 +7,7 @@ const NotFound = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar totaltems={null} data={null} categories={null} />
       <div className={styles.mainContainer} data-ison={theme}>
         <h2>Nic tu nie ma :0</h2>
         <Link href={"/"}>

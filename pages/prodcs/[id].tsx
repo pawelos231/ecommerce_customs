@@ -15,9 +15,9 @@ import { useEffect } from "react";
 import Variants from "../../components/Products/Description/VariantsGroups/Variants";
 import { useTheme } from "next-themes";
 import HeadForProdcs from "../../components/Layouts/HeadForProdcs";
-
+import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
 let index: number = 0;
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const { data }: { data: any } = await commerce.products.list();
   const paths: any = data.map((item: any) => {
     return {
@@ -29,8 +29,8 @@ export async function getStaticPaths() {
     paths,
     fallback: true,
   };
-}
-export async function getStaticProps({ params }) {
+};
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const id = params.id;
   const { data } = await commerce.products.list({
     query: id,
@@ -47,7 +47,7 @@ export async function getStaticProps({ params }) {
     props: { prodcs: data[0] },
     revalidate: 1,
   };
-}
+};
 const ProductDetails = ({ prodcs }) => {
   const [click, setClick] = useState<boolean>(false);
   const [mounted, setMounted] = useState<boolean>(false);
