@@ -13,7 +13,7 @@ const FavsIcon = ({ session, product }) => {
     if (session) {
       let unique: string = product.id + session.user.id;
       if (!favourite) {
-        let DataObjectUserFavourite = {
+        let DataObjectUserFavourite: Object = {
           UserId: session.user.id,
           Unique: unique,
           ProductIdentity: product.id,

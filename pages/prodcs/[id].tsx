@@ -1,23 +1,25 @@
 import { commerce } from "../../lib/commerce";
 import styles from "../../styles/productPage.module.sass";
 import Navbar from "../../components/Navbar/Navbar";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useSelector, useDispatch, RootStateOrAny } from "react-redux";
 import Image from "next/image";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.css";
-import Description from "../../components/Products/Description/Description.tsx";
+import Description from "../../components/Products/Description/Description";
 import { useState } from "react";
-import ModalForPhotos from "../../components/Products/ModalPhotos/ModalForPhotos.tsx";
+import ModalForPhotos from "../../components/Products/ModalPhotos/ModalForPhotos";
 import { shimmer, toBase64 } from "../../components/ShimmerEffect/Shimmer";
 import { fetchCart } from "../../actions/fetchcommerceCart";
 import { useEffect } from "react";
-import Variants from "../../components/Products/Description/VariantsGroups/Variants.tsx";
+import Variants from "../../components/Products/Description/VariantsGroups/Variants";
 import { useTheme } from "next-themes";
 import HeadForProdcs from "../../components/Layouts/HeadForProdcs";
-let index = 0;
+
+let index: number = 0;
 export async function getStaticPaths() {
-  const { data } = await commerce.products.list();
-  const paths = data.map((item) => {
+  const { data }: { data: any } = await commerce.products.list();
+  const paths: any = data.map((item: any) => {
     return {
       params: { id: item.id.toString() },
     };
@@ -32,8 +34,6 @@ export async function getStaticProps({ params }) {
   const id = params.id;
   const { data } = await commerce.products.list({
     query: id,
-    limit: 5,
-    page: 1,
   });
   if (!data.length) {
     return {
@@ -48,10 +48,10 @@ export async function getStaticProps({ params }) {
     revalidate: 1,
   };
 }
-const ProductDetails = ({ prodcs, pagination }) => {
-  const [click, setClick] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const setClickModal = (i) => {
+const ProductDetails = ({ prodcs }) => {
+  const [click, setClick] = useState<boolean>(false);
+  const [mounted, setMounted] = useState<boolean>(false);
+  const setClickModal = (i: number) => {
     setClick(!click);
     index = i;
   };
@@ -61,10 +61,9 @@ const ProductDetails = ({ prodcs, pagination }) => {
     dispatch(fetchCart());
     setMounted(true);
   }, []);
-  let cart = useSelector((state) => {
+  let cart: number = useSelector((state: RootStateOrAny) => {
     return state.cartFetch.total_items;
   });
-  console.log(prodcs);
   //title, description, link, image
   if (!prodcs || !mounted) return <div>loading...</div>;
   return (
@@ -75,15 +74,13 @@ const ProductDetails = ({ prodcs, pagination }) => {
         link={`ecommerce-basia.vercel.app/prodcs/${prodcs.id}`}
         image={prodcs.image.url}
       />
-      <Navbar totaltems={cart} />
+      <Navbar totaltems={cart} data={null} categories={null} />
       <div className={styles.mainContainer} data-ison={theme}>
         <div className={styles.containerForContent}>
           <div>
             {click === true ? (
               <ModalForPhotos
                 setClickModal={setClickModal}
-                click={click}
-                setClick={setClick}
                 itemId={index}
                 prodcs={prodcs}
               />

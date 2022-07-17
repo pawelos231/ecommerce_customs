@@ -1,5 +1,5 @@
 import { fetchCart } from "../../actions/fetchcommerceCart";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, RootStateOrAny } from "react-redux";
 import { useEffect } from "react";
 import styles from "../../styles/UserDetails/userDetails.module.sass";
 import NestedLayout from "../../components/Layouts/layouUserInterface";
@@ -12,11 +12,12 @@ import { CircularProgress } from "@material-ui/core";
 import Image from "next/image";
 import { shimmer, toBase64 } from "../../components/ShimmerEffect/Shimmer";
 import { useTheme } from "next-themes";
+import FavsInfo from "../../interfaces/interfaces";
+type StateOfFavsProduts = {
+  prodcs: FavsInfo[];
+};
 const Favourite = () => {
-  const valueOfColor = useSelector((state) => {
-    return state.SwitchToggle;
-  });
-  const [fetchedProdcs, fetchHandle] = useState([]);
+  const [fetchedProdcs, SetFetchedProductsHandler] = useState<StateOfFavsProduts| any>([]);
   const { data: session } = useSession();
   const { theme, setTheme } = useTheme();
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const Favourite = () => {
       await fetch(`/api/favourite/userDataFetch/${session?.user?.id}`)
         .then((response) => response.json())
         .then((data) => {
-          fetchHandle(data);
+          SetFetchedProductsHandler(data);
         });
     };
     fetchAllProdcs();

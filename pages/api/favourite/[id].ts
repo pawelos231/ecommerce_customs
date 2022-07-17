@@ -1,10 +1,11 @@
 import prisma from "../../../lib/prisma";
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { DELETE } from '../../../constants/FetchDataMethods'
 type ResponseData = {
   text: string
 }
 export default async function handler(req: NextApiRequest, res:NextApiResponse<ResponseData> ) {
-  if (req.method == "DELETE") {
+  if (req.method == DELETE) {
     const { id } : {[key: string]: any} = req.query;
     interface Count{
       count: number

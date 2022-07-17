@@ -7,8 +7,8 @@ type ResponseData = {
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<ResponseData>) {
-  const { pid }: {[key: string]: any} = req.query;
-    let prodcs: FavsInfo[] = await prisma.UserFavourite.findMany({
+  const { pid }: {[key: string]: string | string[]} = req.query;
+    const prodcs: FavsInfo[] = await prisma.UserFavourite.findMany({
       where: {
         UserId: pid,
       },

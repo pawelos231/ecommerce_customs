@@ -4,13 +4,11 @@ type ResponseData = {
   text: string
 }
 export default async function handler(req: NextApiRequest, res : NextApiResponse<ResponseData>) {
-  const data = req.body;
-  console.log(data);
+  const data: any = req.body;
   const postMessageCom = async () => {
-    const post = await prisma.Comments.create({
+     await prisma.Comments.create({
       data: JSON.parse(data),
     });
-    console.log(post);
   };
   const init = async () => {
     await postMessageCom();
