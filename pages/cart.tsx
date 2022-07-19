@@ -13,9 +13,11 @@ import { commerce } from "../lib/commerce";
 const CartPage = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [CartItems, setCart] = useState({});
+  const [CartItems, setCart] = useState<any>({});
   const handleUpdateCartQty = async (productId: string, quantity: number) => {
-    const { cart } = await commerce.cart.update(productId, { quantity });
+    const { cart }: { cart: any } = await commerce.cart.update(productId, {
+      quantity,
+    });
     setCart(cart);
   };
 

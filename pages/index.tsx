@@ -11,6 +11,9 @@ import { FetchAllProducts } from "../actions/ProductsAction";
 import { useTheme } from "next-themes";
 import { Pagination } from "@mui/material";
 import { SetPaginatedSite } from "../actions/Pagination";
+import useWindowSize from "../hooks/useWindowResize";
+import { SetSized } from "../interfaces/interfacesAboutUserDetails";
+import NavbarPhone from "../components/NavbarForPhone/NavbarPhone";
 export async function getStaticProps() {
   const LIMIT = 24;
   const { data } = await commerce.products.list({
@@ -34,6 +37,8 @@ export async function getStaticProps() {
 
 export default function Component({ data, categories, pagination, LIMIT }) {
   const dispatch = useDispatch();
+  const size: SetSized = useWindowSize();
+  console.log(size);
   const PagesCount = Math.ceil(pagination.count / LIMIT);
   const combined = async () => {
     //dispatch(FetchAllProducts());
@@ -72,11 +77,15 @@ export default function Component({ data, categories, pagination, LIMIT }) {
   }
   return (
     <div className={styles.mainContainer} data-ison={theme}>
-      <Navbar
-        totaltems={val.cartFetch.total_items}
-        data={data}
-        categories={categories}
-      />
+      {size.width > 720 ? (
+        <Navbar
+          totaltems={val.cartFetch.total_items}
+          data={data}
+          categories={categories}
+        />
+      ) : (
+        <NavbarPhone />
+      )}
       <Header />
       <Products
         setCart={setCart}

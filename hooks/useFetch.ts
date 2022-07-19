@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 
 const useFetch = (url: string) : [any, boolean, boolean] => {
     const [data, setData] = useState<any>(null);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(false);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [error, setError] = useState<boolean>(false);
 
 	const clearState = () => {
 		setData(null);

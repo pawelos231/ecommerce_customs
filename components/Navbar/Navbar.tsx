@@ -81,7 +81,7 @@ const Navbar = ({ totaltems, data, categories }) => {
           </motion.div>
           <SwitchLan />
           <ul>
-            <div className={styles.mainRight}>
+            <div className={styles.UserInformation}>
               <b> {session.user.name}</b> <br />
               <button onClick={() => signOut()}>Sign out</button>
               <div className={styles.ImageCon}>

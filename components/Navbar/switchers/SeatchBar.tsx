@@ -3,9 +3,11 @@ import styles from "../../../styles/navbar.module.sass";
 import { FetchProductsBySearchInput } from "../../../actions/ProductsAction";
 import { useState } from "react";
 import { Search } from "@material-ui/icons";
+import { useSession } from "next-auth/react";
 const SearchBar = ({ data }) => {
   const [searchedInput, handleSearchInput] = useState<string>("");
   const dispatch = useDispatch();
+  const { data: session } = useSession();
   const val2: any = useSelector((state: RootStateOrAny) => {
     return state;
   });
@@ -15,14 +17,25 @@ const SearchBar = ({ data }) => {
     handleSearchInput(dataFromSearchBar);
     dispatch(FetchProductsBySearchInput(data, mutable, dataFromSearchBar));
   };
-  return (
-    <div className={styles.serchBar}>
-      <div className={styles.ContainerForSearchIcon}>
-        <Search />
+  if (!session) {
+    return (
+      <div className={styles.serchBar}>
+        <div className={styles.ContainerForSearchIcon}>
+          <Search />
+        </div>
+        <input type="text" placeholder="szukaj..." onChange={HandleSearch} />
       </div>
-      <input type="text" placeholder="szukaj..." onChange={HandleSearch} />
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className={styles.serchBarForLogedUsers}>
+        <div className={styles.ContainerForSearchIcon}>
+          <Search />
+        </div>
+        <input type="text" placeholder="szukaj..." onChange={HandleSearch} />
+      </div>
+    );
+  }
 };
 
 export default SearchBar;

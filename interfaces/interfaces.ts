@@ -14,3 +14,4 @@ export default interface userInfo {
     Photo: string,
     Content: string
 }
+
