@@ -9,10 +9,11 @@ import useStyles from "./styles";
 import React from "react";
 import Image from "next/image";
 
-const CartItem = ({ lineItem }: any) => {
+const CartItem = ({ lineItem, handleUpdateCartQty }: any) => {
   if (lineItem.image == null) {
     return <></>;
   }
+  console.log(lineItem.id);
   const classes = useStyles();
   return (
     <Card>
@@ -32,12 +33,24 @@ const CartItem = ({ lineItem }: any) => {
         </p>
         <CardActions className={classes.cartActions}>
           <div className={classes.buttons}>
-            <Button type="button" size="small">
+            <Button
+              onClick={() =>
+                handleUpdateCartQty(lineItem.id, lineItem.quantity - 1)
+              }
+              type="button"
+              size="small"
+            >
               {" "}
               -
             </Button>
             <Typography>{lineItem.quantity}</Typography>
-            <Button type="button" size="small">
+            <Button
+              onClick={() =>
+                handleUpdateCartQty(lineItem.id, lineItem.quantity + 1)
+              }
+              type="button"
+              size="small"
+            >
               {" "}
               +
             </Button>

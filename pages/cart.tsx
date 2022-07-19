@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch, RootStateOrAny } from "react-redux";
 import { fetchCart } from "../actions/fetchcommerceCart";
@@ -9,17 +9,26 @@ import styles from "../styles/cart.module.sass";
 import CartItem from "../components/Cart/CartItem";
 import { useTheme } from "next-themes";
 import React from "react";
-const CartPage = ({ data }) => {
+import { commerce } from "../lib/commerce";
+const CartPage = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const [CartItems, setCart] = useState({});
+  const handleUpdateCartQty = async (productId: string, quantity: number) => {
+    const { cart } = await commerce.cart.update(productId, { quantity });
+    setCart(cart);
+  };
+
   const { theme, setTheme } = useTheme();
-  useEffect(() => {
-    dispatch(fetchCart());
-  }, []);
+
   const cartItems: any = useSelector((state: RootStateOrAny) => {
     return state;
   });
-
+  useEffect(() => {
+    dispatch(fetchCart());
+    setCart(cartItems.cartFetch);
+  }, [CartItems]);
+  console.log(CartItems);
   const language: string = cartItems.SwitchLan.language;
   const lineItems: any = cartItems.cartFetch.line_items;
   if (Object.keys(cartItems.cartFetch).length === 0) {
@@ -30,11 +39,11 @@ const CartPage = ({ data }) => {
     );
   }
 
-  const FilledCart = () => (
+  const FilledCart = ({ handleUpdateCartQty }) => (
     <>
       <Grid className={classes.con} container spacing={3}>
         <div className={classes.containerForCards}>
-          {lineItems.map((lineItem) => (
+          {lineItems.map((lineItem: any) => (
             <Grid
               item
               xs={12}
@@ -44,7 +53,10 @@ const CartPage = ({ data }) => {
               key={lineItem.id}
               className={classes.conForCards}
             >
-              <CartItem lineItem={lineItem} />
+              <CartItem
+                lineItem={lineItem}
+                handleUpdateCartQty={handleUpdateCartQty}
+              />
             </Grid>
           ))}
         </div>
@@ -90,7 +102,7 @@ const CartPage = ({ data }) => {
               )}
             </div>
           ) : (
-            <FilledCart />
+            <FilledCart handleUpdateCartQty={handleUpdateCartQty} />
           )}
         </div>
       </div>

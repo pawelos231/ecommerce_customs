@@ -193,15 +193,21 @@ const Navbar = ({ totaltems, data, categories }) => {
         </motion.div>
         <SwitchLan />
         <ul>
-          <div className={styles.clas}>
+          <div className={styles.ContainerForLogin}>
             <button onClick={() => signIn()}>Log in</button>
           </div>
-          <div className={styles.leftCart}>
+          <div className={styles.leftCartLogOutUser}>
             <IconButton>
               <Badge badgeContent={totaltems} color="secondary">
                 <a>
                   <Link href={"/cart"}>
-                    <ShoppingCart />
+                    <ShoppingCart
+                      className={
+                        String(theme) === "dark"
+                          ? classes.root
+                          : classes.darkRoot
+                      }
+                    />
                   </Link>
                 </a>
               </Badge>

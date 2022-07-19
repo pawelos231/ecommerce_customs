@@ -2,6 +2,7 @@ import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 import styles from "../../../styles/navbar.module.sass";
 import { FetchProductsBySearchInput } from "../../../actions/ProductsAction";
 import { useState } from "react";
+import { Search } from "@material-ui/icons";
 const SearchBar = ({ data }) => {
   const [searchedInput, handleSearchInput] = useState<string>("");
   const dispatch = useDispatch();
@@ -16,6 +17,9 @@ const SearchBar = ({ data }) => {
   };
   return (
     <div className={styles.serchBar}>
+      <div className={styles.ContainerForSearchIcon}>
+        <Search />
+      </div>
       <input type="text" placeholder="szukaj..." onChange={HandleSearch} />
     </div>
   );
