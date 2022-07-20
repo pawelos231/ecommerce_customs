@@ -1,6 +1,5 @@
 import { commerce } from "../../lib/commerce";
 import styles from "../../styles/productPage.module.sass";
-import Navbar from "../../components/Navbar/Navbar";
 import React from "react";
 import { useSelector, useDispatch, RootStateOrAny } from "react-redux";
 import Image from "next/image";
@@ -16,6 +15,15 @@ import Variants from "../../components/Products/Description/VariantsGroups/Varia
 import { useTheme } from "next-themes";
 import HeadForProdcs from "../../components/Layouts/HeadForProdcs";
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
+import { SetSized } from "../../interfaces/interfacesAboutUserDetails";
+import useWindowSize from "../../hooks/useWindowResize";
+import dynamic from "next/dynamic";
+const DynamicNavbarForComputer = dynamic(
+  () => import("../../components/Navbar/Navbar")
+);
+const DynamicNavbarForPhone = dynamic(
+  () => import("../../components/NavbarForPhone/NavbarPhone")
+);
 let index: number = 0;
 export const getStaticPaths: GetStaticPaths = async () => {
   const { data }: { data: any } = await commerce.products.list();
@@ -51,6 +59,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 const ProductDetails = ({ prodcs }) => {
   const [click, setClick] = useState<boolean>(false);
   const [mounted, setMounted] = useState<boolean>(false);
+  const size: SetSized = useWindowSize();
   const setClickModal = (i: number) => {
     setClick(!click);
     index = i;
@@ -74,7 +83,15 @@ const ProductDetails = ({ prodcs }) => {
         link={`ecommerce-basia.vercel.app/prodcs/${prodcs.id}`}
         image={prodcs.image.url}
       />
-      <Navbar totaltems={cart} data={null} categories={null} />
+      {size.width > 720 ? (
+        <DynamicNavbarForComputer
+          totaltems={null}
+          data={null}
+          categories={null}
+        />
+      ) : (
+        <DynamicNavbarForPhone />
+      )}
       <div className={styles.mainContainer} data-ison={theme}>
         <div className={styles.containerForContent}>
           <div>

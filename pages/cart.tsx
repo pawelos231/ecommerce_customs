@@ -4,12 +4,20 @@ import { useDispatch, RootStateOrAny } from "react-redux";
 import { fetchCart } from "../actions/fetchcommerceCart";
 import { Typography, Grid, Button, CircularProgress } from "@material-ui/core";
 import useStyles from "../stylesjs/styles";
-import Navbar from "../components/Navbar/Navbar";
 import styles from "../styles/cart.module.sass";
 import CartItem from "../components/Cart/CartItem";
 import { useTheme } from "next-themes";
 import React from "react";
 import { commerce } from "../lib/commerce";
+import { SetSized } from "../interfaces/interfacesAboutUserDetails";
+import useWindowSize from "../hooks/useWindowResize";
+import dynamic from "next/dynamic";
+const DynamicNavbarForComputer = dynamic(
+  () => import("../components/Navbar/Navbar")
+);
+const DynamicNavbarForPhone = dynamic(
+  () => import("../components/NavbarForPhone/NavbarPhone")
+);
 const CartPage = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -31,6 +39,7 @@ const CartPage = () => {
     setCart(cartItems.cartFetch);
   }, [CartItems]);
   console.log(CartItems);
+  const size: SetSized = useWindowSize();
   const language: string = cartItems.SwitchLan.language;
   const lineItems: any = cartItems.cartFetch.line_items;
   if (Object.keys(cartItems.cartFetch).length === 0) {
@@ -91,7 +100,15 @@ const CartPage = () => {
 
   return (
     <>
-      <Navbar totaltems={null} data={null} categories={null} />
+      {size.width > 720 ? (
+        <DynamicNavbarForComputer
+          totaltems={null}
+          data={null}
+          categories={null}
+        />
+      ) : (
+        <DynamicNavbarForPhone />
+      )}
       <div className={styles.mainContainer} data-ison={theme}>
         <div>.</div>
         <div className={styles.ContainerForNothing}>

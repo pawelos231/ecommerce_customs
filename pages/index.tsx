@@ -1,5 +1,4 @@
 import Products from "../components/Products/Products";
-import Navbar from "../components/Navbar/Navbar";
 import { fetchCart } from "../actions/fetchcommerceCart";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch, RootStateOrAny } from "react-redux";
@@ -13,7 +12,13 @@ import { Pagination } from "@mui/material";
 import { SetPaginatedSite } from "../actions/Pagination";
 import useWindowSize from "../hooks/useWindowResize";
 import { SetSized } from "../interfaces/interfacesAboutUserDetails";
-import NavbarPhone from "../components/NavbarForPhone/NavbarPhone";
+import dynamic from "next/dynamic";
+const DynamicNavbarForComputer = dynamic(
+  () => import("../components/Navbar/Navbar")
+);
+const DynamicNavbarForPhone = dynamic(
+  () => import("../components/NavbarForPhone/NavbarPhone")
+);
 export async function getStaticProps() {
   const LIMIT = 24;
   const { data } = await commerce.products.list({
@@ -65,7 +70,7 @@ export default function Component({ data, categories, pagination, LIMIT }) {
   if (!mounted) {
     return (
       <div className={styles.mainContainer}>
-        <Navbar
+        <DynamicNavbarForComputer
           totaltems={val.cartFetch.total_items}
           data={data}
           categories={categories}
@@ -78,13 +83,13 @@ export default function Component({ data, categories, pagination, LIMIT }) {
   return (
     <div className={styles.mainContainer} data-ison={theme}>
       {size.width > 720 ? (
-        <Navbar
+        <DynamicNavbarForComputer
           totaltems={val.cartFetch.total_items}
           data={data}
           categories={categories}
         />
       ) : (
-        <NavbarPhone />
+        <DynamicNavbarForPhone />
       )}
       <Header />
       <Products
