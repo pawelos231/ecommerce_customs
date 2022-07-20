@@ -15,21 +15,26 @@ function MyApp({
   const getLayout = Component.getLayout || ((page) => page);
 
   const store = createStore(reducers, compose(applyMiddleware(thunk)));
-
-  /*
-  let isLayoutNeeded = [`/prodcs`].includes(appProps.router.pathname);
+  const Path: string = appProps.router.pathname;
+  const Regex = /^(?=[\S\s]{10,8000})[\S\s]*$/;
+  let isLayoutNeeded: boolean;
+  if (Path == "/" || Path.startsWith("/prodcs")) {
+    isLayoutNeeded = true;
+  } else {
+    isLayoutNeeded = false;
+  }
   console.log(appProps.router.pathname);
   const LayoutComponent = isLayoutNeeded ? Layout : React.Fragment;
-*/
+
   return (
     <SessionProvider session={session}>
-      <Layout>
+      <LayoutComponent>
         <Provider store={store}>
           <ThemeProvider>
             {getLayout(<Component {...pageProps} />)}
           </ThemeProvider>
         </Provider>
-      </Layout>
+      </LayoutComponent>
     </SessionProvider>
   );
 }

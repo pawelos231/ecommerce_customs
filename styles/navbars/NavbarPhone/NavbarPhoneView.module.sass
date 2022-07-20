@@ -12,3 +12,38 @@
 .ContainerForAllLayout[data-ison = "dark"]
     background-color: black
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.09)
+
+.ButtonForLoggedOffUser
+    background-color: white
+    color: black
+    border: 0
+    right: 2rem
+    position: absolute
+
+.ContainerForLogged
+    display: flex
+    height: 100%
+    width: 50vw
+    position: absolute
+    right: 0
+    justify-content: center
+    align-items: center
+    .ButtonForLoggedInfUser
+        background-color: white
+        color: black
+        border: 0
+        right: 2rem
+        height: 50%
+        flex-basis: 40%
+        cursor: pointer
+        transition: .1s
+        font-size: 16px
+        &:hover
+            transform: scale(1.05)
+
+    .ContainerForImage
+        overflow: hidden
+        border-radius: 50%
+        background-color: red
+        height: 50px
+        width: 50px

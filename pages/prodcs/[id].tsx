@@ -7,7 +7,6 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.css";
 import Description from "../../components/Products/Description/Description";
 import { useState } from "react";
-import ModalForPhotos from "../../components/Products/ModalPhotos/ModalForPhotos";
 import { shimmer, toBase64 } from "../../components/ShimmerEffect/Shimmer";
 import { fetchCart } from "../../actions/fetchcommerceCart";
 import { useEffect } from "react";
@@ -23,6 +22,9 @@ const DynamicNavbarForComputer = dynamic(
 );
 const DynamicNavbarForPhone = dynamic(
   () => import("../../components/NavbarForPhone/NavbarPhone")
+);
+const DynamicModalForPhotos = dynamic(
+  () => import("../../components/Products/ModalPhotos/ModalForPhotos")
 );
 let index: number = 0;
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -96,7 +98,7 @@ const ProductDetails = ({ prodcs }) => {
         <div className={styles.containerForContent}>
           <div>
             {click === true ? (
-              <ModalForPhotos
+              <DynamicModalForPhotos
                 setClickModal={setClickModal}
                 itemId={index}
                 prodcs={prodcs}
