@@ -14,7 +14,7 @@ const ContactModal = ({ click, OnClickHandler }) => {
       onClick={() => OnClickHandler(!click)}
     >
       <div className={styles.ContainerForSenndInfo} data-ison={theme}>
-        siema
+        <h2>Moje informacje Kontaktowe</h2>
       </div>
     </div>
   );
