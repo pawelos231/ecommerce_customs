@@ -62,7 +62,7 @@ export default function Component({ data, categories, pagination, LIMIT }) {
   const val: any = useSelector((state: RootStateOrAny) => {
     return state;
   });
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState<boolean>(false);
   useEffect(() => {
     combined();
     setMounted(true);
