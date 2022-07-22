@@ -1,14 +1,18 @@
 import styles from "../../styles/Footer/FooterStyles.module.sass";
-import { motion } from "framer-motion";
 import { Facebook, Instagram, MailOutline, Twitter } from "@material-ui/icons";
 import dynamic from "next/dynamic";
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 const DynamicContactModal: any = dynamic(
   () => import("./ModalContact/ContactModal")
 );
 const Footer = () => {
   const [click, OnClickHandler] = useState<boolean>(false);
+  const Variants: any = {
+    visible: { opacity: 1 },
+    hidden: { opacity: 0 },
+  };
   console.log(click);
   return (
     <>
@@ -37,9 +41,11 @@ const Footer = () => {
                   <li>Legal & Privacy</li>
                 </a>
               </Link>
-              <a onClick={() => OnClickHandler(!click)}>
+
+              <motion.a onClick={() => OnClickHandler(!click)}>
                 <li>Contact</li>
-              </a>
+              </motion.a>
+
               <Link href="/">
                 <a>
                   <li>Cookie Settings</li>
@@ -134,9 +140,16 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-      {click ? (
-        <DynamicContactModal OnClickHandler={OnClickHandler} click={click} />
-      ) : null}
+      <AnimatePresence>
+        <motion.div initial="hidden" animate="visible" variants={Variants}>
+          {click ? (
+            <DynamicContactModal
+              OnClickHandler={OnClickHandler}
+              click={click}
+            />
+          ) : null}
+        </motion.div>
+      </AnimatePresence>
     </>
   );
 };
