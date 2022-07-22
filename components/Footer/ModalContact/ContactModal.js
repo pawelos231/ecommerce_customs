@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { AnimatePresence, motion } from "framer-motion";
 const ContactModal = ({ click, OnClickHandler }) => {
-  const [mounted, setMounted] = useState<boolean>(false);
-  const Variants: any = {
+  const [mounted, setMounted] = useState < boolean > false;
+  const Variants = {
     visible: { opacity: 1 },
     hidden: { opacity: 0 },
   };
@@ -14,7 +14,7 @@ const ContactModal = ({ click, OnClickHandler }) => {
   }, []);
   console.log(theme);
   return (
-    <AnimatePresence>
+    <AnimatePresence exitBeforeEnter>
       <motion.div
         initial="hidden"
         animate="visible"

@@ -4,12 +4,12 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-const DynamicContactModal: any = dynamic(
-  () => import("./ModalContact/ContactModal")
+const DynamicContactModal = dynamic(() =>
+  import("./ModalContact/ContactModal")
 );
 const Footer = () => {
-  const [click, OnClickHandler] = useState<boolean>(false);
-  const Variants: any = {
+  const [click, OnClickHandler] = useState(false);
+  const Variants = {
     visible: { opacity: 1 },
     hidden: { opacity: 0 },
   };
