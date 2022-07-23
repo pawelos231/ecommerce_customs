@@ -12,13 +12,14 @@ import {
   DESCENDING,
   NATIVE,
 } from "../constants/SearchByInputsInMenu";
+import { LIMIT } from "../constants/Limit";
 import { commerce } from "../lib/commerce";
 let dataProdcs;
 const init = async () => {
   dataProdcs = await commerce.products.list();
 };
 init();
-export const FetchAllProducts = (page, LIMIT) => async (dispatch) => {
+export const FetchAllProducts = (page) => async (dispatch) => {
   const { data } = await commerce.products.list({
     limit: LIMIT,
     page: page,
@@ -89,13 +90,20 @@ export const FetchProductByCategory =
       });
       return prodcs;
     } else {
+      const {
+        meta: { pagination },
+      } = await commerce.products.list({
+        category_slug: [category],
+      });
+      const PagesCount = Math.ceil(pagination.count / LIMIT);
       const { data } = await commerce.products.list({
         category_slug: [category],
+        limit: LIMIT,
       });
       dataProdcs.data = data;
       dispatch({
         type: FETCH_PRODCS_BY_CATEGORY,
-        payload: data,
+        payload: { data, PagesCount },
       });
       return data;
     }

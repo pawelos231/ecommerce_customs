@@ -13,6 +13,7 @@ import { SetPaginatedSite } from "../actions/Pagination";
 import useWindowSize from "../hooks/useWindowResize";
 import { SetSized } from "../interfaces/interfacesAboutUserDetails";
 import dynamic from "next/dynamic";
+import { LIMIT } from "../constants/Limit";
 const DynamicNavbarForComputer = dynamic(
   () => import("../components/Navbar/Navbar")
 );
@@ -20,7 +21,6 @@ const DynamicNavbarForPhone = dynamic(
   () => import("../components/NavbarForPhone/NavbarPhone")
 );
 export async function getStaticProps() {
-  const LIMIT: number = 24;
   const { data }: any = await commerce.products.list({
     limit: LIMIT,
     page: 1,
@@ -44,7 +44,7 @@ export default function Component({ data, categories, pagination, LIMIT }) {
   const dispatch = useDispatch();
   const size: SetSized = useWindowSize();
   console.log(size);
-  const PagesCount: number = Math.ceil(pagination.count / LIMIT);
+
   const combined = async () => {
     //dispatch(FetchAllProducts());
     dispatch(fetchCart());
@@ -63,6 +63,16 @@ export default function Component({ data, categories, pagination, LIMIT }) {
   const cartProductAdd: any = useSelector((state: RootStateOrAny) => {
     return state;
   });
+  console.log(cartProductAdd);
+
+  let PagesCount: number;
+  PagesCount = Math.ceil(pagination.count / LIMIT);
+  const number = useSelector((state: RootStateOrAny) => {
+    return state.ProductsHandle.numberOfPages;
+  });
+  if (ProductsFetchedFromApiFromRedux != null) {
+    PagesCount = number;
+  }
   const [mounted, setMounted] = useState<boolean>(false);
   useEffect(() => {
     combined();
@@ -108,7 +118,7 @@ export default function Component({ data, categories, pagination, LIMIT }) {
           color="secondary"
           onChange={function (event, page) {
             console.log(page);
-            dispatch(FetchAllProducts(page, LIMIT));
+            dispatch(FetchAllProducts(page));
             dispatch(SetPaginatedSite(page));
           }}
           className={styles.ContainerForPagination}
