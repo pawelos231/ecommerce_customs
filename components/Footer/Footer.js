@@ -60,12 +60,14 @@ const Footer = () => {
             </p>
             <div>
               <p>Looking for custom</p>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                Put order
-              </motion.button>
+              <Link href={`/cart`}>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  Put order
+                </motion.button>
+              </Link>
             </div>
           </div>
         </div>

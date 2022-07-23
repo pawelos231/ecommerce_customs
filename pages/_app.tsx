@@ -16,7 +16,6 @@ function MyApp({
 
   const store = createStore(reducers, compose(applyMiddleware(thunk)));
   const Path: string = appProps.router.pathname;
-  const Regex = /^(?=[\S\s]{10,8000})[\S\s]*$/;
   let isLayoutNeeded: boolean;
   if (Path == "/" || Path.startsWith("/prodcs")) {
     isLayoutNeeded = true;
@@ -28,13 +27,13 @@ function MyApp({
 
   return (
     <SessionProvider session={session}>
-      <LayoutComponent>
-        <Provider store={store}>
-          <ThemeProvider>
+      <Provider store={store}>
+        <ThemeProvider>
+          <LayoutComponent>
             {getLayout(<Component {...pageProps} />)}
-          </ThemeProvider>
-        </Provider>
-      </LayoutComponent>
+          </LayoutComponent>
+        </ThemeProvider>
+      </Provider>
     </SessionProvider>
   );
 }

@@ -20,8 +20,8 @@ const DynamicNavbarForPhone = dynamic(
   () => import("../components/NavbarForPhone/NavbarPhone")
 );
 export async function getStaticProps() {
-  const LIMIT = 24;
-  const { data } = await commerce.products.list({
+  const LIMIT: number = 24;
+  const { data }: any = await commerce.products.list({
     limit: LIMIT,
     page: 1,
   });
@@ -36,7 +36,7 @@ export async function getStaticProps() {
       pagination,
       LIMIT,
     },
-    revalidate: 1, //later add redux to make filtering easier
+    revalidate: 1,
   };
 }
 
@@ -44,39 +44,42 @@ export default function Component({ data, categories, pagination, LIMIT }) {
   const dispatch = useDispatch();
   const size: SetSized = useWindowSize();
   console.log(size);
-  const PagesCount = Math.ceil(pagination.count / LIMIT);
+  const PagesCount: number = Math.ceil(pagination.count / LIMIT);
   const combined = async () => {
     //dispatch(FetchAllProducts());
     dispatch(fetchCart());
   };
   const { theme, setTheme } = useTheme();
 
-  const val2: any = useSelector((state: RootStateOrAny) => {
-    return state.ProductsHandle.prodcs;
-  });
-  const val3: number = useSelector((state: RootStateOrAny) => {
+  const ProductsFetchedFromApiFromRedux: any = useSelector(
+    (state: RootStateOrAny) => {
+      return state.ProductsHandle.prodcs;
+    }
+  );
+  const NumberOfPaginatedSite: number = useSelector((state: RootStateOrAny) => {
     return state.Pagination;
   });
-  console.log(val3);
-  console.log(val2);
-  const val: any = useSelector((state: RootStateOrAny) => {
+  const cartProductAdd: any = useSelector((state: RootStateOrAny) => {
     return state;
   });
   const [mounted, setMounted] = useState<boolean>(false);
   useEffect(() => {
     combined();
     setMounted(true);
-  }, [dispatch, val.cartAdd.cart]);
+  }, [dispatch, cartProductAdd.cartAdd.cart]);
   if (!mounted) {
     return (
       <div className={styles.mainContainer}>
         <DynamicNavbarForComputer
-          totaltems={val.cartFetch.total_items}
+          totaltems={cartProductAdd.cartFetch.total_items}
           data={data}
           categories={categories}
         />
         <Header />
-        <Products setCart={setCart} data={val2}></Products>
+        <Products
+          setCart={setCart}
+          data={ProductsFetchedFromApiFromRedux}
+        ></Products>
       </div>
     );
   }
@@ -84,7 +87,7 @@ export default function Component({ data, categories, pagination, LIMIT }) {
     <div className={styles.mainContainer} data-ison={theme}>
       {size.width > 720 ? (
         <DynamicNavbarForComputer
-          totaltems={val.cartFetch.total_items}
+          totaltems={cartProductAdd.cartFetch.total_items}
           data={data}
           categories={categories}
         />
@@ -94,7 +97,10 @@ export default function Component({ data, categories, pagination, LIMIT }) {
       <Header />
       <Products
         setCart={setCart}
-        {...(val3 == 1 && val2.length == 0 ? { data: data } : { data: val2 })}
+        {...(NumberOfPaginatedSite == 1 &&
+        ProductsFetchedFromApiFromRedux.length == 0
+          ? { data: data }
+          : { data: ProductsFetchedFromApiFromRedux })}
       ></Products>
       {PagesCount !== 1 ? (
         <Pagination

@@ -4,7 +4,9 @@ import { FetchProductsBySearchInput } from "../../../actions/ProductsAction";
 import { useState } from "react";
 import { Search } from "@material-ui/icons";
 import { useSession } from "next-auth/react";
+import Router from "next/router";
 const SearchBar = ({ data }) => {
+  const { pathname }: any = Router;
   const [searchedInput, handleSearchInput] = useState<string>("");
   const dispatch = useDispatch();
   const { data: session } = useSession();
@@ -14,6 +16,9 @@ const SearchBar = ({ data }) => {
   const mutable: Object = val2.ProductsHandle.prodcs;
   const HandleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const dataFromSearchBar: string = e.target.value;
+    if (pathname !== "/") {
+      Router.push("/");
+    }
     handleSearchInput(dataFromSearchBar);
     dispatch(FetchProductsBySearchInput(data, mutable, dataFromSearchBar));
   };
