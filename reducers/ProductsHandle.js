@@ -1,4 +1,4 @@
-export default (state = { prodcs: [] }, action) => {
+export default (state = { prodcs: null }, action) => {
   switch (action.type) {
     case "FETCH_ALL_PRODUCTS":
       return { ...state, prodcs: action.payload };

@@ -39,7 +39,7 @@ const Products = ({ setCart, data }) => {
   useEffect(() => {
     swtchervalueHandler();
   }, []);
-  if (data.length === 0) {
+  if (!data) {
     return (
       <div className={styles.CircContainer}>
         <CircularProgress color="secondary" size={102} />
@@ -63,7 +63,7 @@ const Products = ({ setCart, data }) => {
             // Animation to fix
             data.length !== 0 ? (
               switcher != "yes" ? (
-                data.map((item, i) => (
+                data.map((item: any, i: number) => (
                   <Grid
                     item
                     key={item.id}
@@ -80,7 +80,7 @@ const Products = ({ setCart, data }) => {
                   </Grid>
                 ))
               ) : (
-                data.map((item, i) => (
+                data.map((item: any, i: number) => (
                   <Grid
                     item
                     key={item.id}

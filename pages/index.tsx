@@ -56,6 +56,7 @@ export default function Component({ data, categories, pagination, LIMIT }) {
       return state.ProductsHandle.prodcs;
     }
   );
+  console.log(ProductsFetchedFromApiFromRedux);
   const NumberOfPaginatedSite: number = useSelector((state: RootStateOrAny) => {
     return state.Pagination;
   });
@@ -98,7 +99,7 @@ export default function Component({ data, categories, pagination, LIMIT }) {
       <Products
         setCart={setCart}
         {...(NumberOfPaginatedSite == 1 &&
-        ProductsFetchedFromApiFromRedux.length == 0
+        ProductsFetchedFromApiFromRedux == null
           ? { data: data }
           : { data: ProductsFetchedFromApiFromRedux })}
       ></Products>
