@@ -123,60 +123,62 @@ const Favourite = () => {
           content="https://ecommerce-basia.vercel.app/STORY_buty%201-min.jpg"
         />
       </Head>
-      {fetchedProdcs.prodcs.length !== 0 ? (
-        <div className={styles.ContainerForDescription}>
-          <h1>Moje ulubione Produkty</h1>
-          <p>
-            Doskonale wiemy, że zakupy wymagają cierpliwości i zastanowienia.
-            Daj sobie czas do namysłu. Dodaj swoje typy do ulubionych, a później
-            zdecyduj które po prostu musisz mieć. Zakupy z CCC to zawsze dobry
-            wybór więc pozwól sobie na zakup większej ilości produktów? Butów i
-            torebek przecież nigdy za wiele.
-          </p>
-        </div>
-      ) : null}
+      <div className={styles.ContainerForEverything}>
+        {fetchedProdcs.prodcs.length !== 0 ? (
+          <div className={styles.ContainerForDescription}>
+            <h1>Moje ulubione Produkty</h1>
+            <p>
+              Doskonale wiemy, że zakupy wymagają cierpliwości i zastanowienia.
+              Daj sobie czas do namysłu. Dodaj swoje typy do ulubionych, a
+              później zdecyduj które po prostu musisz mieć. Zakupy z CCC to
+              zawsze dobry wybór więc pozwól sobie na zakup większej ilości
+              produktów? Butów i torebek przecież nigdy za wiele.
+            </p>
+          </div>
+        ) : null}
 
-      <div className={styles.container} data-ison={theme}>
-        <section className={styles.mainContainerForFavs}>
-          {fetchedProdcs.prodcs.length !== 0 ? (
-            <div className={styles.contained}>
-              {fetchedProdcs.prodcs.map((item: any) => (
-                <Link href={`/prodcs/${item.ProductIdentity}`}>
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.96 }}
-                  >
-                    <FavProd prod={item} />
-                  </motion.div>
-                </Link>
-              ))}
-            </div>
-          ) : (
-            <div className={styles.NoFavs}>
-              <div>Brak Ulubionych :c</div>
-              <p>zobacz polecane produkty</p>
-              <div className={styles.ContainerForImages}>
-                {tabOfPol.map((item: any) => (
-                  <Link href={`../prodcs/${item.link}`}>
-                    <div className={styles.ConForImage}>
-                      <Image
-                        src={item.image}
-                        width={20}
-                        height={20}
-                        layout="responsive"
-                        objectFit="cover"
-                        blurDataURL={`data:image/svg+xml;base64,${toBase64(
-                          shimmer(100, 60)
-                        )}`}
-                        placeholder="blur"
-                      />
-                    </div>
+        <div className={styles.container} data-ison={theme}>
+          <section className={styles.mainContainerForFavs}>
+            {fetchedProdcs.prodcs.length !== 0 ? (
+              <div className={styles.contained}>
+                {fetchedProdcs.prodcs.map((item: any) => (
+                  <Link href={`/prodcs/${item.ProductIdentity}`}>
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.96 }}
+                    >
+                      <FavProd prod={item} />
+                    </motion.div>
                   </Link>
                 ))}
               </div>
-            </div>
-          )}
-        </section>
+            ) : (
+              <div className={styles.NoFavs}>
+                <div>Brak Ulubionych :c</div>
+                <p>zobacz polecane produkty</p>
+                <div className={styles.ContainerForImages}>
+                  {tabOfPol.map((item: any) => (
+                    <Link href={`../prodcs/${item.link}`}>
+                      <div className={styles.ConForImage}>
+                        <Image
+                          src={item.image}
+                          width={20}
+                          height={20}
+                          layout="responsive"
+                          objectFit="cover"
+                          blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                            shimmer(100, 60)
+                          )}`}
+                          placeholder="blur"
+                        />
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </section>
+        </div>
       </div>
     </>
   );
