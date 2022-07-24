@@ -1,4 +1,3 @@
-//i know api of commerce.js provides these sort funcitons for us (besides search by input text) but i wanted to make it as fast as possible and without fetchinh external data that would cost time
 import Fuse from "fuse.js";
 import {
   FETCH_PRODCS_BY_CATEGORY,
@@ -12,47 +11,46 @@ import {
   DESCENDING,
   NATIVE,
 } from "../constants/SearchByInputsInMenu";
-import { LIMIT } from "../constants/Limit";
+import { LIMIT } from "../constants/LimitProductsPerPage";
 import { commerce } from "../lib/commerce";
 let dataProdcs;
 const init = async () => {
   dataProdcs = await commerce.products.list();
 };
 init();
-export const FetchAllProducts = (page) => async (dispatch) => {
+export const FetchAllProducts = (page, PagesCount) => async (dispatch) => {
   const { data } = await commerce.products.list({
     limit: LIMIT,
     page: page,
   });
-  dispatch({ type: FETCH_ALL_PRODUCTS, payload: data });
+  dispatch({ type: FETCH_ALL_PRODUCTS, payload: { data, PagesCount } });
 };
-export const FetchProductsBySearchInput =
-  (prodcs, mutable, search) => async (dispatch) => {
-    if (search == "") {
-      dispatch({
-        type: FETCH_PRODCS_BY_SEARCH_INPUT,
-        payload: dataProdcs.data,
-      });
-      return dataProdcs.data;
-    } else {
-      let newAray = [];
-      const fuse = new Fuse(dataProdcs.data, {
-        keys: ["name", "price.raw", "category.name"],
-        includeScore: true,
-      });
-      const results = fuse.search(search);
-      console.log(results);
-      results.map((prod) => {
-        newAray.push(prod.item);
-      });
-      const characterResults = newAray.map((character) => character);
-      dispatch({
-        type: FETCH_PRODCS_BY_SEARCH_INPUT,
-        payload: characterResults,
-      });
-      return characterResults;
-    }
-  };
+export const FetchProductsBySearchInput = (search) => async (dispatch) => {
+  if (search == "") {
+    dispatch({
+      type: FETCH_PRODCS_BY_SEARCH_INPUT,
+      payload: dataProdcs.data,
+    });
+    return dataProdcs.data;
+  } else {
+    let newAray = [];
+    const fuse = new Fuse(dataProdcs.data, {
+      keys: ["name", "price.raw", "category.name"],
+      includeScore: true,
+    });
+    const results = fuse.search(search);
+    console.log(results);
+    results.map((prod) => {
+      newAray.push(prod.item);
+    });
+    const characterResults = newAray.map((character) => character);
+    dispatch({
+      type: FETCH_PRODCS_BY_SEARCH_INPUT,
+      payload: characterResults,
+    });
+    return characterResults;
+  }
+};
 /*
 export const FetchProductByCategory =
   (prodcs, mutable, category) => async (dispatch) => {

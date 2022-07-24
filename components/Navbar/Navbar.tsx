@@ -68,17 +68,20 @@ const Navbar = ({ totaltems, data, categories }) => {
     return (
       <>
         <nav className={styles.mainConForList} data-ison={theme}>
-          <motion.div
-            className={styles.lefty}
-            onClick={() => {
-              onHandleOpenMenu();
-              console.log(isOpen);
-            }}
-          >
-            <div data-ison={theme}></div>
-            <div data-ison={theme}></div>
-            <div data-ison={theme}></div>
-          </motion.div>
+          {router.pathname == "/" ? (
+            <motion.div
+              className={styles.lefty}
+              onClick={() => {
+                onHandleOpenMenu();
+                console.log(isOpen);
+              }}
+            >
+              <div data-ison={theme}></div>
+              <div data-ison={theme}></div>
+              <div data-ison={theme}></div>
+            </motion.div>
+          ) : null}
+
           <SwitchLan />
           <ul>
             <div className={styles.UserInformation}>

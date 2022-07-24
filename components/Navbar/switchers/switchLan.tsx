@@ -1,5 +1,5 @@
 import styles from "../../../styles/navbar.module.sass";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { SwitchLanguage } from "../../../actions/LanguageSwitch";
 const SwitchLan = () => {
   const dispatch = useDispatch();

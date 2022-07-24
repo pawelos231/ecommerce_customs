@@ -20,7 +20,7 @@ const SearchBar = ({ data }) => {
       Router.push("/");
     }
     handleSearchInput(dataFromSearchBar);
-    dispatch(FetchProductsBySearchInput(data, mutable, dataFromSearchBar));
+    dispatch(FetchProductsBySearchInput(e.target.value));
   };
   if (!session) {
     return (

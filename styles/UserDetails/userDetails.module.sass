@@ -7,45 +7,20 @@
     background-color: $main_Black
     color: white
 .navigation
-    position: fixed
-    left: 0
-    top: 10vh
-    ul
-        list-style-type: none
-        display: flex
-        flex-direction: column
-        height: 90vh
-        margin: 0
-        padding: 0
-        max-height: 100vh
-        justify-content: start
-        width: 10vw
-        li
-            flex-basis: 8%
-            font-size: 22px
-            margin: 3px
-            width: 100%
-            display: flex
-            align-items: center
-            justify-content: center
-            text-align: center
-            background-color: $background_White
-            color: black
-            cursor: pointer
-            transition: .3s
-            &:hover
-                color: $main_White
-                background-color: $main_Black
+    @include MenuLeftForUserDetails(-20vw)
+.navigationOpen
+    @include MenuLeftForUserDetails(0vw)
 
 .mainContainerForFavs
-    width: 70vw
+    width: 80vw
+    margin-top: 8vh !important
     div
-        flex-basis: 22%
+        flex-basis: 19%
         cursor: pointer
-        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08)
     .contained
         display: flex
         gap: 12px
+        flex-wrap: wrap
         justify-content: center
 .NoFavs
     @include PositionCenterSingleItem()
@@ -65,3 +40,26 @@
     margin-top: 80px
     .ConForImage
         flex-basis: 27%
+
+.ContainerForArrrowRight
+    position: absolute
+    top: 10vh
+    left: 0vw
+    font-size: 70px
+    transition: .3s
+.ContainerForArrrowLeft
+    position: absolute
+    top: 10vh
+    left: 10vw
+    transition: .3s
+    font-size: 70px
+
+.ContainerForDescription
+    width: 80vw
+    margin-top: 25vh
+    h1
+        font-family: Poppins
+        font-weight: 500
+        letter-spacing: 1.5px
+    p
+        width: 50%

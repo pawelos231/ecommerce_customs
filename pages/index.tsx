@@ -13,7 +13,7 @@ import { SetPaginatedSite } from "../actions/Pagination";
 import useWindowSize from "../hooks/useWindowResize";
 import { SetSized } from "../interfaces/interfacesAboutUserDetails";
 import dynamic from "next/dynamic";
-import { LIMIT } from "../constants/Limit";
+import { LIMIT } from "../constants/LimitProductsPerPage";
 const DynamicNavbarForComputer = dynamic(
   () => import("../components/Navbar/Navbar")
 );
@@ -118,7 +118,7 @@ export default function Component({ data, categories, pagination, LIMIT }) {
           color="secondary"
           onChange={function (event, page) {
             console.log(page);
-            dispatch(FetchAllProducts(page));
+            dispatch(FetchAllProducts(page, PagesCount));
             dispatch(SetPaginatedSite(page));
           }}
           className={styles.ContainerForPagination}

@@ -1,5 +1,4 @@
 import NavbarUser from "../UserDetails/navbar/navbarUser";
-import Navbar from "../Navbar/Navbar";
 import { useSelector, useDispatch, RootStateOrAny } from "react-redux";
 import { useEffect } from "react";
 import { fetchCart } from "../../actions/fetchcommerceCart";

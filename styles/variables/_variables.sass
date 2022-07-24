@@ -12,3 +12,35 @@
     top: 50%
     left: 50%
     transform: translate(-50%, -50%)
+
+@mixin MenuLeftForUserDetails($left)
+    position: fixed
+    left: $left
+    top: 10vh
+    transition: .3s
+    ul
+        list-style-type: none
+        display: flex
+        flex-direction: column
+        height: 90vh
+        margin: 0
+        padding: 0
+        max-height: 100vh
+        justify-content: start
+        width: 10vw
+        li
+            flex-basis: 8%
+            font-size: 22px
+            margin: 3px
+            width: 100%
+            display: flex
+            align-items: center
+            justify-content: center
+            text-align: center
+            background-color: $background_White
+            color: black
+            cursor: pointer
+            transition: .3s
+            &:hover
+                color: $main_White
+                background-color: $main_Black
