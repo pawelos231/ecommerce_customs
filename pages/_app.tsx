@@ -23,7 +23,7 @@ function MyApp({
     isLayoutNeeded = false;
   }
   console.log(appProps.router.pathname);
-  const LayoutComponent = isLayoutNeeded ? Layout : React.Fragment;
+  const LayoutComponent: any = isLayoutNeeded ? Layout : React.Fragment;
 
   return (
     <SessionProvider session={session}>

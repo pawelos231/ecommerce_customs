@@ -103,10 +103,10 @@ const Header = () => {
             <span>BB customs, </span> Heart into style
           </h1>
           <p>
-            Strona poświęcona customs, sprzedająca najwyższej klasy customowe
-            kurtki oraz customowe buty. Szeroki wybór pozwala na dobranie
-            ciuchów idealnie pod twoje oczekiwania. Jeżeli wybór wciąż byłby dla
-            ciebie za mały, zawsze możesz do mnie napisać w wiadomości
+            Strona typu ecommerce poświęcona customs, sprzedająca najwyższej
+            klasy customowe kurtki oraz customowe buty. Szeroki wybór pozwala na
+            dobranie ciuchów idealnie pod twoje oczekiwania. Jeżeli wybór wciąż
+            byłby dla ciebie za mały, zawsze możesz do mnie napisać w wiadomości
             dołączonej obok każdego produktu, mam nadzieję że moje prace ci się
             spodobają i że za niedługo będziesz już mógł się cieszyć produktem !
           </p>

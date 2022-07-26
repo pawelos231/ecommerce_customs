@@ -24,7 +24,7 @@ const Layout = ({ children }) => {
           href="https://ecommerce-basia.vercel.app"
           hrefLang="en-us"
         />
-        <link rel="icon" type="image/x-icon" href="/logo.png" />
+        <link rel="icon" type="image/png" href="/logo.png" />
         <title>BB Customs Eccomerce Shop</title>
 
         <meta charSet="UTF-8" />

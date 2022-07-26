@@ -8,20 +8,23 @@ import useFetch from "../../../../hooks/useFetch";
 import { Pagination } from "@mui/material";
 import { CircularProgress } from "@material-ui/core";
 import userInfo from "../../../../interfaces/interfaces";
+import { POST } from "../../../../constants/FetchDataMethods";
 const Comments = ({ productId, Language }) => {
   const { data: session } = useSession();
   const [input, inputvalue] = useState<string>("");
   const [commets, postComment] = useState<userInfo | any>([]);
   const [pages, SetPage] = useState<number>(1);
+  const [loadingLogged, setLoadingLogged] = useState<boolean>(false);
   const refContainerForCom = useRef(null);
   const Paginated = async () => {
     await fetch(`/api/comments/${productId}/countPages`)
       .then((response) => response.json())
       .then((data) => SetPage(data.NumberOfPaginatedPages));
   };
-  const fetchComments = async (pages, currentPage = 1) => {
+  const fetchComments = async (pages: number, currentPage: number = 1) => {
+    setLoadingLogged(false);
     await fetch(`/api/comments/${productId}`, {
-      method: "POST",
+      method: POST,
       body: JSON.stringify({
         pages,
         currentPage,
@@ -29,8 +32,10 @@ const Comments = ({ productId, Language }) => {
     })
       .then((response) => response.json())
       .then((data) => postComment(data.comment));
+    setLoadingLogged(true);
   };
-  const deleteComment = async (index) => {
+
+  const deleteComment = async (index: number) => {
     await fetch(
       `/api/comments/${commets[index]?.id}/deleteComments/${session.user.id}`,
       {
@@ -40,9 +45,9 @@ const Comments = ({ productId, Language }) => {
       .then((response) => response.json())
       .then((data) => console.log(data));
     commets.splice(index, 1);
-    postComment((prevState) => [...commets]);
+    postComment((prevState: any) => [...commets]);
   };
-  const OnPostComment = async (comment: any) => {
+  const OnPostComment = async (comment: Object) => {
     if (comment != "") {
       refContainerForCom.current.value = "";
       let userObj = {
@@ -109,51 +114,57 @@ const Comments = ({ productId, Language }) => {
           </div>
           <ul>
             {commets.length !== 0 ? (
-              commets.map((item, i) => {
-                return (
-                  <>
-                    <div className={styles.conForCom}>
-                      <p className={styles.date}>
-                        Dodane:{" "}
-                        {item.createdAt !== "" &&
-                        item.createdAt !== null &&
-                        item.createdAt !== undefined ? (
-                          String(item.createdAt).split("T")[0]
-                        ) : (
-                          <p>brak danych</p>
-                        )}
-                      </p>
-                      <div className={styles.photoContainer}>
-                        <Image
-                          src={item.Photo}
-                          width={20}
-                          height={20}
-                          objectFit="cover"
-                          layout="responsive"
-                        />
-                      </div>
-                      <p className={styles.author}>{item.Author}</p>
-                    </div>
-                    <div className={styles.conForContentComment}>
-                      <p className={styles.Content}>{item.Content}</p>
-                      {item.UserId == session.user.id ? (
-                        <motion.div
-                          whileHover={{
-                            scale: 1.05,
-                            color: "red",
-                          }}
-                          whileTap={{
-                            scale: 0.95,
-                          }}
-                          onClick={() => deleteComment(i)}
-                        >
-                          <Delete />
-                        </motion.div>
-                      ) : null}
-                    </div>
-                  </>
-                );
-              })
+              <>
+                {!loadingLogged ? (
+                  <CircularProgress />
+                ) : (
+                  commets.map((item: any, i: number) => {
+                    return (
+                      <>
+                        <div className={styles.conForCom}>
+                          <p className={styles.date}>
+                            Dodane:{" "}
+                            {item.createdAt !== "" &&
+                            item.createdAt !== null &&
+                            item.createdAt !== undefined ? (
+                              String(item.createdAt).split("T")[0]
+                            ) : (
+                              <p>brak danych</p>
+                            )}
+                          </p>
+                          <div className={styles.photoContainer}>
+                            <Image
+                              src={item.Photo}
+                              width={20}
+                              height={20}
+                              objectFit="cover"
+                              layout="responsive"
+                            />
+                          </div>
+                          <p className={styles.author}>{item.Author}</p>
+                        </div>
+                        <div className={styles.conForContentComment}>
+                          <p className={styles.Content}>{item.Content}</p>
+                          {item.UserId == session.user.id ? (
+                            <motion.div
+                              whileHover={{
+                                scale: 1.05,
+                                color: "red",
+                              }}
+                              whileTap={{
+                                scale: 0.95,
+                              }}
+                              onClick={() => deleteComment(i)}
+                            >
+                              <Delete />
+                            </motion.div>
+                          ) : null}
+                        </div>
+                      </>
+                    );
+                  })
+                )}
+              </>
             ) : (
               <div className={styles.nothingIsHere}>Nic tu nie ma</div>
             )}
@@ -167,7 +178,7 @@ const Comments = ({ productId, Language }) => {
               {loading == false ? (
                 <>
                   {commentsUsers?.length !== 0 ? (
-                    commentsUsers?.map((item, i) => {
+                    commentsUsers?.map((item: any, i: number) => {
                       return (
                         <>
                           <div className={styles.conForCom}>

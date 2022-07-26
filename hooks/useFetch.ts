@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-
-const useFetch = (url: string) : [any, boolean, boolean] => {
+import {GET} from '../constants/FetchDataMethods'
+const useFetch = (url: string, method: string = GET, props: any = null) : [any, boolean, boolean] => {
     const [data, setData] = useState<any>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<boolean>(false);
@@ -12,7 +12,11 @@ const useFetch = (url: string) : [any, boolean, boolean] => {
 	};
 	  const testFunc = async() => {
 		setIsLoading(true);
-		fetch(url)
+		if(method !== GET && props !== null){
+			await fetch(url, {
+				method: method,
+				body: JSON.stringify(props)
+			})
 			.then((res) => {
 				if (!res.ok) {
 					setError(true);
@@ -26,13 +30,30 @@ const useFetch = (url: string) : [any, boolean, boolean] => {
 			.catch(() => {
 				setError(true);
 			})
-		clearState()
+		} else{
+			await fetch(url)
+			.then((res) => {
+				if (!res.ok) {
+					setError(true);
+				}
+				return res.json();
+			})
+			.then((data) => {
+				setData(data);
+                setIsLoading(false)
+			})
+			.catch(() => {
+				setError(true);
+			})
+		}
 	  }
 
 	useEffect(() => {
         testFunc()
+		clearState()
 	}, [url]);
 
 	return [data, isLoading, error];
 }
 export default useFetch;
+
