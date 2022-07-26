@@ -58,7 +58,7 @@ const Favourite = () => {
     return <CircularProgress />;
   }
   return (
-    <>
+    <div className={styles.ContainerForEverithingFavsSection} data-ison={theme}>
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -180,7 +180,7 @@ const Favourite = () => {
           </section>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 Favourite.getLayout = (page) => {

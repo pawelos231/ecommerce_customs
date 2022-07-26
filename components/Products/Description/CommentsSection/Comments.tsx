@@ -115,7 +115,7 @@ const Comments = ({ productId, Language }) => {
           <ul>
             {commets.length !== 0 ? (
               <>
-                {!loadingLogged ? (
+                {loadingLogged == false ? (
                   <CircularProgress />
                 ) : (
                   commets.map((item: any, i: number) => {
