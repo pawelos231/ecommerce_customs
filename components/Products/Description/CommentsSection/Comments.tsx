@@ -12,9 +12,10 @@ import { POST } from "../../../../constants/FetchDataMethods";
 const Comments = ({ productId, Language }) => {
   const { data: session } = useSession();
   const [input, inputvalue] = useState<string>("");
-  const [commets, postComment] = useState<userInfo | any>([]);
+  const [commets, postComment] = useState<userInfo | any>(null);
   const [pages, SetPage] = useState<number>(1);
   const [loadingLogged, setLoadingLogged] = useState<boolean>(false);
+  const [isArrayEmpty, SetIsArrayEmpty] = useState<boolean>(false);
   const refContainerForCom = useRef(null);
   const Paginated = async () => {
     await fetch(`/api/comments/${productId}/countPages`)
@@ -22,7 +23,6 @@ const Comments = ({ productId, Language }) => {
       .then((data) => SetPage(data.NumberOfPaginatedPages));
   };
   const fetchComments = async (pages: number, currentPage: number = 1) => {
-    setLoadingLogged(false);
     await fetch(`/api/comments/${productId}`, {
       method: POST,
       body: JSON.stringify({
@@ -31,7 +31,12 @@ const Comments = ({ productId, Language }) => {
       }),
     })
       .then((response) => response.json())
-      .then((data) => postComment(data.comment));
+      .then((data) => {
+        postComment(data.comment);
+        if (!data.comment) {
+          SetIsArrayEmpty(true);
+        }
+      });
     setLoadingLogged(true);
   };
 
@@ -113,10 +118,12 @@ const Comments = ({ productId, Language }) => {
             </motion.button>
           </div>
           <ul>
-            {commets.length !== 0 ? (
+            {!isArrayEmpty ? (
               <>
                 {loadingLogged == false ? (
-                  <CircularProgress />
+                  <div className={styles.ContainerForCircularProgess}>
+                    <CircularProgress size={80} thickness={2.0} />
+                  </div>
                 ) : (
                   commets.map((item: any, i: number) => {
                     return (
@@ -227,16 +234,18 @@ const Comments = ({ productId, Language }) => {
           )}
         </>
       )}
-      <div className={styles.containerForPagination}>
-        <Pagination
-          count={pages}
-          size="large"
-          color="secondary"
-          onChange={function (event, page) {
-            fetchComments(pages, page);
-          }}
-        />
-      </div>
+      {pages !== 1 ? (
+        <div className={styles.containerForPagination}>
+          <Pagination
+            count={pages}
+            size="large"
+            color="secondary"
+            onChange={function (event, page) {
+              fetchComments(pages, page);
+            }}
+          />
+        </div>
+      ) : null}
     </>
   );
 };

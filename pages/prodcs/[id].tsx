@@ -41,8 +41,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const id = params.id;
-  const { data } = await commerce.products.list({
+  const id: string | string[] = params.id;
+  const { data }: { data: any } = await commerce.products.list({
     query: id,
   });
   if (!data.length) {
@@ -55,7 +55,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
   return {
     props: { prodcs: data[0] },
-    revalidate: 1,
+    revalidate: 60, //later change to on demand revalidation via github actions or some custom server function
   };
 };
 const ProductDetails = ({ prodcs }) => {
