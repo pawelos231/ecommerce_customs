@@ -39,7 +39,7 @@ const NotFound = () => {
           hrefLang="en-us"
         />
         <link rel="icon" type="image/x-icon" href="/logo.png" />
-        <title>BB Customs Eccomerce Shop</title>
+        <title>BB Customs 404 Page</title>
 
         <meta charSet="UTF-8" />
         <meta

@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { POST, DELETE } from "../../../../constants/FetchDataMethods";
 import FavsInfo from "../../../../interfaces/interfaces";
 const FavsIcon = ({ session, product }) => {
-  const [favourite, setFavourite] = useState(false);
+  const [favourite, setFavourite] = useState<boolean>(false);
   const [fetchedProdcs, fetchHandle] = useState<FavsInfo>(null);
   const classes = useStyles();
   const AddToFavouriteProductHandler = async () => {
@@ -49,7 +49,6 @@ const FavsIcon = ({ session, product }) => {
     fetchAllProdcs();
   }, []);
   useEffect(() => {
-    console.log(fetchedProdcs);
     //i know this is stupidly done on the client site, later i will have to change that to be done on the server
     if (fetchedProdcs) {
       fetchedProdcs?.map((item: any) => {
@@ -60,7 +59,7 @@ const FavsIcon = ({ session, product }) => {
     }
   }, [fetchedProdcs]);
   if (fetchedProdcs?.prodcs?.length == 0) {
-    <div>chuj</div>;
+    <div>Nic tu nie ma</div>;
   }
   return (
     <div>

@@ -67,7 +67,7 @@ export default function Component({ data, categories, pagination, LIMIT }) {
 
   let PagesCount: number;
   PagesCount = Math.ceil(pagination.count / LIMIT);
-  const number = useSelector((state: RootStateOrAny) => {
+  const number: number = useSelector((state: RootStateOrAny) => {
     return state.ProductsHandle.numberOfPages;
   });
   if (ProductsFetchedFromApiFromRedux != null) {

@@ -13,6 +13,17 @@
     @include MenuLeftForUserDetails(-20vw)
 .navigationOpen
     @include MenuLeftForUserDetails(0vw)
+.navigationOpen[data-ison="light"]
+    @include MenuLeftForUserDetails(0vw)
+    background-color: white
+    color: $main_Black
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.09)
+    ul
+        li
+            color: $main_Black
+            &:hover
+                background-color: $main_White
+                color: $main_Black
 
 .mainContainerForFavs
     position: absolute

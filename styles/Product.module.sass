@@ -1,3 +1,4 @@
+@import './variables/_colors'
 .CircContainer
     width: 100vw
     height: 100vh
@@ -18,7 +19,6 @@
 
 .containerForTabs
     background-color: white
-    min-height: 60vh
     color: black
 
 .containerForTabs[data-ison="dark"]
@@ -51,11 +51,25 @@
         color: rgba(0, 0, 0, 0.28)
 .conForSearch
     z-index: 10001
+.ContainerForEveruProduct
+    margin-bottom: 0
+.ConForBuyAndFav
+    display: flex
+    justify-content: flex-end
+    position: relative
+    h2
+        position: absolute
+        left: 0
+        width: 65%
+        font-weight: 300
+        font-size: 17px
 
+.PriceOfProduct
+    font-family: 'Lato'
+    font-style: normal
+    font-weight: 600
+    color: #1e8062
 @media(max-width: 720px)
     .content
-        padding: 2rem
-
-@media(max-width: 420px)
-    .content
-        padding: 1rem
+        padding: 0rem
+        margin: 0

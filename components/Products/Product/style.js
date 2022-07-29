@@ -5,16 +5,16 @@ export default makeStyles(() => ({
     // maxWidth: 345, original width style
     maxWidth: "100%",
     cursor: "pointer",
-    minHeight: "60vh",
+    minHeight: "50vh",
     position: "relative",
-    backgroundColor: "white",
+    backgroundColor: "transparent",
   },
   darkRoot: {
     maxWidth: "100%",
     cursor: "pointer",
-    minHeight: "60vh",
+    minHeight: "50vh",
     position: "relative",
-    backgroundColor: "#252525",
+    backgroundColor: "transparent",
     boxShadow: "0 0 28px 5px rgba(black, 0.1 )",
   },
   media: {
@@ -30,24 +30,32 @@ export default makeStyles(() => ({
     justifyContent: "space-between",
   },
   buttonShop: {
-    position: "absolute",
-    bottom: "2%",
+    color: "#ccc",
+    transition: "0.3s",
+    "&:hover": {
+      transform: "scale(1.1)",
+      color: "black",
+    },
   },
   buttonShopDark: {
     color: "#ccc",
-    position: "absolute",
-    bottom: "2%",
+    transition: "0.3s",
+    "&:hover": {
+      transform: "scale(1.1)",
+    },
   },
   favouriteIcon: {
-    position: "absolute",
-    bottom: "2%",
-    right: "5%",
     color: "#FE3E86",
+    transition: "0.3s",
+    "&:hover": {
+      transform: "scale(1.1)",
+    },
   },
   favouriteIconBlack: {
-    position: "absolute",
-    bottom: "2%",
-    right: "5%",
     color: "gray",
+    transition: "0.3s",
+    "&:hover": {
+      transform: "scale(1.1)",
+    },
   },
 }));

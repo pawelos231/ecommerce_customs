@@ -7,17 +7,18 @@ import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import React from "react";
 import { ThemeProvider } from "next-themes";
+import { ReactNode } from "react";
 function MyApp({
   Component,
   pageProps: { session, ...pageProps },
   ...appProps
 }) {
-  const getLayout = Component.getLayout || ((page) => page);
+  const getLayout: any = Component.getLayout || ((page: ReactNode) => page);
 
   const store = createStore(reducers, compose(applyMiddleware(thunk)));
   const Path: string = appProps.router.pathname;
   let isLayoutNeeded: boolean;
-  if (Path == "/" || Path.startsWith("/prodcs")) {
+  if (Path === "/" || Path.startsWith("/prodcs")) {
     isLayoutNeeded = true;
   } else {
     isLayoutNeeded = false;

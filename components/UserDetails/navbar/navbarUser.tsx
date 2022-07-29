@@ -5,6 +5,7 @@ import { Links } from "../../../interfaces/interfacesAboutUserDetails";
 import { ArrowRight, ArrowLeft } from "@material-ui/icons";
 import { useState } from "react";
 import { Person, Home, ShoppingCart, Favorite } from "@material-ui/icons";
+import { useTheme } from "next-themes";
 const NavbarUser = () => {
   const TabOfLinksToUserDetailedPages: Links[] = [
     { text: "Strona główna", link: "/user", icon: <Home /> },
@@ -12,6 +13,7 @@ const NavbarUser = () => {
     { text: "Zamówienia", link: "/user/Favourite", icon: <ShoppingCart /> },
     { text: "Informacje", link: "/user/Favourite", icon: <Person /> },
   ];
+  const { theme, setTheme } = useTheme();
   const [click, clickHandle] = useState<boolean>(false);
   return (
     <>
@@ -32,7 +34,10 @@ const NavbarUser = () => {
         )}
       </motion.div>
 
-      <nav className={click ? styles.navigationOpen : styles.navigation}>
+      <nav
+        className={click ? styles.navigationOpen : styles.navigation}
+        data-ison={theme}
+      >
         <ul>
           {TabOfLinksToUserDetailedPages.map((item: Links) => (
             <Link href={item.link}>
