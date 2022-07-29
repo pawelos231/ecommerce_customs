@@ -68,7 +68,7 @@ const FavsIcon = ({ session, product }) => {
       <CardActions>
         <IconButton
           className={
-            favourite ? classes.favouriteIcon : classes.favouriteIconBlack
+            favourite ? classes.favouriteIcon : classes.favouriteIconWhite
           }
           onClick={AddToFavouriteProductHandler}
         >
