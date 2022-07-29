@@ -1,20 +1,24 @@
 import styles from "../../styles/UserDetails/userDetails.module.sass";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import {Links} from "../../interfaces/interfacesAboutUserDetails";
+import { Links } from "../../interfaces/interfacesAboutUserDetails";
+import { Person, Home, ShoppingCart, Favorite } from "@material-ui/icons";
 const UserDetailsComponent = () => {
   const TabOfLinksToUserDetailedPages: Links[] = [
-    { text: "zamowienia", link: "/user" },
-    { text: "ulubione", link: "/user/Favourite" },
-    { text: "cos1", link: "/user/Favourite" },
-    { text: "pop3", link: "/user/Favourite" },
-    { text: "smtp", link: "/user/Favourite" },
+    {
+      text: "Strona główna",
+      link: "/user",
+      icon: <Home />,
+    },
+    { text: "ulubione", link: "/user/Favourite", icon: <Favorite /> },
+    { text: "Zamówienia", link: "/user/Favourite", icon: <ShoppingCart /> },
+    { text: "pop3", link: "/user/Favourite", icon: <Person /> },
   ];
   return (
     <>
       <nav className={styles.navigation}>
         <ul>
-          {TabOfLinksToUserDetailedPages.map((item) => (
+          {TabOfLinksToUserDetailedPages.map((item: Links) => (
             <Link href={item.link}>
               <motion.li whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.05 }}>
                 {item.text}

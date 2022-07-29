@@ -15,7 +15,7 @@ import FavsIcon from "./favouriteIconComponent/favsIcon";
 import { useTheme } from "next-themes";
 
 const Product = ({ product, setCart, index }) => {
-  const [click, setOnclick] = useState(false);
+  const [click, setOnclick] = useState<boolean>(false);
   const { data: session } = useSession();
   const dispatch = useDispatch();
   const { theme, setTheme } = useTheme();

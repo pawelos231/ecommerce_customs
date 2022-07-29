@@ -13,7 +13,7 @@ import { useEffect } from "react";
 import Variants from "../../components/Products/Description/VariantsGroups/Variants";
 import { useTheme } from "next-themes";
 import HeadForProdcs from "../../components/Layouts/HeadForProdcs";
-import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
+import { GetStaticProps, GetStaticPaths} from "next";
 import { SetSized } from "../../interfaces/interfacesAboutUserDetails";
 import useWindowSize from "../../hooks/useWindowResize";
 import dynamic from "next/dynamic";
@@ -113,7 +113,7 @@ const ProductDetails = ({ prodcs }) => {
               showStatus={false}
               autoPlay
             >
-              {prodcs.assets.map((item, i) => {
+              {prodcs.assets.map((item: any, i: number) => {
                 return (
                   <>
                     <div

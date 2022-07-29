@@ -3,10 +3,11 @@ import { FavoriteBorder, Favorite } from "@material-ui/icons";
 import { useState } from "react";
 import useStyles from "../style.js";
 import { useEffect } from "react";
-
+import { POST, DELETE } from "../../../../constants/FetchDataMethods";
+import FavsInfo from "../../../../interfaces/interfaces";
 const FavsIcon = ({ session, product }) => {
   const [favourite, setFavourite] = useState(false);
-  const [fetchedProdcs, fetchHandle] = useState<any>([]);
+  const [fetchedProdcs, fetchHandle] = useState<FavsInfo>(null);
   const classes = useStyles();
   const AddToFavouriteProductHandler = async () => {
     //id uzytkonika, zdjęcie produktu, id produktu
@@ -21,13 +22,13 @@ const FavsIcon = ({ session, product }) => {
         };
         setFavourite(true);
         await fetch("/api/favourite/addTofav", {
-          method: "POST",
+          method: POST,
           body: JSON.stringify(DataObjectUserFavourite),
         });
       } else {
         setFavourite(false);
         await fetch(`/api/favourite/${unique}`, {
-          method: "DELETE",
+          method: DELETE,
         })
           .then((res) => {
             return res.json();
@@ -41,15 +42,17 @@ const FavsIcon = ({ session, product }) => {
       await fetch(`/api/favourite/userDataFetch/${session?.user?.id}`)
         .then((response) => response.json())
         .then((data) => {
-          fetchHandle(data);
-          console.log(fetchedProdcs.prodcs);
+          console.log(data);
+          fetchHandle(data.prodcs);
         });
     };
     fetchAllProdcs();
   }, []);
   useEffect(() => {
-    if (fetchedProdcs.prodcs) {
-      fetchedProdcs?.prodcs?.map((item) => {
+    console.log(fetchedProdcs);
+    //i know this is stupidly done on the client site, later i will have to change that to be done on the server
+    if (fetchedProdcs) {
+      fetchedProdcs?.map((item: any) => {
         if (item.ProductIdentity == product.id) {
           setFavourite(true);
         }

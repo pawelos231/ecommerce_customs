@@ -4,13 +4,13 @@ import Link from "next/link";
 import { Links } from "../../../interfaces/interfacesAboutUserDetails";
 import { ArrowRight, ArrowLeft } from "@material-ui/icons";
 import { useState } from "react";
+import { Person, Home, ShoppingCart, Favorite } from "@material-ui/icons";
 const NavbarUser = () => {
   const TabOfLinksToUserDetailedPages: Links[] = [
-    { text: "zamowienia", link: "/user" },
-    { text: "ulubione", link: "/user/Favourite" },
-    { text: "cos1", link: "/user/Favourite" },
-    { text: "pop3", link: "/user/Favourite" },
-    { text: "smtp", link: "/user/Favourite" },
+    { text: "Strona główna", link: "/user", icon: <Home /> },
+    { text: "ulubione", link: "/user/Favourite", icon: <Favorite /> },
+    { text: "Zamówienia", link: "/user/Favourite", icon: <ShoppingCart /> },
+    { text: "Informacje", link: "/user/Favourite", icon: <Person /> },
   ];
   const [click, clickHandle] = useState<boolean>(false);
   return (
@@ -34,10 +34,12 @@ const NavbarUser = () => {
 
       <nav className={click ? styles.navigationOpen : styles.navigation}>
         <ul>
-          {TabOfLinksToUserDetailedPages.map((item) => (
+          {TabOfLinksToUserDetailedPages.map((item: Links) => (
             <Link href={item.link}>
               <motion.li whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.05 }}>
-                {item.text}
+                <div className={styles.IconContainer}>{item.icon}</div>
+
+                <div className={styles.TextContainer}>{item.text}</div>
               </motion.li>
             </Link>
           ))}

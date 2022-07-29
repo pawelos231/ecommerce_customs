@@ -1,6 +1,7 @@
 export  interface Links {
   text: string;
   link: string;
+  icon: any
 };
 
 export interface RecommandedProducts {

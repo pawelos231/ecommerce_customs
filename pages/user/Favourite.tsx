@@ -36,7 +36,7 @@ const Favourite = () => {
     fetchAllProdcs();
     dispatch(fetchCart());
   }, [session]);
-  const tabOfPol: RecommandedProducts[] = [
+  const tabOfRecommendedProdcuts: RecommandedProducts[] = [
     {
       link: "prod_nPEVlNaMZL5a7d",
       image:
@@ -59,6 +59,7 @@ const Favourite = () => {
   }
   return (
     <div className={styles.ContainerForEverithingFavsSection} data-ison={theme}>
+      <h1>Moje ulubione Produkty</h1>
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -126,7 +127,6 @@ const Favourite = () => {
       <div className={styles.ContainerForEverything}>
         {fetchedProdcs.prodcs.length !== 0 ? (
           <div className={styles.ContainerForDescription}>
-            <h1>Moje ulubione Produkty</h1>
             <p>
               Doskonale wiemy, że zakupy wymagają cierpliwości i zastanowienia.
               Daj sobie czas do namysłu. Dodaj swoje typy do ulubionych, a
@@ -154,10 +154,10 @@ const Favourite = () => {
               </div>
             ) : (
               <div className={styles.NoFavs}>
-                <div>Brak Ulubionych :c</div>
+                <div>Brak Ulubionych :(</div>
                 <p>zobacz polecane produkty</p>
                 <div className={styles.ContainerForImages}>
-                  {tabOfPol.map((item: any) => (
+                  {tabOfRecommendedProdcuts.map((item: any) => (
                     <Link href={`../prodcs/${item.link}`}>
                       <div className={styles.ConForImage}>
                         <Image
@@ -183,7 +183,7 @@ const Favourite = () => {
     </div>
   );
 };
-Favourite.getLayout = (page) => {
+Favourite.getLayout = (page: any) => {
   return <NestedLayout>{page}</NestedLayout>;
 };
 
