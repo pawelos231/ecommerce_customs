@@ -31,8 +31,7 @@ const Product = ({ product, setCart, index }) => {
     localStorage.setItem("click", "yes");
   };
 
-  let isOn = value;
-  const classes = useStyles(isOn);
+  const classes = useStyles();
   /*
   useEffect(() => {
     let text = [...document.querySelectorAll(".Product_conForText__nAS4s")];
@@ -90,9 +89,7 @@ const Product = ({ product, setCart, index }) => {
         <div className={styles.ConForBuyAndFav}>
           <IconButton
             className={
-              String(isOn) === "true"
-                ? classes.buttonShop
-                : classes.buttonShopDark
+              theme === "light" ? classes.buttonShop : classes.buttonShopDark
             }
             aria-label="Add to cart"
             onClick={() => dispatch(setCart(product.id, 1))}

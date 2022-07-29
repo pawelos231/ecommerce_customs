@@ -30,7 +30,7 @@ export default makeStyles(() => ({
     justifyContent: "space-between",
   },
   buttonShop: {
-    color: "#ccc",
+    color: "gray",
     transition: "0.3s",
     "&:hover": {
       transform: "scale(1.1)",
@@ -51,7 +51,14 @@ export default makeStyles(() => ({
       transform: "scale(1.1)",
     },
   },
-  favouriteIconBlack: {
+  favouriteIconDark: {
+    color: "#ccc",
+    transition: "0.3s",
+    "&:hover": {
+      transform: "scale(1.1)",
+    },
+  },
+  favouriteIconWhite: {
     color: "gray",
     transition: "0.3s",
     "&:hover": {

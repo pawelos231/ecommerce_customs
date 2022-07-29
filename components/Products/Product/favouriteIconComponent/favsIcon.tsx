@@ -1,13 +1,15 @@
 import { CardActions, IconButton } from "@material-ui/core";
 import { FavoriteBorder, Favorite } from "@material-ui/icons";
 import { useState } from "react";
-import useStyles from "../style.js";
+import { useTheme } from "next-themes";
 import { useEffect } from "react";
 import { POST, DELETE } from "../../../../constants/FetchDataMethods";
 import FavsInfo from "../../../../interfaces/interfaces";
+import useStyles from "../style";
 const FavsIcon = ({ session, product }) => {
   const [favourite, setFavourite] = useState<boolean>(false);
   const [fetchedProdcs, fetchHandle] = useState<FavsInfo>(null);
+  const { theme, setTheme } = useTheme();
   const classes = useStyles();
   const AddToFavouriteProductHandler = async () => {
     //id uzytkonika, zdjęcie produktu, id produktu
@@ -70,7 +72,17 @@ const FavsIcon = ({ session, product }) => {
           }
           onClick={AddToFavouriteProductHandler}
         >
-          {!favourite ? <FavoriteBorder /> : <Favorite />}
+          {!favourite ? (
+            <FavoriteBorder
+              className={
+                theme === "dark"
+                  ? classes.favouriteIconDark
+                  : classes.favouriteIconWhite
+              }
+            />
+          ) : (
+            <Favorite />
+          )}
         </IconButton>
       </CardActions>
     </div>
