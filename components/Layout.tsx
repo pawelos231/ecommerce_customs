@@ -67,7 +67,7 @@ const Layout = ({ children }) => {
           content="https://ecommerce-basia.vercel.app/STORY_buty%201-min.jpg"
         />
       </Head>
-      <main>{children}</main>
+      <>{children}</>
       <Footer />
     </>
   );
