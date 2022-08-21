@@ -1,22 +1,30 @@
-import { commerce } from "../../lib/commerce";
-import styles from "../../styles/productPage.module.sass";
-import React from "react";
-import { useSelector, useDispatch, RootStateOrAny } from "react-redux";
+//react and stuff
+import dynamic from "next/dynamic";
 import Image from "next/image";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.css";
-import Description from "../../components/Products/Description/Description";
-import { useState } from "react";
-import { shimmer, toBase64 } from "../../components/ShimmerEffect/Shimmer";
-import { fetchCart } from "../../actions/fetchcommerceCart";
-import { useEffect } from "react";
-import Variants from "../../components/Products/Description/VariantsGroups/Variants";
+import React from "react";
+import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
-import HeadForProdcs from "../../components/Layouts/HeadForProdcs";
-import { GetStaticProps, GetStaticPaths} from "next";
+import { GetStaticProps, GetStaticPaths } from "next";
+import { Carousel } from "react-responsive-carousel";
+
+//actions and lib
+import { useSelector, useDispatch, RootStateOrAny } from "react-redux";
+import { fetchCart } from "../../actions/fetchcommerceCart";
+import { commerce } from "../../lib/commerce";
+
+//interfaces and hooks
 import { SetSized } from "../../interfaces/interfacesAboutUserDetails";
 import useWindowSize from "../../hooks/useWindowResize";
-import dynamic from "next/dynamic";
+
+//styles
+import "react-responsive-carousel/lib/styles/carousel.css";
+import styles from "../../styles/productPage.module.sass";
+
+//components
+import Description from "../../components/Products/Description/Description";
+import HeadForProdcs from "../../components/Layouts/HeadForProdcs";
+import Variants from "../../components/Products/Description/VariantsGroups/Variants";
+import { shimmer, toBase64 } from "../../components/ShimmerEffect/Shimmer";
 const DynamicNavbarForComputer = dynamic(
   () => import("../../components/Navbar/Navbar")
 );
@@ -26,6 +34,7 @@ const DynamicNavbarForPhone = dynamic(
 const DynamicModalForPhotos = dynamic(
   () => import("../../components/Products/ModalPhotos/ModalForPhotos")
 );
+
 let index: number = 0;
 export const getStaticPaths: GetStaticPaths = async () => {
   const { data }: { data: any } = await commerce.products.list();
@@ -58,7 +67,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     revalidate: 60, //later change to on demand revalidation via github actions or some custom server function
   };
 };
-const ProductDetails = ({ prodcs }) => {
+const ProductDetails = ({ prodcs }: { prodcs: any }) => {
   const [click, setClick] = useState<boolean>(false);
   const [mounted, setMounted] = useState<boolean>(false);
   const size: SetSized = useWindowSize();

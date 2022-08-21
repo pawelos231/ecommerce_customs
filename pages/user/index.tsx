@@ -1,10 +1,16 @@
-import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import styles from "../../styles/UserDetails/userDetails.module.sass";
-import UserDetailsComponent from "../../components/UserDetails/userDetailsComponent";
+
+//redux
 import { fetchCart } from "../../actions/fetchcommerceCart";
-import NestedLayout from "../../components/Layouts/layouUserInterface";
+import { useDispatch } from "react-redux";
+
+//styles
+import styles from "../../styles/UserDetails/userDetails.module.sass";
 import { useTheme } from "next-themes";
+
+//components
+import NestedLayout from "../../components/Layouts/layouUserInterface";
+import UserDetailsComponent from "../../components/UserDetails/userDetailsComponent";
 
 const UserDetails = () => {
   const dispatch = useDispatch();

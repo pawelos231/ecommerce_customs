@@ -1,25 +1,35 @@
-import Products from "../components/Products/Products";
-import { fetchCart } from "../actions/fetchcommerceCart";
+//react and next stuff
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch, RootStateOrAny } from "react-redux";
-import styles from "../styles/main.module.sass";
-import { setCart } from "../actions/setCart";
-import { commerce } from "../lib/commerce";
-import Header from "../components/Header/Header";
-import { FetchAllProducts } from "../actions/ProductsAction";
 import { useTheme } from "next-themes";
+import dynamic from "next/dynamic";
 import { Pagination } from "@mui/material";
+
+//actions and lib
+import { setCart } from "../actions/setCart";
+import { FetchAllProducts } from "../actions/ProductsAction";
 import { SetPaginatedSite } from "../actions/Pagination";
+import { fetchCart } from "../actions/fetchcommerceCart";
+import { commerce } from "../lib/commerce";
+
+//hooks and iterfaces
 import useWindowSize from "../hooks/useWindowResize";
 import { SetSized } from "../interfaces/interfacesAboutUserDetails";
-import dynamic from "next/dynamic";
 import { LIMIT } from "../constants/LimitProductsPerPage";
+
+//components
+import Products from "../components/Products/Products";
+import Header from "../components/Header/Header";
 const DynamicNavbarForComputer = dynamic(
   () => import("../components/Navbar/Navbar")
 );
 const DynamicNavbarForPhone = dynamic(
   () => import("../components/NavbarForPhone/NavbarPhone")
 );
+
+//styles
+import styles from "../styles/main.module.sass";
+
 export async function getStaticProps() {
   const { data }: any = await commerce.products.list({
     limit: LIMIT,

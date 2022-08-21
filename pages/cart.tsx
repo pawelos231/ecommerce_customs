@@ -1,23 +1,31 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch, RootStateOrAny } from "react-redux";
-import { fetchCart } from "../actions/fetchcommerceCart";
-import { Typography, Grid, Button, CircularProgress } from "@material-ui/core";
-import useStyles from "../stylesjs/styles";
-import styles from "../styles/cart.module.sass";
-import CartItem from "../components/Cart/CartItem";
-import { useTheme } from "next-themes";
+//react stuff
 import React from "react";
+import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch, RootStateOrAny } from "react-redux";
+import { Typography, Grid, Button, CircularProgress } from "@material-ui/core";
+import { useTheme } from "next-themes";
+
+//actions and lib
 import { commerce } from "../lib/commerce";
+import { fetchCart } from "../actions/fetchcommerceCart";
+
+//hooks and iterfaces
 import { SetSized } from "../interfaces/interfacesAboutUserDetails";
 import useWindowSize from "../hooks/useWindowResize";
-import dynamic from "next/dynamic";
+
+//components
+import CartItem from "../components/Cart/CartItem";
 const DynamicNavbarForComputer = dynamic(
   () => import("../components/Navbar/Navbar")
 );
 const DynamicNavbarForPhone = dynamic(
   () => import("../components/NavbarForPhone/NavbarPhone")
 );
+//styles
+import useStyles from "../stylesjs/styles";
+import styles from "../styles/cart.module.sass";
+
 const CartPage = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
