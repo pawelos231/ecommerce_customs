@@ -17,7 +17,7 @@
     "framer-motion": "^6.2.8",
     "fuse.js": "^6.6.2",
     "mongodb": "^4.6.0",
-    "mongoose": "^6.2.7",
+    "mongoose": "^6.4.6",
     "next": "^12.2.3",
     "next-auth": "^4.10.3",
     "next-sitemap": "^2.5.17",
