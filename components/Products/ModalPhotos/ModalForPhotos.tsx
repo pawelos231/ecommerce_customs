@@ -2,7 +2,15 @@ import styles from "../../../styles/Modal.module.sass";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { shimmer, toBase64 } from "../../ShimmerEffect/Shimmer";
-const ModalForPhotos = ({ setClickModal, itemId, prodcs }) => {
+const ModalForPhotos = ({
+  setClickModal,
+  itemId,
+  prodcs,
+}: {
+  setClickModal: any;
+  itemId: any;
+  prodcs: any;
+}) => {
   let width: number = prodcs.assets[itemId].image_dimensions.width;
   let height: number = prodcs.assets[itemId].image_dimensions.height;
   let displayHeight: number = (height + 140) / window.innerHeight;

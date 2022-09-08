@@ -7,10 +7,10 @@ const Variants = ({ prodcs }) => {
   return (
     <div className={styles.ConForOptionsParentContainer}>
       <div>
-        {prodcs.variant_groups.map((item) => {
+        {prodcs.variant_groups.map((item: any) => {
           return (
             <div className={styles.ConForOptionsParent} data-ison={theme}>
-              {item.options.map((item) => {
+              {item.options.map((item: any) => {
                 return (
                   <div className={styles.ConForOptions} data-ison={theme}>
                     {item.name}

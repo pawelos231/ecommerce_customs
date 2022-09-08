@@ -17,7 +17,7 @@ const Comments = ({ productId, Language }) => {
   const [loadingLogged, setLoadingLogged] = useState<boolean>(false);
   const [isArrayEmpty, SetIsArrayEmpty] = useState<boolean>(false);
   const refContainerForCom = useRef(null);
-  const Paginated = async () => {
+  const Paginated: () => Promise<void> = async () => {
     await fetch(`/api/comments/${productId}/countPages`)
       .then((response) => response.json())
       .then((data) => SetPage(data.NumberOfPaginatedPages));
@@ -55,7 +55,7 @@ const Comments = ({ productId, Language }) => {
   const OnPostComment = async (comment: Object) => {
     if (comment != "") {
       refContainerForCom.current.value = "";
-      let userObj = {
+      let userObj: Object = {
         Author: session.user.name,
         Photo: session.user.image,
         Content: comment,
@@ -70,8 +70,6 @@ const Comments = ({ productId, Language }) => {
       console.log(userObj);
     }
   };
-  console.log(commets);
-  console.log(productId);
 
   const [comments, loading, error] = useFetch(`/api/comments/${productId}`);
   const commentsUsers = comments?.comment;

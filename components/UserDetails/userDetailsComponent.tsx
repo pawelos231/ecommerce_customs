@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Links } from "../../interfaces/interfacesAboutUserDetails";
 import { Person, Home, ShoppingCart, Favorite } from "@material-ui/icons";
-const UserDetailsComponent = () => {
+const UserDetailsComponent: () => JSX.Element = () => {
   const TabOfLinksToUserDetailedPages: Links[] = [
     {
       text: "Strona główna",

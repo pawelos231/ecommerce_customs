@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Footer from "./Footer/Footer";
-const Layout = ({ children }) => {
+const Layout = ({ children }: { children: any }) => {
   return (
     <>
       <Head>

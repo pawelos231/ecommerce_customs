@@ -6,7 +6,7 @@ import { ArrowRight, ArrowLeft } from "@material-ui/icons";
 import { useState } from "react";
 import { Person, Home, ShoppingCart, Favorite } from "@material-ui/icons";
 import { useTheme } from "next-themes";
-const NavbarUser = () => {
+const NavbarUser: () => JSX.Element = () => {
   const TabOfLinksToUserDetailedPages: Links[] = [
     { text: "Strona główna", link: "/user", icon: <Home /> },
     { text: "ulubione", link: "/user/Favourite", icon: <Favorite /> },

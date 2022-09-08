@@ -5,9 +5,8 @@ import Link from "next/link";
 import { shimmer, toBase64 } from "../../ShimmerEffect/Shimmer";
 import Comments from "./CommentsSection/Comments";
 import { useSelector, RootStateOrAny } from "react-redux";
-const Description = ({ prodcs }) => {
+const Description = ({ prodcs }: { prodcs: any }) => {
   const productId: string = prodcs.id;
-  console.log(productId);
   const Language: string = useSelector((state: RootStateOrAny) => {
     return state.SwitchLan.language;
   });

@@ -6,12 +6,12 @@ import { useEffect } from "react";
 import { POST, DELETE } from "../../../../constants/FetchDataMethods";
 import FavsInfo from "../../../../interfaces/interfaces";
 import useStyles from "../style";
-const FavsIcon = ({ session, product }) => {
+const FavsIcon = ({ session, product }: { session: any; product: any }) => {
   const [favourite, setFavourite] = useState<boolean>(false);
   const [fetchedProdcs, fetchHandle] = useState<FavsInfo>(null);
   const { theme, setTheme } = useTheme();
   const classes = useStyles();
-  const AddToFavouriteProductHandler = async () => {
+  const AddToFavouriteProductHandler: () => Promise<void> = async () => {
     //id uzytkonika, zdjęcie produktu, id produktu
     if (session) {
       let unique: string = product.id + session.user.id;

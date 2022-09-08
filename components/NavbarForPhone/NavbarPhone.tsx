@@ -8,7 +8,6 @@ const NavbarPhone = () => {
   const [OpenHamburgerMenu, HandleOpenerOfHamburgerMenu] =
     useState<boolean>(false);
   const { data: session } = useSession();
-  console.log(OpenHamburgerMenu);
   const { theme, setTheme } = useTheme();
   if (session) {
     return (

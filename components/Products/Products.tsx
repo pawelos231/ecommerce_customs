@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useSelector, RootStateOrAny } from "react-redux";
 import useWindowSize from "../../hooks/useWindowResize";
 import { SetSized } from "../../interfaces/interfacesAboutUserDetails";
-const Products = ({ setCart, data }) => {
+const Products = ({ setCart, data }: { setCart: any; data: any }) => {
   const [switcher, swtchervalue] = useState<string>("");
 
   const container: any = {
@@ -83,7 +83,7 @@ const Products = ({ setCart, data }) => {
                   initial="hidden"
                   animate="show"
                 >
-                  <Product product={item} setCart={setCart} index={i} />
+                  <Product product={item} setCart={setCart} />
                 </Grid>
               ))
             ) : (

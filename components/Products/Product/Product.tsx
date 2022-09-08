@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
-import { Card, CardContent, CardActions, IconButton } from "@material-ui/core";
+import React from "react";
+import { Card, IconButton } from "@material-ui/core";
 import { AddShoppingCart } from "@material-ui/icons";
 import useStyles from "./style";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
+import { Dispatch } from "redux";
 import styles from "../../../styles/Product.module.sass";
 import Link from "next/link";
 import { useSelector, RootStateOrAny } from "react-redux";
@@ -14,17 +15,11 @@ import { useSession } from "next-auth/react";
 import FavsIcon from "./favouriteIconComponent/favsIcon";
 import { useTheme } from "next-themes";
 
-const Product = ({ product, setCart, index }) => {
+const Product = ({ product, setCart }: { product: any; setCart: any }) => {
   const [click, setOnclick] = useState<boolean>(false);
   const { data: session } = useSession();
-  const dispatch = useDispatch();
+  const dispatch: Dispatch<any> = useDispatch();
   const { theme, setTheme } = useTheme();
-  const value = useSelector((state: RootStateOrAny) => {
-    return state.SwitchToggle;
-  });
-  const valueOfLan = useSelector((state: RootStateOrAny) => {
-    return String(state.SwitchLan.language);
-  });
 
   const ClickProductHandler = () => {
     setOnclick(true);

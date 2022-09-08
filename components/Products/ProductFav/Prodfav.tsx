@@ -1,8 +1,7 @@
 import { Card } from "@material-ui/core";
 import Image from "next/image";
 import { shimmer, toBase64 } from "../../ShimmerEffect/Shimmer";
-const FavProd = ({ prod }) => {
-  console.log(prod);
+const FavProd = ({ prod }: { prod: any }) => {
   return (
     <Card>
       <Image

@@ -9,7 +9,13 @@ import useStyles from "./styles";
 import React from "react";
 import Image from "next/image";
 
-const CartItem = ({ lineItem, handleUpdateCartQty }: any) => {
+const CartItem = ({
+  lineItem,
+  handleUpdateCartQty,
+}: {
+  lineItem: any;
+  handleUpdateCartQty: any;
+}) => {
   if (lineItem.image == null) {
     return <></>;
   }
