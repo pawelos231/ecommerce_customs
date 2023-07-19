@@ -9,7 +9,10 @@ import { Pagination } from "@mui/material";
 import { CircularProgress } from "@material-ui/core";
 import userInfo from "../../../../interfaces/interfaces";
 import { POST } from "../../../../constants/FetchDataMethods";
+
+
 const Comments = ({ productId, Language }) => {
+
   const { data: session } = useSession();
   const [input, inputvalue] = useState<string>("");
   const [commets, postComment] = useState<userInfo | any>(null);

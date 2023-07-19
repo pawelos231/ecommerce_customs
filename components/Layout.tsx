@@ -56,7 +56,7 @@ const Layout = ({ children }: { children: any }) => {
         <meta property="og:site_name" content="BB customs" />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@LinekPawe" />
+        <meta name="twitter:site" content="@LinekPawel" />
         <meta name="twitter:title" content="BB Customs Eccomerce Shop" />
         <meta
           name="twitter:description"
